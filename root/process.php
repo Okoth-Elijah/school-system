@@ -73,25 +73,6 @@ if (isset($_POST['register_btn'])) {
             </div>';
         }
     }
-}elseif (isset($_POST['verify'])) {
-    trim(extract($_POST));
-    if (count($errors) == 0) {
-    $result = $dbh->query("SELECT * FROM users WHERE token = '$otp' AND email = '$email' " );
-    if ($result->rowCount() == 1) {
-        $dbh->query("UPDATE users SET account_status = 'Active' WHERE token = '$otp' AND email = '$email' ");
-        $subj = "POST KAZI - Account Verification Successful";
-        $body = "Hello {$email} your account is activated successfully.";
-        GoMail($email,$subj,$body);
-        $_SESSION['loader'] = '<center><div class="spinner-border text-center text-success"></div></center>';
-        $_SESSION['status'] = '<div class="card card-body alert alert-success text-center">
-        <strong>Account verified Successfully, Redirecting to Login...</strong></div>';
-        header("refresh:2; url=login");
-    }else{
-        $_SESSION['status'] = '<div class="card card-body alert alert-warning text-center">
-        Account Verification Failed., please check your Token and try again.</div>';
-    }
-}
-
 }elseif (isset($_POST['login_btn'])) {
     trim(extract($_POST));
     if (count($errors) == 0) {
@@ -134,6 +115,25 @@ if (isset($_POST['register_btn'])) {
         $_SESSION['status'] = '<div id="note1" class="card card-body alert alert-danger text-center">
         Wrong Token inserted</div>';
     }
+
+}elseif (isset($_POST['verify'])) {
+    trim(extract($_POST));
+    if (count($errors) == 0) {
+    $result = $dbh->query("SELECT * FROM users WHERE token = '$otp' AND email = '$email' " );
+    if ($result->rowCount() == 1) {
+        $dbh->query("UPDATE users SET account_status = 'Active' WHERE token = '$otp' AND email = '$email' ");
+        $subj = "POST KAZI - Account Verification Successful";
+        $body = "Hello {$email} your account is activated successfully.";
+        GoMail($email,$subj,$body);
+        $_SESSION['loader'] = '<center><div class="spinner-border text-center text-success"></div></center>';
+        $_SESSION['status'] = '<div class="card card-body alert alert-success text-center">
+        <strong>Account verified Successfully, Redirecting to Login...</strong></div>';
+        header("refresh:2; url=login");
+    }else{
+        $_SESSION['status'] = '<div class="card card-body alert alert-warning text-center">
+        Account Verification Failed., please check your Token and try again.</div>';
+    }
+}
 
 }elseif (isset($_POST['resent_token_btn'])) {
     trim(extract($_POST));

@@ -2,7 +2,7 @@
 include 'root/process.php';
 $phone = $_SESSION['phone'];
 if (empty($phone)) {
-    // header("Location: ".SITE_URL.'/auth-login');
+    header("Location: ".SITE_URL.'/auth-login');
 }
 ?>
 <!DOCTYPE html>
@@ -47,7 +47,7 @@ if (empty($phone)) {
     </style>
 </head>
 
-<body class="">
+<body class="" style="background-image: url('uploadx/kitude-bg.png'); background-size: cover; background-repeat: no-repeat;">
 	<!-- wrapper -->
 	<div class="wrapper">
 		<div class="authentication-forgot d-flex align-items-center justify-content-center">

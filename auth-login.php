@@ -24,7 +24,7 @@
 	<title>Kitude Sacco - Auth Login</title>
 </head>
 
-<body class="">
+<body class="" style="background-image: url('uploadx/kitude-bg.png'); background-size: cover; background-repeat: no-repeat;">
 	<!--wrapper-->
 	<div class="wrapper">
 		<div class="section-authentication-signin d-flex align-items-center justify-content-center my-5 my-lg-0">

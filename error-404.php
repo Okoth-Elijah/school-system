@@ -19,7 +19,7 @@
 	<link href="assets/css/icons.css" rel="stylesheet">
 	<title>Syndron - Bootstrap 5 Admin Dashboard Template</title>
 </head>
-<body>
+<body class="" style="background-image: url('uploadx/kitude-bg.png'); background-size: cover; background-repeat: no-repeat;">
 	<!-- wrapper -->
 	<div class="wrapper">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light rounded fixed-top rounded-0 shadow-sm">

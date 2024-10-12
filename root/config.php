@@ -13,7 +13,6 @@ defined ("APP_DIR") or define("APP_DIR","");
 defined ("DB_URL") or define("DB_URL", $_SERVER['HTTP_HOST']);
 defined ("DS") or define("DS", DIRECTORY_SEPARATOR);
 defined ("BASE_URL") or define("BASE_URL", $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME']);
-$api_key = "9o1p3px8Ba435LxEj4DAW4DwXiq5najJj0SvTQoqTcj4fG8n3l4g31LR9n3fFjD4";
 
 switch(DB_URL){
 	case 'localhost':
@@ -819,14 +818,14 @@ function htr_comment($mark){
 
 function send_sms_yoola_api($phone, $message){
 	$arr = array(
-	"api_key" => "9o1p3px8Ba435LxEj4DAW4DwXiq5najJj0SvTQoqTcj4fG8n3l4g31LR9n3fFjD4",
+	"api_key" => "MVci9U5Bm4vRn4GrF7ATEfHOE7pWUA3fBPP6nW897meCkWHF872t0T5L0h28r0H5",
     "phone" => $phone,
     "message" => $message
 	);
 	
 	$curl = curl_init();
 	curl_setopt_array($curl, array(
-	  CURLOPT_URL => 'https://mangusms.com/api/v1/send',
+	  CURLOPT_URL => 'https://yoolasms.com/api/v1/send',
 	  CURLOPT_RETURNTRANSFER => true,
 	  CURLOPT_ENCODING => '',
 	  CURLOPT_MAXREDIRS => 10,
