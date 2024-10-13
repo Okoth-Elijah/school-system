@@ -77,11 +77,11 @@ if (isset($_POST['register_btn'])) {
     trim(extract($_POST));
     if (count($errors) == 0) {
         $password = sha1($password);
-        $result = $dbh->query("SELECT * FROM users WHERE phone = '$uname' AND password = '$password' AND account_status = 'active' ");
-        $result1 = $dbh->query("SELECT * FROM users WHERE phone = '$uname' AND password = '$password' AND account_status = 'Pending' ");
+        $result = $dbh->query("SELECT * FROM users WHERE phone = '$phone' AND password = '$password' AND account_status = 'active' ");
+        $result1 = $dbh->query("SELECT * FROM users WHERE phone = '$phone' AND password = '$password' AND account_status = 'pending' ");
         if ($result->rowCount() == 1) {
             $row = $result->fetch(PDO::FETCH_OBJ);
-            //`userid`, `firstname`, `lastname`, `gender`, `phone`, `business_location`, `role`, `password`, `account_number`, `account_status`, `date_registered`
+            //`userid`, `firstname`, `lastname`, `gender`, `phone`, `email`, `password`, `id_type`, `id_number`, `id_front`, `id_back`, `physical_address`, `parish`, `sub_county`, `district`, `account_status`, `role`, `token`, `date_registered`
             $_SESSION['userid'] = $row->userid;
             $_SESSION['firstname'] = $row->firstname;
             $_SESSION['lastname'] = $row->lastname;
