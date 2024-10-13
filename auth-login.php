@@ -63,7 +63,7 @@
 											</div>
 											<div class="col-12">
 												<div class="d-grid">
-													<button type="submit" class="btn btn-primary">Sign in</button>
+													<button type="submit" name="login_btn" class="btn btn-primary">Sign in</button>
 												</div>
 											</div>
 										</form>
