@@ -9,7 +9,7 @@
 					<div class="card-body">
 						<div class="d-flex align-items-center">
 							<div>
-								<p class="mb-0 text-secondary">Revenue</p>
+								<p class="mb-0 text-secondary">Revenue Today</p>
 								<h4 class="my-1">Ugx 0.00</h4>
 								<p class="mb-0 font-13 text-success"><i class="bx bxs-up-arrow align-middle"></i>This Week Ugx 0.00 </p>
 							</div>
@@ -126,17 +126,16 @@
 					<div class="card-body">
 						<div class="d-flex align-items-center">
 							<div>
-								<p class="mb-0 text-secondary">Shopify Users</p>
-								<h4 class="my-1">85M</h4>
+								<p class="mb-0 text-secondary">Current Theme</p>
+								<h4 class="my-1">Light <a href="themes" style="font-size:14px; ">Change Theme <i class="fadeIn animated bx bx-color-fill"></i> </a></h4>
 							</div>
-							<div class="text-success ms-auto font-35"><i class='bx bxl-shopify'></i>
+							<div class="text-success ms-auto font-35"><i class="fadeIn animated bx bx-color-fill"></i> 
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
 	</div>
 </div>
 <?php include 'footer.php'; ?>

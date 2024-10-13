@@ -9,10 +9,13 @@ if (empty($_SESSION['userid'])) {
     $phone   = $_SESSION['phone'];
     $userid = $_SESSION['userid'];
     $date_registered = $_SESSION['date_registered'];
+    //fetching user's theme
+    $theme = dbRow("SELECT * FROM theme_settings WHERE userid = '".$_SESSION['userid']."' ");
 }
+
 ?>
 <!doctype html>
-<html lang="en" data-bs-theme="light">
+<html lang="en" data-bs-theme="<?=$theme->theme_code; ?>">
 <head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
@@ -23,6 +26,7 @@ if (empty($_SESSION['userid'])) {
 	<link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet">
 	<link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
 	<link href="assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet">
+	<link href="assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 	<!-- loader-->
 	<link href="assets/css/pace.min.css" rel="stylesheet">
 	<script src="assets/js/pace.min.js"></script>
@@ -71,7 +75,6 @@ if (empty($_SESSION['userid'])) {
 						<div class="menu-title">Manage Staffs</div>
 					</a>
 					<ul>
-						<li> <a href="add-staff-member"><i class='bx bx-radio-circle'></i>Add Staff</a>
 						<li> <a href="administrators"><i class='bx bx-radio-circle'></i>Administrators</a>
 						</li>
 						<li> <a href="managers"><i class='bx bx-radio-circle'></i>Managers</a>
@@ -88,18 +91,29 @@ if (empty($_SESSION['userid'])) {
 						<div class="menu-title">Manage Customers</div>
 					</a>
 					<ul>
-						<li> <a href="add-staff-member"><i class='bx bx-radio-circle'></i>Add New Customer</a>
-						<li> <a href="administrators"><i class='bx bx-radio-circle'></i>Administrators</a>
+						<li> <a href="new-customer"><i class='bx bx-radio-circle'></i>New Customers</a>
 						</li>
-						<li> <a href="managers"><i class='bx bx-radio-circle'></i>Managers</a>
-						</li>
-						<li> <a href="cashiers"><i class='bx bx-radio-circle'></i>Cashiers</a>
+						<li> <a href="ok"><i class='bx bx-radio-circle'></i>Managers</a>
 						</li>
 					</ul>
 				</li>
 
 				<li>
-					<a href="logout" target="_blank">
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="bx bx-cog"></i>
+						</div>
+						<div class="menu-title">Settings</div>
+					</a>
+					<ul>
+						<li> <a href="themes"><i class='bx bx-radio-circle'></i>Select Theme</a>
+						</li>
+						<li> <a href="change-password"><i class='bx bx-radio-circle'></i>Change Password</a>
+						</li>
+					</ul>
+				</li>
+
+				<li>
+					<a href="logout">
 						<div class="parent-icon"><i class="bx bx-power-off"></i>
 						</div>
 						<div class="menu-title">Logout</div>
@@ -108,7 +122,6 @@ if (empty($_SESSION['userid'])) {
 			</ul>
 			<!--end navigation-->
 		</div>
-		<!--end sidebar wrapper -->
 		<!--start header -->
 		<header>
 			<div class="topbar">
@@ -119,11 +132,6 @@ if (empty($_SESSION['userid'])) {
 					  <div class="top-menu ms-auto">
 						<ul class="navbar-nav align-items-center gap-1">
 							
-							<li class="nav-item dark-mode d-none d-sm-flex">
-								<a class="nav-link dark-mode-icon" href="javascript:;"><i class='bx bx-moon'></i>
-								</a>
-							</li>
-
 							<li class="nav-item dropdown dropdown-app">
 								<div class="dropdown-menu dropdown-menu-end p-0">
 									<div class="app-container p-2 my-2">
@@ -151,7 +159,7 @@ if (empty($_SESSION['userid'])) {
 						<a class="d-flex align-items-center nav-link dropdown-toggle gap-3 dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 							<img src="uploadx/man.png" class="user-img" alt="user avatar">
 							<div class="user-info">
-								<p class="user-name mb-0"><?=$_SESSION['firstname'].' '.$_SESSION['lastname']; ?></p>
+								<p class="user-name mb-0"><?=ucwords($_SESSION['firstname'].' '.$_SESSION['lastname']); ?></p>
 								<p class="designattion mb-0">
 									<?php if($_SESSION['role'] == 'admin'){ 
 										echo 'Administrator';

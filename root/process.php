@@ -81,14 +81,13 @@ if (isset($_POST['register_btn'])) {
         $result1 = $dbh->query("SELECT * FROM users WHERE phone = '$phone' AND password = '$password' AND account_status = 'pending' ");
         if ($result->rowCount() == 1) {
             $rows = $result->fetch(PDO::FETCH_OBJ);
-            //`userid`, `firstname`, `lastname`, `gender`, `phone`, `email`, `password`, `id_type`, `id_number`, `id_front`, `id_back`, `physical_address`, `parish`, `sub_county`, `district`, `account_status`, `role`, `token`, `date_registered`
             $token = rand(11111, 99999);
             $dbh->query("UPDATE users SET token = '$token' WHERE userid = '".$rows->userid."' ");
             $message = "KITUDE SACCO. Hi ".$rows->firstname.' '.$rows->lastname.', your Login Token is '.$token;
             @json_decode(send_sms_yoola_api($phone, $message), true);
             $_SESSION['phone'] = $phone;
-            $_SESSION['loader'] = '<center><div class="spinner-border text-dark"></div></center>';
-            $_SESSION['status'] = '<div class="card card-body alert alert-dark text-center">Account mateched, New Token generated Successfully.<center><img src="'.SITE_URL.'/uploadx/success.png" width="40"/></center></div>';
+            $_SESSION['loader'] = '<center><div class="spinner-border text-success"></div></center>';
+            $_SESSION['status'] = '<div class="card card-body alert alert-success text-center">Account mateched, New Token generated Successfully.<center><img src="'.SITE_URL.'/uploadx/success.png" width="40"/></center></div>';
             header("refresh:3; url=".SITE_URL.'/auth-token');
         }elseif ($result1->rowCount() == 1) {
             $rx = dbRow("SELECT * FROM users WHERE phone = '$phone' ");
@@ -119,8 +118,8 @@ if (isset($_POST['register_btn'])) {
         $_SESSION['account_status'] = $row->account_status;
         $_SESSION['date_registered'] = $row->date_registered;  
         if ($result->rowCount() > 0) {
-            $_SESSION['loader'] = '<center><div class="spinner-border text-dark"></div></center>';
-            $_SESSION['status'] = '<div class="card card-body alert alert-dark text-center">
+            $_SESSION['loader'] = '<center><div class="spinner-border text-success"></div></center>';
+            $_SESSION['status'] = '<div class="card card-body alert alert-success text-center">
             <strong>Login Successful, Redirecting...</strong></div>';
             header("refresh:3; url=".SITE_URL);
             }else{
