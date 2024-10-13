@@ -92,9 +92,9 @@ if (isset($_POST['register_btn'])) {
             $_SESSION['account_status'] = $row->account_status;
             $_SESSION['date_registered'] = $row->date_registered;  
             $_SESSION['status'] = '<div class=" card card-body alert alert-success text-center">
-            Login Successful.</div>';
+           Account Matched, Token sent your Phone[{$phone}].</div>';
             $_SESSION['loader'] = '<center><div class="spinner-border text-center text-success"></div></center>';
-            header("Location: ".SITE_URL);
+            header("refresh:2; url=auth-token");
         }elseif ($result1->rowCount() == 1) {
             $token = rand(11111,99999);
             $dbh->query("UPDATE users SET token = '$token' WHERE phone = '$phone' ");
