@@ -88,7 +88,7 @@ if (isset($_POST['register_btn'])) {
             @json_decode(send_sms_yoola_api($phone, $message), true);
             $_SESSION['phone'] = $phone;
             $_SESSION['loader'] = '<center><div class="spinner-border text-dark"></div></center>';
-            $_SESSION['status'] = '<div class="card card-body alert alert-dark text-center">Account mateched, New Token generated Successfully</div>';
+            $_SESSION['status'] = '<div class="card card-body alert alert-dark text-center">Account mateched, New Token generated Successfully.<center><img src="'.SITE_URL.'/uploadx/success.png" width="40"/></center></div>';
             header("refresh:3; url=".SITE_URL.'/token');
 
            //  $_SESSION['userid'] = $row->userid;
