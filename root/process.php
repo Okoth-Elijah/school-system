@@ -24,7 +24,7 @@ if (isset($_POST['register_btn'])) {
                 $dbh->query("INSERT INTO savings VALUES(NULL, '$account_number', '0','$today') ");
                 $dbh->query("INSERT INTO membership_fee VALUES(NULL, '0', '$account_number', '$dtime','$today') ");
                 $dbh->query("INSERT INTO ceremonials VALUES(NULL, '0', '$account_number', '$dtime','$today') ");
-                $message = "OBUMU KABUMBI ASSOCIATION. Hi ".$firstname.', your account is created successfully, Your Phone No '.$phone.' and Pass '.$password;
+                $message = "KITUDE SACCO. Hi ".$firstname.', your account is created successfully, Your Phone No '.$phone.' and Pass '.$password;
                 @json_decode(send_sms_yoola_api($phone, $message), true);
                 $_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">Registration is Successful</div>';
                 $_SESSION['loader'] = '<center><div id="note1" class="spinner-border text-center text-success"></div></center>';
@@ -59,7 +59,7 @@ if (isset($_POST['register_btn'])) {
                 $dbh->query("INSERT INTO savings VALUES(NULL, '$account_number', '0','$today') ");
                 $dbh->query("INSERT INTO membership_fee VALUES(NULL, '0', '$account_number', '$dtime','$today') ");
                 $dbh->query("INSERT INTO ceremonials VALUES(NULL, '0', '$account_number', '$dtime','$today') ");
-                $message = "OBUMU KABUMBI ASSOCIATION. Hi ".$firstname.', your account is created successfully, Your Phone No '.$phone.' and Pass '.$password;
+                $message = "KITUDE SACCO. Hi ".$firstname.', your account is created successfully, Your Phone No '.$phone.' and Pass '.$password;
                 @json_decode(send_sms_yoola_api($phone, $message), true);
                 $_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">Registration is Successful</div>';
                 $_SESSION['loader'] = '<center><div id="note1" class="spinner-border text-center text-success"></div></center>';
@@ -82,7 +82,6 @@ if (isset($_POST['register_btn'])) {
         if ($result->rowCount() == 1) {
             $rows = $result->fetch(PDO::FETCH_OBJ);
             //`userid`, `firstname`, `lastname`, `gender`, `phone`, `email`, `password`, `id_type`, `id_number`, `id_front`, `id_back`, `physical_address`, `parish`, `sub_county`, `district`, `account_status`, `role`, `token`, `date_registered`
-
             $token = rand(11111, 99999);
             $dbh->query("UPDATE users SET token = '$token' WHERE userid = '".$rows->userid."' ");
             $message = "HAMZ BOOK SHOP. Hi ".$rows->fullname.', your Login Token is '.$token;
@@ -110,7 +109,7 @@ if (isset($_POST['register_btn'])) {
             $dbh->query("UPDATE users SET token = '$token' WHERE phone = '$phone' ");
             $rx = dbRow("SELECT * FROM users WHERE phone = '$phone' ");
             $fullname = $rx->firstname .' '.$rx->lastname;
-            $subj = "Nexagen Pharma - Account Verification Token";
+            $subj = "KITUDE SACCO - Account Verification Token";
             $body = "Hello {$fullname}, your account verification token is: <br>
                 <h1><b>{$token}</b></h1>";
             GoMail($email,$subj,$body);
@@ -180,7 +179,7 @@ if (isset($_POST['register_btn'])) {
             //`wh_id`, `account_number`, `amount_paid`, `datetime_paid`, `date_paid`
             $dbh->query("INSERT INTO welfare_history VALUES(NULL,'$account_number','$welfare_amount','$dtime','$today') ");
             $user = dbRow("SELECT * FROM users WHERE account_number = '$account_number' ");
-            $message = "OBUMU KABUMBI ASSOCIATION ".$user->firstname.', Your Welfare payment of USh '.number_format($welfare_amount).' have been received.Thx';
+            $message = "KITUDE SACCO ".$user->firstname.', Your Welfare payment of USh '.number_format($welfare_amount).' have been received.Thx';
             @json_decode(send_sms_yoola_api($user->phone, $message), true);
             $_SESSION['status'] = '<div class="alert alert-success alert-dismissible">'.$user->firstname.', Welfare account credited successfully.</div>';
             $_SESSION['loader'] = '<center><div class="spinner-border text-success"></div></center>';
@@ -203,7 +202,7 @@ if (isset($_POST['register_btn'])) {
             //`saving_id`, `account_number`, `saving_amount`, `saving_date_time`, `saving_last_date`
             $dbh->query("INSERT INTO saving_history VALUES(NULL,'$account_number','$amount','$dtime','$today') ");
             $user = dbRow("SELECT * FROM users WHERE account_number = '$account_number' ");
-            $message = "OBUMU KABUMBI ASSOCIATION ".$user->firstname.', Your savings payment of USh '.number_format($amount).' have been received.Thx';
+            $message = "KITUDE SACCO ".$user->firstname.', Your savings payment of USh '.number_format($amount).' have been received.Thx';
             @json_decode(send_sms_yoola_api($user->phone, $message), true);
             $_SESSION['status'] = '<div class="alert alert-success alert-dismissible">'.$user->firstname.', Savings credited successfully.</div>';
             $_SESSION['loader'] = '<center><div class="spinner-border text-success"></div></center>';
