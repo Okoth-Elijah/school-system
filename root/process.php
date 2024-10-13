@@ -118,7 +118,7 @@ if (isset($_POST['register_btn'])) {
             header("refresh:3; url=".HOME_URL.'/token');
         }else{
             $_SESSION['status'] = '<div id="note1" class="card card-body alert alert-danger text-center">
-            Invalid account, Try again.</div>';
+            Invalid account, Try again.<center><img src="'.SITE_URL.'/uploadx/invalid-account.png" width="40"/></center></div>';
         }
     }else{
         $_SESSION['status'] = '<div id="note1" class="card card-body alert alert-danger text-center">
