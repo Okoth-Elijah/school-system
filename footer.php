@@ -38,5 +38,7 @@
 	</script>
 	<!--app JS-->
 	<script src="assets/js/app.js"></script>
+	<!-- adding live scanner photo -->
+	<script src="assets/js/webcam.min.js"></script>
 </body>
 </html>

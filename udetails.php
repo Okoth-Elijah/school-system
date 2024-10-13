@@ -24,6 +24,15 @@ $user = dbRow("SELECT * FROM users WHERE userid = '$uid' ");
 		<div class="container">
 			<div class="main-body">
 				<div class="row">
+					<?php 
+						if (isset($_SESSION['status'])) {
+							echo $_SESSION['status'];
+							unset($_SESSION['status']);
+						}
+						if (isset($_SESSION['loader'])) {
+							echo $_SESSION['loader'];
+							unset($_SESSION['loader']);
+						} ?>
 					<div class="col-lg-4">
 						<div class="card">
 							<div class="card-body">
@@ -42,6 +51,7 @@ $user = dbRow("SELECT * FROM users WHERE userid = '$uid' ");
 													echo 'Customer';
 												} ?>
 											</p>
+										<a data-bs-toggle="modal" data-bs-target="#user-pic<?=$user->userid?>" class="btn btn-primary"><i class="bx bx-attachment"></i>Change Photo</a>&nbsp;&nbsp;&nbsp;<a href="" class="btn btn-success">Take Photo</a>
 									</div>
 								</div>
 							</div>
@@ -50,59 +60,29 @@ $user = dbRow("SELECT * FROM users WHERE userid = '$uid' ");
 					<div class="col-lg-8">
 						<div class="card">
 							<div class="card-body">
-								<h6 class="mb-0 text-uppercase">Light Contact List</h6>
+								<h6 class="mb-0 text-uppercase">ID Photos</h6>
 								<hr/>
+								<?php if (empty($user->id_front)) { ?>
+									<h6 class="alert alert-info text-center"><i class="fadeIn animated bx bx-info-circle"></i> Front Photo is Missing</h6>
+									<a data-bs-toggle="modal" data-bs-target="#exampleModalFront<?=$user->userid?>" class="btn btn-primary">Add Front ID Photo</a>
+								<?php }else{?>
 								<div class="col">
 									<div class="card radius-15">
-										<div class="card-body text-center">
-											<div class="p-4 border radius-15">
-												<img src="assets/images/avatars/avatar-3.png" width="110" height="110" class="rounded-circle shadow" alt="">
-												<h5 class="mb-0 mt-5">John B. Roman</h5>
-												<p class="mb-3">Graphic Designer</p>
-												<div class="list-inline contacts-social mt-3 mb-3"> <a href="javascript:;" class="list-inline-item bg-facebook text-white border-0"><i class="bx bxl-facebook"></i></a>
-													<a href="javascript:;" class="list-inline-item bg-twitter text-white border-0"><i class="bx bxl-twitter"></i></a>
-													<a href="javascript:;" class="list-inline-item bg-google text-white border-0"><i class="bx bxl-google"></i></a>
-													<a href="javascript:;" class="list-inline-item bg-linkedin text-white border-0"><i class="bx bxl-linkedin"></i></a>
-												</div>
-												<div class="d-grid"> <a href="#" class="btn btn-outline-primary radius-15">Contact Me</a>
-												</div>
-											</div>
+										<div class="p-4 border radius-15 text-center">
+											<p><b>Front Photo</b></p>
+											<img src="<?=$user->id_front; ?>" width="410" height="210" class="rounded-rectange shadow" alt="">
+											<hr>
+											<?php if (empty($user->id_back)) {?>
+											<a data-bs-toggle="modal" data-bs-target="#exampleModalBack<?=$user->userid?>" class="btn btn-primary">Add Back ID Photo</a>
+											<?php }else{?>
+											<p><b>Back Photo</b></p>
+											<img src="<?=$user->id_back; ?>" width="410" height="210" class="rounded-rectange shadow" alt="">
+										<?php } ?>
 										</div>
 									</div>
 								</div>
-							
-								<h6>Front ID Photo</h6>
-								<div class="table-responsive">
-									<table class="table mb-0">
-										<thead>
-											<tr>
-												<th scope="col">#</th>
-												<th scope="col">First</th>
-												<th scope="col">Last</th>
-												<th scope="col">Handle</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<th scope="row">1</th>
-												<td>Mark</td>
-												<td>Otto</td>
-												<td>@mdo</td>
-											</tr>
-											<tr>
-												<th scope="row">2</th>
-												<td>Jacob</td>
-												<td>Thornton</td>
-												<td>@fat</td>
-											</tr>
-											<tr>
-												<th scope="row">3</th>
-												<td colspan="2">Larry the Bird</td>
-												<td>@twitter</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
+								<?php } ?>
+
 							</div>
 						</div>
 					</div>
@@ -111,4 +91,10 @@ $user = dbRow("SELECT * FROM users WHERE userid = '$uid' ");
 		</div>
 	</div>
 </div>
-<?php include 'footer.php'; ?>
+
+<?php 
+include 'id-front-photo.php';
+include 'id-back-photo.php';
+include 'user-profile-pic.php';
+include 'footer.php';
+?>

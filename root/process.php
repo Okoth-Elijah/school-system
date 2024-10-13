@@ -340,6 +340,63 @@ if (isset($_POST['register_btn'])) {
     }else{
         $_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">Error has occured.</div>';
     }
+}elseif (isset($_POST['id_front_photo_btn'])) {
+    trim(extract($_POST));
+    $filename = trim($_FILES['id_front']['name']);
+    $chk = rand(1111111111111, 9999999999999);
+    $ext = strrchr($filename, ".");
+    $id_front = $chk . $ext;
+    $target_file = "uploadx/" . $id_front;
+    $urlx = SITE_URL . "/uploadx/". $id_front;
+    $result = $dbh->query("UPDATE users SET id_front = '$urlx' WHERE userid = '$userid' ");
+    if (move_uploaded_file($_FILES['id_front']['tmp_name'], $target_file)) {
+        $msg = "File uploaded Successfully";
+    } else {
+        $msg = "There was a problem uploading image";
+    }
+    if ($result) {
+        $_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">ID Front Photo Saved successfully.</div>';
+        $_SESSION['loader'] = '<center><div id="note1" class="spinner-border text-center text-success"></div></center>';
+        header("refresh:2; url=".$_SERVER['REQUEST_URI']);
+    }
+}elseif (isset($_POST['id_back_photo_btn'])) {
+    trim(extract($_POST));
+    $filename = trim($_FILES['id_back']['name']);
+    $chk = rand(1111111111111, 9999999999999);
+    $ext = strrchr($filename, ".");
+    $id_back = $chk . $ext;
+    $target_file = "uploadx/" . $id_back;
+    $urlx = SITE_URL . "/uploadx/". $id_back;
+    $result = $dbh->query("UPDATE users SET id_back = '$urlx' WHERE userid = '$userid' ");
+    if (move_uploaded_file($_FILES['id_back']['tmp_name'], $target_file)) {
+        $msg = "File uploaded Successfully";
+    } else {
+        $msg = "There was a problem uploading image";
+    }
+    if ($result) {
+        $_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">ID Back Photo Saved successfully.</div>';
+        $_SESSION['loader'] = '<center><div id="note1" class="spinner-border text-center text-success"></div></center>';
+        header("refresh:2; url=".$_SERVER['REQUEST_URI']);
+    }
+}elseif (isset($_POST['user_profile_pic_photo_btn'])) {
+    trim(extract($_POST));
+    $filename = trim($_FILES['pic']['name']);
+    $chk = rand(1111111111111, 9999999999999);
+    $ext = strrchr($filename, ".");
+    $pic = $chk . $ext;
+    $target_file = "uploadx/" . $pic;
+    $urlx = SITE_URL . "/uploadx/". $pic;
+    $result = $dbh->query("UPDATE users SET pic = '$urlx' WHERE userid = '$userid' ");
+    if (move_uploaded_file($_FILES['pic']['tmp_name'], $target_file)) {
+        $msg = "File uploaded Successfully";
+    } else {
+        $msg = "There was a problem uploading image";
+    }
+    if ($result) {
+        $_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">profile Photo Saved successfully.</div>';
+        $_SESSION['loader'] = '<center><div id="note1" class="spinner-border text-center text-success"></div></center>';
+        header("refresh:2; url=".$_SERVER['REQUEST_URI']);
+    }
 }
 
 ?>
