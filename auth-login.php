@@ -42,6 +42,21 @@
 										<p class="mb-0">Please log in to your account</p>
 									</div> -->
 									<div class="form-body">
+										<?php
+					                        if (isset($_SESSION['status'])): ?>
+					                            <div id="note1">
+					                            <?php
+					                                echo $_SESSION['status'];
+					                                unset($_SESSION['status']);
+					                            ?>
+					                            </div>
+					                        <?php endif ?>
+					                        <?php 
+					                        if (isset($_SESSION['loader'])) {
+					                            echo $_SESSION['loader'];
+					                            unset($_SESSION['loader']);
+					                        }
+					                    ?>
 										<form class="row g-3" method="post" action="">
 											<div class="col-12">
 												<label for="phone" class="form-label">Phone Number</label>
