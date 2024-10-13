@@ -278,82 +278,6 @@ if (isset($_POST['register_btn'])) {
     if ($result) {
        header("Location: products");
     }
-}elseif (isset($_POST['upload_third_product_pic_details_btn'])) {
-    // `pdt_id`,`, `pdt_second_pic`, `pdt_third_pic`, `pdt_status`
-    trim(extract($_POST));
-    $filename = trim($_FILES['pdt_third_pic']['name']);
-    $chk = rand(1111111111111, 9999999999999);
-    $ext = strrchr($filename, ".");
-    $pdt_third_pic = $chk . $ext;
-    $target_file = "uploads/" . $pdt_third_pic;
-    $urlx = SITE_URL . "/uploads/". $pdt_third_pic;
-    $result = $dbh->query("UPDATE products SET pdt_third_pic = '$urlx' WHERE pdt_id = '$pdt_id' ");
-    if (move_uploaded_file($_FILES['pdt_third_pic']['tmp_name'], $target_file)) {
-        $msg = "File uploaded Successfully";
-    } else {
-        $msg = "There was a problem uploading image";
-    }
-    if ($result) {
-       header("Location: products");
-    }
-}elseif (isset($_REQUEST['update_product_photo_details_btn'])) {
-     // `pdt_id`,`, `pdt_second_pic`, `pdt_third_pic`, `pdt_status`
-    trim(extract($_POST));
-    $filename = trim($_FILES['pdt_photo']['name']);
-    $chk = rand(1111111111111, 9999999999999);
-    $ext = strrchr($filename, ".");
-    $pdt_photo = $chk . $ext;
-    $target_file = "uploads/" . $pdt_photo;
-    $urlx = SITE_URL . "/uploads/". $pdt_photo;
-    $result = $dbh->query("UPDATE products SET pdt_landing_pic = '$urlx' WHERE pdt_id = '$pdt_id' ");
-    if (move_uploaded_file($_FILES['pdt_photo']['tmp_name'], $target_file)) {
-        $msg = "File uploaded Successfully";
-    } else {
-        $msg = "There was a problem uploading image";
-    }
-    if ($result) {
-       header("Location: products");
-    }
-}elseif (isset($_REQUEST['delete-skill'])) {
-    $delete = dbDelete('skill_table', 'id', $_REQUEST['delete-skill']);
-    if($delete){
-    //   $_SESSION['status'] = '<div id="note1" class="alert alert-danger text-center">Skill deleted successfully is deleted successfully. </div>';
-      header("Location: resume");
-   }else{
-       header("Location: resume");
-  } 
-}   elseif (isset($_POST['add_product_details_btn'])) {
-    trim(extract($_POST));
-    //`stock_id`, `stock_category`, `stock_artnumber`, `stock_location`, `stok_carton`, `stock_pairs`, `stock_pair_price`, `stock_date`
-    $check = $dbh->query("SELECT pdt_artnumber FROM products WHERE pdt_artnumber='$pdt_artnumber' ")->fetchColumn();
-    if(!$check){
-        $pdt_category = addslashes($pdt_category);
-        $pdt_artnumber = addslashes($pdt_artnumber);
-        $pdt_location = addslashes($pdt_location);
-        $pdt_desc = addslashes($pdt_desc);
-        $pdt_pairs = str_replace(',', '', $pdt_pairs);
-        $pdt_pair_price = str_replace(',', '', $pdt_pair_price);
-        $pdt_package = str_replace(',', '', $pdt_package);
-        $stock_query = $dbh->query("INSERT INTO stock VALUES(NULL,'$pdt_category','$pdt_artnumber','$pdt_location','$pdt_package','$pdt_pairs','$pdt_pair_price','$today') ");
-        if ($stock_query) {
-            $stock_id = $dbh->lastInsertId();
-            $pdt_token = mt_rand();
-            $result = $dbh->query("INSERT INTO products VALUES(NULL,'$stock_id', '$pdt_category', '$pdt_artnumber','$pdt_location','$pdt_package','$pdt_pairs','$pdt_pair_price','$pdt_desc','$today','', '', '','Available','$pdt_styles','$pdt_token') ");
-            if ($result) {
-                 //`sh_id`, `stock_id`, `stok_carton`, `stock_pairs`, `stock_pair_price`
-                $dbh->query("INSERT INTO stock_history VALUES(NULL,'$stock_id','$pdt_package','$pdt_pair_price','$today') ");
-                $_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">Product uploaded successfully.</div>';
-                $_SESSION['loader'] = '<center><div id="note1" class="spinner-border text-center text-success"></div></center>';
-                header("refresh:1; url=".$_SERVER['REQUEST_URI']);
-            }else{
-               $_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">Product Upload failed.</div>';
-            }
-        }
-    }else{
-        $_SESSION['status'] = '<div id="note2" class="alert alert-danger text-center">
-            Product with this Art Number already uploaded.
-            </div>';
-    }
 }elseif (isset($_POST['adding_expense_btn'])) {
     trim(extract($_POST));
     $exp_title = addslashes($exp_title);
@@ -404,24 +328,17 @@ if (isset($_POST['register_btn'])) {
          $_SESSION['status'] = '<div id="note2" class="alert alert-warning text-center">
          <b>Current password is incorrect.</b></div>';
     }
-}elseif (isset($_POST['update_stock_price_btn'])) {
+}elseif (isset($_POST['theme_btn'])) {
     trim(extract($_POST));
-    $pdt_pair_price = str_replace(',', '', $pdt_pair_price);
-    $result = $dbh->query("UPDATE products SET pdt_pair_price = '$pdt_pair_price' WHERE stock_id = '$stock_id' ");
+    // `theme_id`, `userid`, `theme_code`
+   $theme_code = addslashes($theme_code);
+    $result = $dbh->query("UPDATE theme_settings SET theme_code = '$theme_code' WHERE userid = '$userid'");
     if ($result) {
-        $dbh->query("UPDATE stock_history SET stock_pair_price = '$pdt_pair_price' WHERE stock_id = '$stock_id' ORDER BY sh_id DESC ");
-        $dbh->query("UPDATE stock SET stock_pair_price = '$pdt_pair_price' WHERE stock_id = '$stock_id' ");
-        header("Location: products");
-    }
-}elseif (isset($_POST['add_payments_invoice_btn'])) {
-    trim(extract($_POST));
-    //`ph_id`, `order_invoice`, `amount_paid`, `date_paid`
-    $amount_paid = str_replace(',', '', $amount_paid);
-    $result = $dbh->query("INSERT INTO payment_history VALUES(NULL, '$order_invoice','$amount_paid', '$today') ");
-    if ($result) {
-        $_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">Invoice Payment updated successfully.</div>';
+        $_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">Theme updated successfully.</div>';
         $_SESSION['loader'] = '<center><div id="note1" class="spinner-border text-center text-success"></div></center>';
-        header("refresh:2; url=orders?completed");
+        header("refresh:2; url=".SITE_URL.'/themes');
+    }else{
+        $_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">Error has occured.</div>';
     }
 }
 

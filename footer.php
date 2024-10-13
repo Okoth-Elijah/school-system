@@ -30,6 +30,12 @@
 				.appendTo( '#example2_wrapper .col-md-6:eq(0)' );
 		} );
 	</script>
+	<script src="assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('#image-uploadify').imageuploadify();
+		})
+	</script>
 	<!--app JS-->
 	<script src="assets/js/app.js"></script>
 </body>

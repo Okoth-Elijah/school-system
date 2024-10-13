@@ -16,8 +16,16 @@
 			</div>
 		</div>
 		<!--end breadcrumb-->
-	  
 		<div class="card">
+			<?php 
+			if (isset($_SESSION['status'])) {
+				echo $_SESSION['status'];
+				unset($_SESSION['status']);
+			}
+			if (isset($_SESSION['loader'])) {
+				echo $_SESSION['loader'];
+				unset($_SESSION['loader']);
+			} ?>
 			<div class="card-body">
 				<div class="table-responsive">
 					<table class="table mb-0" id="example">
