@@ -18,6 +18,7 @@ if (empty($_SESSION['userid'])) {
 <html lang="en" data-bs-theme="<?=$theme->theme_code; ?>">
 <head>
 	<!-- Required meta tags -->
+	<base href="http://localhost/kitudesacco/">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
@@ -175,8 +176,6 @@ if (empty($_SESSION['userid'])) {
 						</a>
 						<ul class="dropdown-menu dropdown-menu-end">
 							<li><a class="dropdown-item d-flex align-items-center" href="user-profile"><i class="bx bx-user fs-5"></i><span>Profile</span></a>
-							</li>
-							<li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="bx bx-cog fs-5"></i><span>Settings</span></a>
 							</li>
 							<li>
 								<div class="dropdown-divider mb-0"></div>
