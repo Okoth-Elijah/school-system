@@ -84,7 +84,7 @@ if (isset($_POST['register_btn'])) {
             //`userid`, `firstname`, `lastname`, `gender`, `phone`, `email`, `password`, `id_type`, `id_number`, `id_front`, `id_back`, `physical_address`, `parish`, `sub_county`, `district`, `account_status`, `role`, `token`, `date_registered`
             $token = rand(11111, 99999);
             $dbh->query("UPDATE users SET token = '$token' WHERE userid = '".$rows->userid."' ");
-            $message = "HAMZ BOOK SHOP. Hi ".$rows->fullname.', your Login Token is '.$token;
+            $message = "KITUDE SACCO. Hi ".$rows->fullname.', your Login Token is '.$token;
             @json_decode(send_sms_yoola_api($phone, $message), true);
             $_SESSION['phone'] = $phone;
             $_SESSION['loader'] = '<center><div class="spinner-border text-dark"></div></center>';
