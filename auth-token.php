@@ -54,6 +54,21 @@ if (empty($phone)) {
 			<div class="card forgot-box">
 				<div class="card-body">
 					 <a href="auth-login" class="btn btn-light text-primary"><i class='bx bx-arrow-back me-1'></i>Back to Login</a>
+					 <?php
+	              if (isset($_SESSION['status'])): ?>
+	                  <div id="note1">
+	                  <?php
+	                      echo $_SESSION['status'];
+	                      unset($_SESSION['status']);
+	                  ?>
+	                  </div>
+	              <?php endif ?>
+	              <?php 
+	              if (isset($_SESSION['loader'])) {
+	                  echo $_SESSION['loader'];
+	                  unset($_SESSION['loader']);
+	              }
+	          ?>
 					<form class="row g-3" method="post" action="">
 						<input type="hidden" value="<?=$phone; ?>" name="phone">
 						<div class="p-3">
@@ -62,7 +77,7 @@ if (empty($phone)) {
 							</div>
 							 <center> <h3 class="mt-5 font-weight-bold">Enter 5-digit verification code</h3> </center>
 							<div class="my-4">
-								<input type="text" name="otp" id="inputCode" maxlength="10" class="form-control verification-input" placeholder="•••••" id="smscode" pattern="[0-9]*" required />
+								<input type="text" name="otp" id="inputCode" maxlength="5" class="form-control verification-input" placeholder="•••••" id="smscode" pattern="[0-9]*" required />
 							</div>
 							<div class="d-grid gap-2">
 								<button type="submit" name="verify_account_btn" class="btn btn-primary">Verify Account</button>

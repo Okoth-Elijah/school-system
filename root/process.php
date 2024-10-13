@@ -84,38 +84,16 @@ if (isset($_POST['register_btn'])) {
             //`userid`, `firstname`, `lastname`, `gender`, `phone`, `email`, `password`, `id_type`, `id_number`, `id_front`, `id_back`, `physical_address`, `parish`, `sub_county`, `district`, `account_status`, `role`, `token`, `date_registered`
             $token = rand(11111, 99999);
             $dbh->query("UPDATE users SET token = '$token' WHERE userid = '".$rows->userid."' ");
-            $message = "KITUDE SACCO. Hi ".$rows->fullname.', your Login Token is '.$token;
+            $message = "KITUDE SACCO. Hi ".$rows->firstname.' '.$rows->lastname.', your Login Token is '.$token;
             @json_decode(send_sms_yoola_api($phone, $message), true);
             $_SESSION['phone'] = $phone;
             $_SESSION['loader'] = '<center><div class="spinner-border text-dark"></div></center>';
             $_SESSION['status'] = '<div class="card card-body alert alert-dark text-center">Account mateched, New Token generated Successfully.<center><img src="'.SITE_URL.'/uploadx/success.png" width="40"/></center></div>';
-            header("refresh:3; url=".SITE_URL.'/token');
-
-           //  $_SESSION['userid'] = $row->userid;
-           //  $_SESSION['firstname'] = $row->firstname;
-           //  $_SESSION['lastname'] = $row->lastname;
-           //  $_SESSION['phone'] = $row->phone;
-           //  $_SESSION['gender'] = $row->gender;
-           //  $_SESSION['role'] = $row->role;
-           //  $_SESSION['account_number'] = $row->account_number;
-           //  $_SESSION['account_status'] = $row->account_status;
-           //  $_SESSION['date_registered'] = $row->date_registered;  
-           //  $_SESSION['status'] = '<div class=" card card-body alert alert-success text-center">
-           // Account Matched, Token sent your Phone[{$phone}].</div>';
-           //  $_SESSION['loader'] = '<center><div class="spinner-border text-center text-success"></div></center>';
-           //  header("refresh:2; url=auth-token");
+            header("refresh:3; url=".SITE_URL.'/auth-token');
         }elseif ($result1->rowCount() == 1) {
-            $token = rand(11111,99999);
-            $dbh->query("UPDATE users SET token = '$token' WHERE phone = '$phone' ");
             $rx = dbRow("SELECT * FROM users WHERE phone = '$phone' ");
             $fullname = $rx->firstname .' '.$rx->lastname;
-            $subj = "KITUDE SACCO - Account Verification Token";
-            $body = "Hello {$fullname}, your account verification token is: <br>
-                <h1><b>{$token}</b></h1>";
-            GoMail($email,$subj,$body);
-            $_SESSION['email'] = $email;
-            $_SESSION['status'] = '<div class="alert alert-success text-center">Verification token is sent to your email successfully, Please enter the OTP send to you via Email to complete registration process</div>';
-            header("refresh:3; url=".HOME_URL.'/token');
+            $_SESSION['status'] = '<div class="alert alert-success text-center">Hello <b>'.$fullname.'</b>, Contact Admin for Support</div>';
         }else{
             $_SESSION['status'] = '<div id="note1" class="card card-body alert alert-danger text-center">
             Invalid account, Try again.<center><img src="'.SITE_URL.'/uploadx/invalid-account.png" width="40"/></center></div>';
@@ -125,42 +103,50 @@ if (isset($_POST['register_btn'])) {
         Wrong Token inserted</div>';
     }
 
-}elseif (isset($_POST['verify'])) {
+}elseif (isset($_POST['verify_account_btn'])) {
     trim(extract($_POST));
     if (count($errors) == 0) {
-    $result = $dbh->query("SELECT * FROM users WHERE token = '$otp' AND email = '$email' " );
-    if ($result->rowCount() == 1) {
-        $dbh->query("UPDATE users SET account_status = 'Active' WHERE token = '$otp' AND email = '$email' ");
-        $subj = "POST KAZI - Account Verification Successful";
-        $body = "Hello {$email} your account is activated successfully.";
-        GoMail($email,$subj,$body);
-        $_SESSION['loader'] = '<center><div class="spinner-border text-center text-success"></div></center>';
-        $_SESSION['status'] = '<div class="card card-body alert alert-success text-center">
-        <strong>Account verified Successfully, Redirecting to Login...</strong></div>';
-        header("refresh:2; url=login");
+        $result = $dbh->query("SELECT * FROM users WHERE phone = '$phone' AND token = '$otp' " );
+        if ($result->rowCount() == 1) {
+        $row = $result->fetch(PDO::FETCH_OBJ);
+        $_SESSION['userid'] = $row->userid;
+        $_SESSION['firstname'] = $row->firstname;
+        $_SESSION['lastname'] = $row->lastname;
+        $_SESSION['phone'] = $row->phone;
+        $_SESSION['gender'] = $row->gender;
+        $_SESSION['role'] = $row->role;
+        $_SESSION['account_number'] = $row->account_number;
+        $_SESSION['account_status'] = $row->account_status;
+        $_SESSION['date_registered'] = $row->date_registered;  
+        if ($result->rowCount() > 0) {
+            $_SESSION['loader'] = '<center><div class="spinner-border text-dark"></div></center>';
+            $_SESSION['status'] = '<div class="card card-body alert alert-dark text-center">
+            <strong>Login Successful, Redirecting...</strong></div>';
+            header("refresh:3; url=".SITE_URL);
+            }else{
+                $_SESSION['status'] = '<div class="card card-body alert alert-danger text-center">
+                Login failed, please check your login details again</div>';
+            }
     }else{
-        $_SESSION['status'] = '<div class="card card-body alert alert-warning text-center">
-        Account Verification Failed., please check your Token and try again.</div>';
+            $_SESSION['status_err'] = '<div class="card card-body alert alert-danger text-center">
+                    <strong>Wrong Token inserted</strong></div>';
+        }
     }
-}
-
 }elseif (isset($_POST['resent_token_btn'])) {
     trim(extract($_POST));
     if (count($errors) == 0) {
-        $result = $dbh->query("SELECT * FROM users WHERE email = '$email' " );
+        $result = $dbh->query("SELECT * FROM users WHERE phone = '$phone' " );
         if ($result->rowCount() == 1) {
             $token = rand(11111,99999);
-            $dbh->query("UPDATE users SET token = '$token' WHERE email = '$email' ");
-            $rx = dbRow("SELECT * FROM users WHERE email = '$email' ");
-            $subj = "POST KAZI - Account Verification Token";
-            $body = "Hello {$rx->fullname} you account verification token is: <br>
-                <h1><b>{$token}</b></h1>";
-            GoMail($email,$subj,$body);
-            $_SESSION['email'] = $email;
-            $_SESSION['status'] = '<div class="alert alert-success text-center">Verification token is sent to your email successfully, Please enter the OTP send to you via Email to complete registration process</div>';
-            header("refresh:3; url=".SITE_URL.'/token');
+            $dbh->query("UPDATE users SET token = '$token' WHERE phone = '$phone' ");
+            $rx = dbRow("SELECT * FROM users WHERE phone = '$phone' ");
+             $message = "KITUDE SACCO. Hi ".$rx->firstname.' '.$rx->lastname.', your Login Token is '.$token;
+            @json_decode(send_sms_yoola_api($phone, $message), true);
+            $_SESSION['phone'] = $phone;
+            $_SESSION['status'] = '<div class="alert alert-success text-center">Verification token is sent to your phone successfully.</div>';
+            header("refresh:3; url=".SITE_URL.'/auth-token');
         }else{
-            $_SESSION['status'] = '<div class="card card-body alert alert-warning text-center">
+            $_SESSION['status'] = '<div class="card card-body alert alert-danger text-center">
             Account Verification Failed., please check your Token and try again.</div>';
         }
     }
