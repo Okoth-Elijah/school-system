@@ -2,6 +2,10 @@
 $currentUrl = $_SERVER['REQUEST_URI'];
 $parts = explode('/', $currentUrl);
 $uid = $parts[count($parts) - 2]; 
+$fullnameWithHyphens = $parts[count($parts) - 1];
+$fullname = str_replace('-', ' ', $fullnameWithHyphens);
+$_SESSION['udetail_userid'] = $userid;
+$_SESSION['udetail_fullname'] = $fullname;
 $user = dbRow("SELECT * FROM users WHERE userid = '$uid' ");
  ?>
 <!--start page wrapper -->
@@ -37,7 +41,11 @@ $user = dbRow("SELECT * FROM users WHERE userid = '$uid' ");
 						<div class="card">
 							<div class="card-body">
 								<div class="d-flex flex-column align-items-center text-center">
+									<?php if(empty($user->pic)){?>
 									<img src="uploadx/man.png" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+									<?php }else{ ?>
+									<img src="<?=$user->pic;?>" alt="<?=ucwords($user->firstname.' '.$user->lastname);?>" class="rounded-circle p-1 bg-primary" width="110">
+									<?php } ?>
 									<div class="mt-3">
 										<h4><?=ucwords($user->firstname.' '.$user->lastname);?></h4>
 										<p class="text-muted font-size-sm">
@@ -51,7 +59,7 @@ $user = dbRow("SELECT * FROM users WHERE userid = '$uid' ");
 													echo 'Customer';
 												} ?>
 											</p>
-										<a data-bs-toggle="modal" data-bs-target="#user-pic<?=$user->userid?>" class="btn btn-primary"><i class="bx bx-attachment"></i>Change Photo</a>&nbsp;&nbsp;&nbsp;<a href="" class="btn btn-success">Take Photo</a>
+										<a data-bs-toggle="modal" data-bs-target="#user-pic<?=$user->userid?>" class="btn btn-primary"><i class="bx bx-attachment"></i>Change Photo</a>&nbsp;&nbsp;&nbsp;<a href="take-photo/<?=$user->userid;?>/<?= str_replace(' ', '-', strtolower($user->firstname . '-' . $user->lastname)); ?>" class="btn btn-success">Take Photo</a>
 									</div>
 								</div>
 							</div>
@@ -60,6 +68,12 @@ $user = dbRow("SELECT * FROM users WHERE userid = '$uid' ");
 					<div class="col-lg-8">
 						<div class="card">
 							<div class="card-body">
+								<h6>ID Type</h6>
+								<?php if (empty($user->id_type)) { ?>
+									<a data-bs-toggle="modal" data-bs-target="#exampleModalIdType<?=$user->userid?>" class="btn btn-primary">Add ID Type</a>
+								<?php }else{ ?>
+
+								<?php } ?>
 								<h6 class="mb-0 text-uppercase">ID Photos</h6>
 								<hr/>
 								<?php if (empty($user->id_front)) { ?>
@@ -96,5 +110,6 @@ $user = dbRow("SELECT * FROM users WHERE userid = '$uid' ");
 include 'id-front-photo.php';
 include 'id-back-photo.php';
 include 'user-profile-pic.php';
+include 'user-id-type.php';
 include 'footer.php';
 ?>

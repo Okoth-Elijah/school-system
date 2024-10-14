@@ -11,6 +11,7 @@ if (empty($_SESSION['userid'])) {
     $date_registered = $_SESSION['date_registered'];
     //fetching user's theme
     $theme = dbRow("SELECT * FROM theme_settings WHERE userid = '".$_SESSION['userid']."' ");
+    $act_user = dbRow("SELECT * FROM users WHERE userid = '$userid' ");
 }
 
 ?>
@@ -158,7 +159,17 @@ if (empty($_SESSION['userid'])) {
 					</div>
 					<div class="user-box dropdown px-3">
 						<a class="d-flex align-items-center nav-link dropdown-toggle gap-3 dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<img src="uploadx/man.png" class="user-img" alt="user avatar">
+							<?php if (empty($act_user->pic)) {
+								if ($act_user->gender == 'male') {?>
+									<img src="uploadx/man.png" class="user-img" alt="user avatar">
+								<?php }else{ ?>
+									<img src="<?=$act_user->pic; ?>" class="user-img" alt="user avatar">
+								<?php }}else{ 
+								if ($act_user->gender == 'woman') { ?>
+									<img src="uploadx/woman.png" class="user-img" alt="user avatar">
+								<?php }else{ ?>
+									<img src="<?=$act_user->pic; ?>" class="user-img" alt="user avatar">
+								<?php } }?>
 							<div class="user-info">
 								<p class="user-name mb-0"><?=ucwords($_SESSION['firstname'].' '.$_SESSION['lastname']); ?></p>
 								<p class="designattion mb-0">
