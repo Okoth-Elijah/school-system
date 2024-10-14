@@ -22,6 +22,7 @@ RewriteRule ^experiences/([^/]+)/([^/]+)/?$ experiences.php?fullname=$1&userid=$
 RewriteRule ^short-trips/([^/]+)/([^/]+)/?$ short-trips.php?fullname=$1&userid=$2 [L]
 
 RewriteRule ^udetails/([^/]+)/([^/]+)/?$ udetails.php?userid=$1&fullname=$2 [L]
+RewriteRule ^accountd/([^/]+)/([^/]+)/?$ accountd.php?userid=$1&fullname=$2 [L]
 RewriteRule ^take-photo/([^/]+)/([^/]+)/?$ take-photo.php?userid=$1&fullname=$2 [L]
 
 RewriteRule ^talent/([^/]+)/?$ talent.php?i=$1 [L]

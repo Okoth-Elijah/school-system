@@ -7,7 +7,7 @@ $fullname = str_replace('-', ' ', $fullnameWithHyphens);
 $_SESSION['udetail_userid'] = $uid;
 $_SESSION['udetail_fullname'] = $fullname;
 $user = dbRow("SELECT * FROM users WHERE userid = '$uid' ");
- ?>
+?>
 <!--start page wrapper -->
 <div class="page-wrapper">
 	<div class="page-content">
@@ -29,15 +29,15 @@ $user = dbRow("SELECT * FROM users WHERE userid = '$uid' ");
 			<div class="main-body">
 				<div class="row">
 					<?php 
-						if (isset($_SESSION['status'])) {
-							echo $_SESSION['status'];
-							unset($_SESSION['status']);
-						}
-						if (isset($_SESSION['loader'])) {
-							echo $_SESSION['loader'];
-							unset($_SESSION['loader']);
-						} ?>
-					<div class="col-lg-5">
+					if (isset($_SESSION['status'])) {
+						echo $_SESSION['status'];
+						unset($_SESSION['status']);
+					}
+					if (isset($_SESSION['loader'])) {
+						echo $_SESSION['loader'];
+						unset($_SESSION['loader']);
+					} ?>
+					<div class="col-lg-6">
 						<div class="card">
 							<div class="card-body">
 								<div class="d-flex flex-column align-items-center text-center">
@@ -95,7 +95,7 @@ $user = dbRow("SELECT * FROM users WHERE userid = '$uid' ");
 												</td>
 												<td><?=ucwords($acctype->acc_type); ?></td>
 												<td><?=$rx->acc_status; ?></td>
-												<td><a href="udetails/<?=$rx->userid;?>/<?= str_replace(' ', '-', strtolower($rx->firstname . '-' . $rx->lastname)); ?>" class="btn btn-primary btn-sm radius-30 px-4">Check Account</a></td>
+												<td><a href="accountd/<?=$user->userid;?>/<?= str_replace(' ', '-', strtolower($user->firstname . '-' . $user->lastname)); ?>" class="btn btn-primary btn-sm radius-30 px-4">Check Account</a></td>
 											</tr>
 										<?php } ?>
 										</tbody>
@@ -103,9 +103,8 @@ $user = dbRow("SELECT * FROM users WHERE userid = '$uid' ");
 								</div>
 							</div>
 						</div>
-
 					</div>
-					<div class="col-lg-7">
+					<div class="col-lg-6">
 						<div class="card">
 							<div class="card-body">
 								<h6>ID Type</h6>
