@@ -16,48 +16,41 @@
 			</div>
 		</div>
 		<!--end breadcrumb-->
-	  
 		<div class="card">
 			<div class="card-body">
 				<div class="d-lg-flex align-items-center mb-4 gap-3">
-					<div class="position-relative">
-						<input type="text" class="form-control ps-5 radius-30" placeholder="Search Order"> <span class="position-absolute top-50 product-show translate-middle-y"><i class="bx bx-search"></i></span>
-					</div>
-				  <div class="ms-auto"><a href="javascript:;" class="btn btn-primary radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Manager</a></div>
+				  <div class="ms-auto"><a href="add-new-manager" class="btn btn-primary radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Manager</a></div>
 				</div>
 				<div class="table-responsive">
-					<table class="table mb-0">
+					<table class="table mb-0" id="example">
 						<thead class="table-light">
 							<tr>
-								<th>Order#</th>
-								<th>Company Name</th>
-								<th>Status</th>
-								<th>Total</th>
+								<th>No#</th>
+								<th>Full Name</th>
+								<th>Phone</th>
+								<th>Address</th>
 								<th>Date</th>
 								<th>View Details</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>
-			<!-- `userid`, `firstname`, `lastname`, `gender`, `phone`, `email`, `password`, `id_type`, `id_number`, `id_front`, `id_back`, `physical_address`, `parish`, `sub_county`, `district`, `account_status`, `role`, `token`, `date_registered` -->
-						<?php $admin_user = $dbh->query("SELECT * FROM users WHERE role = 'admin' ");
+						<?php $admin_user = $dbh->query("SELECT * FROM users WHERE role = 'manager' ORDER BY userid DESC ");
+						$x = 1; 
 						while($rx = $admin_user->fetch(PDO::FETCH_OBJ)){?>
 							<tr>
 								<td>
 									<div class="d-flex align-items-center">
-										<div>
-											<input class="form-check-input me-3" type="checkbox" value="" aria-label="...">
-										</div>
 										<div class="ms-2">
-											<h6 class="mb-0 font-14">#OS-000354</h6>
+											<h6 class="mb-0 font-14">#<?=$x++; ?></h6>
 										</div>
 									</div>
 								</td>
-								<td>Gaspur Antunes</td>
-								<td><div class="badge rounded-pill text-success bg-light-success p-2 text-uppercase px-3"><i class='bx bxs-circle me-1'></i>FulFilled</div></td>
-								<td>$485.20</td>
-								<td>June 10, 2020</td>
-								<td><button type="button" class="btn btn-primary btn-sm radius-30 px-4">View Details</button></td>
+								<td><?=ucwords($rx->firstname.' '.$rx->lastname); ?></td>
+								<td><?=$rx->phone; ?></td>
+								<td><?=$rx->physical_address; ?></td>
+								<td><?=date('jS M, Y', strtotime($rx->date_registered)); ?></td>
+								<td><a href="udetails/<?=$rx->userid;?>/<?= str_replace(' ', '-', strtolower($rx->firstname . '-' . $rx->lastname)); ?>" class="btn btn-primary btn-sm radius-30 px-4">View Details</a></td>
 								<td>
 									<div class="d-flex order-actions">
 										<a href="javascript:;" class=""><i class='bx bxs-edit'></i></a>

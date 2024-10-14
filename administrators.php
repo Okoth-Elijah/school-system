@@ -35,7 +35,7 @@
 							</tr>
 						</thead>
 						<tbody>
-						<?php $admin_user = $dbh->query("SELECT * FROM users WHERE role = 'admin' ");
+						<?php $admin_user = $dbh->query("SELECT * FROM users WHERE role = 'admin' ORDER BY userid DESC ");
 						$x = 1; 
 						while($rx = $admin_user->fetch(PDO::FETCH_OBJ)){?>
 							<tr>

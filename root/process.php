@@ -429,7 +429,7 @@ if (isset($_POST['register_btn'])) {
         }
     }else{
     $_SESSION['status'] = '<div id="note2" class="alert alert-warning text-center">
-        Customer with this 
+        User with this Phone number already exist
         </div>';
     }
 }elseif (isset($_POST['save_new_system_admin_btn'])) {
@@ -451,17 +451,113 @@ if (isset($_POST['register_btn'])) {
         $password = sha1($password);
         $result = $dbh->query("INSERT INTO users VALUES(NULL,'$firstname','$lastname','$gender','$phonee','$email','$password','$id_type','$id_number','','','','$physical_address','$parish','$sub_county','$district','active','admin','','$today')");
         if($result){
-            $message = "KITUDE SACCO. Hi ".$firstname.', your account is created successfully,To login user Phone: '.$phone.' and Pass '.$password;
+            $message = "KITUDE SACCO. Hi ".$firstname.', your account is created successfully,To login, user Phone: '.$phone.' and Pass '.$password;
             @json_decode(send_sms_yoola_api($phone, $message), true);     
-            $_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">Customer account created Successfully</div>';
+            $_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">Admin account created Successfully</div>';
             $_SESSION['loader'] = '<center><div id="note1" class="spinner-border text-center text-success"></div></center>';
-            header("refresh:2; ".SITE_URL.'/all-customers');
+            header("refresh:2; ".SITE_URL.'/administrators');
         }else{
-            $_SESSION['status'] = '<div id="note2" class="alert alert-danger text-center">Customer registration failed</div>';
+            $_SESSION['status'] = '<div id="note2" class="alert alert-danger text-center">Admin registration failed</div>';
         }
     }else{
     $_SESSION['status'] = '<div id="note2" class="alert alert-warning text-center">
-        Customer with this 
+        User with this Phone number already exist
+        </div>';
+    }
+}elseif (isset($_POST['save_new_manager_btn'])) {
+    trim(extract($_POST));
+    $check = $dbh->query("SELECT phone FROM users WHERE phone='$phonee' ")->fetchColumn();
+    if(!$check){
+        $firstname = addslashes($firstname);
+        $lastname = addslashes($lastname);
+        $gender = addslashes($gender);
+        $phone = addslashes($phone);
+        $email = addslashes($email);
+        $id_type = addslashes($id_type);
+        $physical_address = addslashes($physical_address);
+        $parish = addslashes($parish);
+        $sub_county = addslashes($sub_county);
+        $district = addslashes($district);
+        $id_type = addslashes($id_type);
+        $id_number = addslashes($id_number);
+        $password = sha1($password);
+        $result = $dbh->query("INSERT INTO users VALUES(NULL,'$firstname','$lastname','$gender','$phonee','$email','$password','$id_type','$id_number','','','','$physical_address','$parish','$sub_county','$district','active','manager','','$today')");
+        if($result){
+            $message = "KITUDE SACCO. Hi ".$firstname.', your account is created successfully,To login, user Phone: '.$phone.' and Pass '.$password;
+            @json_decode(send_sms_yoola_api($phone, $message), true);     
+            $_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">Manager account created Successfully</div>';
+            $_SESSION['loader'] = '<center><div id="note1" class="spinner-border text-center text-success"></div></center>';
+            header("refresh:2; ".SITE_URL.'/managers');
+        }else{
+            $_SESSION['status'] = '<div id="note2" class="alert alert-danger text-center">Manager registration failed</div>';
+        }
+    }else{
+    $_SESSION['status'] = '<div id="note2" class="alert alert-warning text-center">
+        User with this Phone number already exist
+        </div>';
+    }
+}elseif (isset($_POST['save_new_loan_officer_btn'])) {
+    trim(extract($_POST));
+    $check = $dbh->query("SELECT phone FROM users WHERE phone='$phonee' ")->fetchColumn();
+    if(!$check){
+        $firstname = addslashes($firstname);
+        $lastname = addslashes($lastname);
+        $gender = addslashes($gender);
+        $phone = addslashes($phone);
+        $email = addslashes($email);
+        $id_type = addslashes($id_type);
+        $physical_address = addslashes($physical_address);
+        $parish = addslashes($parish);
+        $sub_county = addslashes($sub_county);
+        $district = addslashes($district);
+        $id_type = addslashes($id_type);
+        $id_number = addslashes($id_number);
+        $password = sha1($password);
+        $result = $dbh->query("INSERT INTO users VALUES(NULL,'$firstname','$lastname','$gender','$phonee','$email','$password','$id_type','$id_number','','','','$physical_address','$parish','$sub_county','$district','active','loan_officer','','$today')");
+        if($result){
+            $message = "KITUDE SACCO. Hi ".$firstname.', your account is created successfully,To login, user Phone: '.$phone.' and Pass '.$password;
+            @json_decode(send_sms_yoola_api($phone, $message), true);     
+            $_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">Loan Officer account created Successfully</div>';
+            $_SESSION['loader'] = '<center><div id="note1" class="spinner-border text-center text-success"></div></center>';
+            header("refresh:2; ".SITE_URL.'/loan-officer');
+        }else{
+            $_SESSION['status'] = '<div id="note2" class="alert alert-danger text-center">Loan Officer registration failed</div>';
+        }
+    }else{
+    $_SESSION['status'] = '<div id="note2" class="alert alert-warning text-center">
+        User with this Phone number already exist
+        </div>';
+    }
+}elseif (isset($_POST['save_new_cashier_btn'])) {
+    trim(extract($_POST));
+    $check = $dbh->query("SELECT phone FROM users WHERE phone='$phonee' ")->fetchColumn();
+    if(!$check){
+        $firstname = addslashes($firstname);
+        $lastname = addslashes($lastname);
+        $gender = addslashes($gender);
+        $phone = addslashes($phone);
+        $email = addslashes($email);
+        $id_type = addslashes($id_type);
+        $physical_address = addslashes($physical_address);
+        $parish = addslashes($parish);
+        $sub_county = addslashes($sub_county);
+        $district = addslashes($district);
+        $id_type = addslashes($id_type);
+        $id_number = addslashes($id_number);
+        $password = sha1($password);
+        $result = $dbh->query("INSERT INTO users VALUES(NULL,'$firstname','$lastname','$gender','$phonee','$email','$password','$id_type','$id_number','','','','$physical_address','$parish','$sub_county','$district','active','cashier','','$today')");
+        if($result){
+            $message = "KITUDE SACCO. Hi ".$firstname.', your account is created successfully,To login, user Phone: '.$phone.' and Pass '.$password;
+            @json_decode(send_sms_yoola_api($phone, $message), true);     
+            $_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">Manager account created Successfully</div>';
+            $_SESSION['loader'] = '<center><div id="note1" class="spinner-border text-center text-success"></div></center>';
+            header("refresh:2; ".SITE_URL.'/managers');
+        }else{
+            $_SESSION['status'] = '<div id="note2" class="alert alert-danger text-center">Manager registration failed</div>';
+        }
+    }else{
+    $_SESSION['status'] = '<div id="note2" class="alert alert-warning text-center">
+        User with this Phone number already exist
         </div>';
     }
 }elseif (isset($_POST['save_new_account_type_btn'])) {
@@ -491,12 +587,11 @@ if (isset($_POST['register_btn'])) {
     $opening_amount = str_replace(',', '', $opening_amount);
     $accountNumber = getNextAccountNumber($dbh);
     $accno = getNextAccountNumberWithoutUnderscore($dbh);
-
     $result = $dbh->query("INSERT INTO customer_accounts VALUES('$accountNumber','$acc_id','$userid','$opening_amount','0','pending','$dtime','$today') ");
      if($result){
         $customer = dbRow("SELECT * FROM users WHERE userid = '$userid' ");
         $acct = dbRow("SELECT * FROM account_types WHERE acc_id = '$acc_id' ");
-        $message = "KITUDE SACCO: Hi ".$customer->firstname.' '.$customer->lastname.', Your account is created successfully and Acc.No is: '.$accno.'. Thx';
+        $message = "KITUDE SACCO: Hi ".$customer->firstname.' '.$customer->lastname.', Your '.$acct->acc_type.' is created successfully and Acc.No is: '.$accno.'. Thx';
         @json_decode(send_sms_yoola_api($customer->phone, $message), true);
         $_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">Account generated Successfully</div>';
         $_SESSION['loader'] = '<center><div id="note1" class="spinner-border text-center text-success"></div></center>';

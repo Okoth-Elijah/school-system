@@ -98,6 +98,7 @@ if (empty($_SESSION['userid'])) {
 						<li> <a href="managers"><i class='bx bx-radio-circle'></i>Managers</a>
 						</li>
 						<li> <a href="cashiers"><i class='bx bx-radio-circle'></i>Cashiers</a>
+						<li> <a href="loan-officer"><i class='bx bx-radio-circle'></i>Loan Officers</a>
 						</li>
 					</ul>
 				</li>

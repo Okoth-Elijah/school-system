@@ -10,7 +10,7 @@
 					<ol class="breadcrumb mb-0 p-0">
 						<li class="breadcrumb-item"><a href="<?=SITE_URL; ?>"><i class="bx bx-home-alt"></i></a>
 						</li>
-						<li class="breadcrumb-item active" aria-current="page">Loan Cashiers</li>
+						<li class="breadcrumb-item active" aria-current="page">Loan Officers</li>
 					</ol>
 				</nav>
 			</div>
@@ -19,7 +19,7 @@
 		<div class="card">
 			<div class="card-body">
 				<div class="d-lg-flex align-items-center mb-4 gap-3">
-				  <div class="ms-auto"><a href="add-cashier" class="btn btn-primary radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Cashier</a></div>
+				  <div class="ms-auto"><a href="add-loan-officer" class="btn btn-primary radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Loan Officer</a></div>
 				</div>
 				<div class="table-responsive">
 					<table class="table mb-0" id="example">
@@ -35,7 +35,7 @@
 							</tr>
 						</thead>
 						<tbody>
-						<?php $admin_user = $dbh->query("SELECT * FROM users WHERE role = 'cashier' ORDER BY userid DESC ");
+						<?php $admin_user = $dbh->query("SELECT * FROM users WHERE role = 'loan_officer' ORDER BY userid DESC ");
 						$x = 1; 
 						while($rx = $admin_user->fetch(PDO::FETCH_OBJ)){?>
 							<tr>
