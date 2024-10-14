@@ -95,7 +95,7 @@ $user = dbRow("SELECT * FROM users WHERE userid = '$uid' ");
 												</td>
 												<td><?=ucwords($acctype->acc_type); ?></td>
 												<td><?=$rx->acc_status; ?></td>
-												<td><a href="accountd/<?=$user->userid;?>/<?= str_replace(' ', '-', strtolower($user->firstname . '-' . $user->lastname)); ?>" class="btn btn-primary btn-sm radius-30 px-4">Check Account</a></td>
+												<td><a href="accountd/<?=$rx->account_number;?>/<?= str_replace(' ', '-', strtolower($user->firstname . '-' . $user->lastname)); ?>" class="btn btn-primary btn-sm radius-30 px-4">Check Account</a></td>
 											</tr>
 										<?php } ?>
 										</tbody>

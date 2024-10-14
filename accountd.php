@@ -4,9 +4,12 @@ $parts = explode('/', $currentUrl);
 $accid = $parts[count($parts) - 2]; 
 $fullnameWithHyphens = $parts[count($parts) - 1];
 $fullnamed = str_replace('-', ' ', $fullnameWithHyphens);
-$_SESSION['accdetail_userid'] = $accid;
+$acct = dbRow("SELECT * FROM customer_accounts WHERE account_number = '$accid' ");
+$user = dbRow("SELECT * FROM users WHERE userid = '".$acct->userid."' ");
+$accty = dbRow("SELECT * FROM account_types WHERE acc_id  = '".$acct->acc_id."' ");
+
+$_SESSION['accdetail_userid'] = $user->userid;
 $_SESSION['accdetail_fullname'] = $fullnamed;
-$user = dbRow("SELECT * FROM users WHERE userid = '$accid' ");
 ?>
 <!--start page wrapper -->
 <div class="page-wrapper">
@@ -41,25 +44,39 @@ $user = dbRow("SELECT * FROM users WHERE userid = '$accid' ");
 						<div class="card">
 							<div class="card-body">
 								<div class="d-flex flex-column align-items-center text-center">
-									<img src="assets/images/avatars/avatar-2.png" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+									<?php if(empty($user->pic)){?>
+									<img src="uploadx/man.png" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+									<?php }else{ ?>
+									<img src="<?=$user->pic;?>" alt="<?=ucwords($user->firstname.' '.$user->lastname);?>" class="rounded-circle p-1 bg-primary" width="110">
+									<?php } ?>
+
 									<div class="mt-3">
 										<h4><?=ucwords($user->firstname.' '.$user->lastname); ?></h4>
 										<p class="text-secondary mb-1"><?=ucwords($user->role); ?></p>
+										<h6>Account No: <b class="text-primary"><?=$acct->account_number; ?></b></h6>
 									</div>
 								</div>
 								<hr class="my-4" />
 								<ul class="list-group list-group-flush">
 									<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
 										<h6 class="mb-0"><i class="fadeIn animated bx bx-list-check"></i>Account Type: </h6>
-										<span class="text-secondary">https://codervent.com</span>
+										<span class="text-secondary"><b><?=ucwords($accty->acc_type); ?></b></span>
 									</li>
 									<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-										<h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github me-2 icon-inline"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>Github</h6>
-										<span class="text-secondary">codervent</span>
+										<h6 class="mb-0">Opening Amount</h6>
+										<span class="text-secondary">USh <?=number_format($acct->opening_amount);?></span>
 									</li>
 									<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-										<h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter me-2 icon-inline text-info"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>Twitter</h6>
-										<span class="text-secondary">@codervent</span>
+										<h6 class="mb-0">Account Status</h6>
+										<?php if ($acct->acc_status == 'pending') { ?>
+											<span class="text-warning">Pending</span>
+										<?php }elseif ($acct->acc_status == 'partial') { ?>
+											<span class="text-info">Partial Payments</span>
+										<?php }elseif ($acct->acc_status == 'paid') { ?>
+											<span class="text-success">Paid</span>
+										<?php }else{?>
+											<span class="text-secondary">Domant Account</span>
+										<?php } ?>
 									</li>
 									<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
 										<h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram me-2 icon-inline text-danger"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>Instagram</h6>
