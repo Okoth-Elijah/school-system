@@ -23,16 +23,16 @@
 			  <hr/>
                <div class="form-body mt-4">
 			    <div class="row">
-				   <div class="col-lg-8">
+				   <div class="col-lg-8-auto">
                    <div class="border border-3 p-4 rounded">
 					<div class="mb-3">
 						<label for="current-password" class="form-label">Current Password</label>
-						<input type="password" class="form-control" id="current-password" placeholder="">
+						<input type="password" name="current_password" class="form-control" id="current-password" placeholder="">
 					 </div>
 
 					 <div class="mb-3">
 						<label for="new-password" class="form-label">New Password</label>
-						<input type="password" class="form-control" id="new-password" placeholder="">
+						<input type="password" name="new_password" class="form-control" id="new-password" placeholder="">
 					 </div>
 
 					  <div class="mb-3">

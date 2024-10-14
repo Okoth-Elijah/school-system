@@ -113,8 +113,6 @@ if (empty($_SESSION['userid'])) {
 						<li> <a href="new-customer"><i class='bx bx-radio-circle'></i>Add New Customer</a>
 						<li> <a href="all-customers"><i class='bx bx-radio-circle'></i>All Customers</a>
 						</li>
-						<li> <a href="ok"><i class='bx bx-radio-circle'></i>Managers</a>
-						</li>
 					</ul>
 				</li>
 
