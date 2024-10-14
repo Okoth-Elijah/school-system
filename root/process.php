@@ -403,6 +403,40 @@ if (isset($_POST['register_btn'])) {
     $_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">User ID Details Saved successfully.</div>';
     $_SESSION['loader'] = '<center><div id="note1" class="spinner-border text-center text-success"></div></center>';
     header("refresh:2; url=".$_SERVER['REQUEST_URI']);
+}elseif (isset($_POST['save_customer_btn'])) {
+    trim(extract($_POST));
+     $check = $dbh->query("SELECT phone FROM users WHERE phone='$phonee' ")->fetchColumn();
+        if(!$check){
+            $firstname = addslashes($firstname);
+            $lastname = addslashes($lastname);
+            $gender = addslashes($gender);
+            $phone = addslashes($phone);
+            $email = addslashes($email);
+            $id_type = addslashes($id_type);
+            $physical_address = addslashes($physical_address);
+            $parish = addslashes($parish);
+            $sub_county = addslashes($sub_county);
+            $district = addslashes($district);
+            $result = $dbh->query("INSERT INTO users VALUES(NULL,'$firstname','$lastname','$gender','$phonee','$email','','$role','$pwd','$account_number','active','$today')");
+            if($result){
+                //`userid`, `firstname`, `lastname`, `gender`, `phone`, `email`, `password`, `id_type`, `id_number`, `id_front`, `id_back`, `pic`, `physical_address`, `parish`, `sub_county`, `district`, `account_status`, `role`, `token`, `date_registered`
+                $dbh->query("INSERT INTO welfare VALUES(NULL, '$account_number', '0','$today') ");
+                $dbh->query("INSERT INTO savings VALUES(NULL, '$account_number', '0','$today') ");
+                $dbh->query("INSERT INTO membership_fee VALUES(NULL, '0', '$account_number', '$dtime','$today') ");
+                $dbh->query("INSERT INTO ceremonials VALUES(NULL, '0', '$account_number', '$dtime','$today') ");
+                $message = "KITUDE SACCO. Hi ".$firstname.', your account is created successfully, Your Phone No '.$phone.' and Pass '.$password;
+                @json_decode(send_sms_yoola_api($phonee, $message), true);
+                $_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">Registration is Successful</div>';
+                $_SESSION['loader'] = '<center><div id="note1" class="spinner-border text-center text-success"></div></center>';
+                header("refresh:2; url=admin-members");
+            }else{
+                $_SESSION['status'] = '<div id="note2" class="alert alert-danger text-center">Email Address registration failed</div>';
+            }
+        }else{
+        $_SESSION['status'] = '<div id="note2" class="alert alert-warning text-center">
+            This Phone number already exist
+            </div>';
+        }
 }
 
 ?>
