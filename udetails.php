@@ -72,7 +72,10 @@ $user = dbRow("SELECT * FROM users WHERE userid = '$uid' ");
 								<?php if (empty($user->id_type)) { ?>
 									<a data-bs-toggle="modal" data-bs-target="#exampleModalIdType<?=$user->userid?>" class="btn btn-primary">Add ID Type</a>
 								<?php }else{ ?>
-
+									<div class="card-body alert alert-secondary">
+										<h6>ID Type: <?=$user->id_type;?></h6>
+										<h6>ID NIN: <?=$user->id_number;?></h6>
+									</div>
 								<?php } ?>
 								<h6 class="mb-0 text-uppercase">ID Photos</h6>
 								<hr/>

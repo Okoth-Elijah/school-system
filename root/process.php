@@ -397,6 +397,12 @@ if (isset($_POST['register_btn'])) {
         $_SESSION['loader'] = '<center><div id="note1" class="spinner-border text-center text-success"></div></center>';
         header("refresh:2; url=".$_SERVER['REQUEST_URI']);
     }
+}elseif (isset($_POST['user_id_type_details_btn'])) {
+    trim(extract($_POST));
+    $res = $dbh->query("UPDATE users SET id_type = '$id_type', id_number = '$id_number' WHERE userid = '$userid' ");
+    $_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">User ID Details Saved successfully.</div>';
+    $_SESSION['loader'] = '<center><div id="note1" class="spinner-border text-center text-success"></div></center>';
+    header("refresh:2; url=".$_SERVER['REQUEST_URI']);
 }
 
 ?>

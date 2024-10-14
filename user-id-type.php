@@ -10,15 +10,27 @@
 				<div class="modal-body">
 					<div class="card">
 						<div class="card-body">
-							<div class="input-group mb-3"> 
-								<input type="text" class="form-control" name="pic" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" accept=".png, jpeg, .jpg" required>
+							<div class="mb-3">
+								<label>ID Type</label>
+								<select class="form-select form-select-sm" name="id_type" required>
+									<option value="">--select ID Type--</option>
+									<option value="National ID">National ID</option>
+									<option value="Passport">Passport</option>
+									<option value="Driving Permit">Driving Permit</option>
+									<option value="Village ID">Village ID</option>
+								</select>
+							</div>
+
+							<div class="mb-3">
+								<label>ID Number/NIN</label>
+								<input type="text" name="id_number" class="form-control" placeholder="ID Number/NIN">
 							</div>
 						</div>
 					</div>		
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button type="submit" name="user_profile_pic_photo_btn" class="btn btn-primary">Upload</button>
+					<button type="submit" name="user_id_type_details_btn" class="btn btn-primary">Upload</button>
 				</div>
 			</form>
 		</div>

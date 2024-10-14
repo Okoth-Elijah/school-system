@@ -40,5 +40,6 @@
 	<script src="assets/js/app.js"></script>
 	<!-- adding live scanner photo -->
 	<script src="assets/js/webcam.min.js"></script>
+	<script src="cdn.jsdelivr.net/npm/select2%404.1.0-rc.0/dist/js/select2.min.js"></script>
 </body>
 </html>
