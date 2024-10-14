@@ -41,5 +41,15 @@
 	<!-- adding live scanner photo -->
 	<script src="assets/js/webcam.min.js"></script>
 	<script src="cdn.jsdelivr.net/npm/select2%404.1.0-rc.0/dist/js/select2.min.js"></script>
+	<script>
+	  function addCommas(input) {
+	    // Remove existing commas and non-numeric characters
+	    let value = input.value.replace(/,/g, '').replace(/\D/g, '');
+	    // Add commas back to the number
+	    let formattedValue = new Intl.NumberFormat().format(value);
+	    // Update the input value with commas
+	    input.value = formattedValue;
+	  }
+</script>
 </body>
 </html>

@@ -4,14 +4,28 @@ if (empty($_SESSION['userid'])) {
 } else {
     //`userid`, `fullname`, `email`, `phone`, `role`, `account_status`, `pic`, `token`, `date_registered`
     $interface = $_SESSION['role'];
-    $fullname   = $_SESSION['fullname'];
-    $email   = $_SESSION['email'];
+    $fullname   = $_SESSION['firstname'].' '.$_SESSION['lastname'];
     $phone   = $_SESSION['phone'];
     $userid = $_SESSION['userid'];
     $date_registered = $_SESSION['date_registered'];
     //fetching user's theme
     $theme = dbRow("SELECT * FROM theme_settings WHERE userid = '".$_SESSION['userid']."' ");
     $act_user = dbRow("SELECT * FROM users WHERE userid = '$userid' ");
+
+    list($startOfWeek, $endOfWeek) = getThisWeek();
+    //total admins 
+    $tadmins = $dbh->query("SELECT * FROM users WHERE role = 'admin' ")->rowCount();
+    $admin_this_week = $dbh->query("SELECT * FROM users WHERE role = 'admin' AND date_registered BETWEEN '$startOfWeek' AND '$endOfWeek'")->rowCount();
+
+    //total customers
+    $tcustomers = $dbh->query("SELECT * FROM users WHERE role = 'customer' ")->rowCount();
+    //customers this week...
+	$cus_this_week = $dbh->query("SELECT * FROM users WHERE role = 'customer' AND date_registered BETWEEN '$startOfWeek' AND '$endOfWeek'")->rowCount();
+	//account types
+	$total_account_typesB = $dbh->query("SELECT * FROM account_types ")->rowCount();
+	//total opened accounts 
+	$toaccs =  $dbh->query("SELECT * FROM customer_accounts ")->rowCount();
+
 }
 
 ?>
@@ -95,11 +109,20 @@ if (empty($_SESSION['userid'])) {
 						<div class="menu-title">Manage Customers</div>
 					</a>
 					<ul>
-						<li> <a href="new-customer"><i class='bx bx-radio-circle'></i>New Customers</a>
+						<li> <a href="new-customer"><i class='bx bx-radio-circle'></i>Add New Customer</a>
+						<li> <a href="all-customers"><i class='bx bx-radio-circle'></i>All Customers</a>
 						</li>
 						<li> <a href="ok"><i class='bx bx-radio-circle'></i>Managers</a>
 						</li>
 					</ul>
+				</li>
+
+				<li>
+					<a href="manage-accounts">
+						<div class="parent-icon"><i class='bx bx-cookie'></i>
+						</div>
+						<div class="menu-title">Manage Accounts</div>
+					</a>
 				</li>
 
 				<li>

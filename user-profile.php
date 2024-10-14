@@ -1,4 +1,6 @@
-<?php include 'header.php'; ?>
+<?php include 'header.php';
+$uuser = dbRow("SELECT * FROM users WHERE userid = '$userid' ");
+ ?>
 		<!--start page wrapper -->
 		<div class="page-wrapper">
 			<div class="page-content">
@@ -23,7 +25,11 @@
 								<div class="card">
 									<div class="card-body">
 										<div class="d-flex flex-column align-items-center text-center">
+											<?php if(empty($uuser->pic)){?>
 											<img src="uploadx/man.png" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+											<?php }else{ ?>
+											<img src="<?=$uuser->pic;?>" alt="<?=ucwords($uuser->firstname.' '.$uuser->lastname);?>" class="rounded-circle p-1 bg-primary" width="110">
+											<?php } ?>
 											<div class="mt-3">
 												<h4><?=ucwords($_SESSION['firstname'].' '.$_SESSION['lastname']);?></h4>
 												<p class="text-muted font-size-sm">

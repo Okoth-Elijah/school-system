@@ -18,25 +18,33 @@
 		<!--end breadcrumb-->
 		<div class="row">
 			<div class="col-xl-9 mx-auto">
+				<?php 
+					if (isset($_SESSION['status'])) {
+						echo $_SESSION['status'];
+						unset($_SESSION['status']);
+					}
+					if (isset($_SESSION['loader'])) {
+						echo $_SESSION['loader'];
+						unset($_SESSION['loader']);
+					} ?>
 				<form method="post" action="">
 					<h6 class="mb-0 text-uppercase">Personal Info</h6>
 					<hr/>
 					<div class="card">
 						<div class="card-body">
 							<div class="input-group mb-3"> <span class="input-group-text" id="basic-addon1">Firstname</span>
-								<input type="text" class="form-control" placeholder="Enter Firstname Here" aria-label="Firstname" value="<?=$firstname; ?>" aria-describedby="basic-addon1" required>
+								<input type="text" name="firstname" class="form-control" placeholder="Enter Firstname Here" aria-label="Firstname" value="<?=$firstname; ?>" aria-describedby="basic-addon1" required>
 							</div>
 							<div class="input-group mb-3"> <span class="input-group-text" id="basic-addon1">Lastname</span>
-								<input type="text" class="form-control" value="<?=$lastname; ?>" placeholder="Enter Lastname Here" aria-label="Lastname" aria-describedby="basic-addon1" required>
+								<input type="text" name="lastname" class="form-control" value="<?=$lastname; ?>" placeholder="Enter Lastname Here" aria-label="Lastname" aria-describedby="basic-addon1" required>
 							</div>
 							<div class="input-group mb-3"> <span class="input-group-text" id="basic-addon1">Gender</span>
 								<select class="form-control" name="gender" required>
 									<option value="">--choose gender--</option>
-									<option value="male">male</option>
-									<option value="female">female</option>
+									<option value="male">Male</option>
+									<option value="female">Female</option>
 								</select>
 							</div>
-							<!-- `userid`, `firstname`, `lastname`, `gender`, `phone`, `email`, `password`, `id_type`, `id_number`, `id_front`, `id_back`, `pic`, `physical_address`, `parish`, `sub_county`, `district`, `account_status`, `role`, `token`, `date_registered` -->
 						</div>
 					</div>
 
@@ -54,7 +62,7 @@
 								<input type="text" name="sub_county" value="<?=$sub_county; ?>" class="form-control" placeholder="Eg Kisekka" require aria-label="sub_county" aria-describedby="addon-wrapping">
 							</div>
 							<div class="input-group flex-nowrap"> <span class="input-group-text" id="addon-wrapping">District</span>
-								<input type="text" name="district" value="<?=$district; ?>" class="form-control" placeholder="Eg Lwengo" require aria-label="sub_county" aria-describedby="addon-wrapping">
+								<input type="text" name="district" value="<?=$district; ?>" class="form-control" placeholder="Eg Lwengo" require aria-label="district" aria-describedby="addon-wrapping">
 							</div>
 						</div>
 					</div>

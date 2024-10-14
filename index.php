@@ -13,7 +13,7 @@
 								<h4 class="my-1">Ugx 0.00</h4>
 								<p class="mb-0 font-13 text-success"><i class="bx bxs-up-arrow align-middle"></i>This Week Ugx 0.00 </p>
 							</div>
-							<div class="widgets-icons bg-light-success text-success ms-auto"><i class="bx bxs-wallet"></i>
+							<div class="widgets-icons bg-light-success text-success ms-auto"><i class="fadeIn animated bx bx-money"></i>
 							</div>
 						</div>
 					</div>
@@ -25,8 +25,8 @@
 						<div class="d-flex align-items-center">
 							<div>
 								<p class="mb-0 text-secondary">Total Staff Members</p>
-								<h4 class="my-1">0</h4>
-								<p class="mb-0 font-13 text-success"><i class='bx bxs-up-arrow align-middle'></i>New this Week (1)</p>
+								<h4 class="my-1"><?=number_format($tadmins); ?></h4>
+								<p class="mb-0 font-13 text-success"><i class='bx bxs-up-arrow align-middle'></i>New this Week (<?=$admin_this_week; ?>)</p>
 							</div>
 							<div class="widgets-icons bg-light-info text-info ms-auto"><i class='bx bxs-group'></i>
 							</div>
@@ -40,8 +40,8 @@
 						<div class="d-flex align-items-center">
 							<div>
 								<p class="mb-0 text-secondary">Total Customers</p>
-								<h4 class="my-1">0</h4>
-								<p class="mb-0 font-13 text-success"><i class='bx bxs-up-arrow align-middle'></i>New this Week (1)</p>
+								<h4 class="my-1"><?=number_format($tcustomers); ?></h4>
+								<p class="mb-0 font-13 text-success"><i class='bx bxs-up-arrow align-middle'></i>New this Week (<?=$cus_this_week; ?>)</p>
 							</div>
 							<div class="widgets-icons bg-light-info text-info ms-auto"><i class='bx bxs-group'></i>
 							</div>
@@ -54,11 +54,10 @@
 					<div class="card-body">
 						<div class="d-flex align-items-center">
 							<div>
-								<p class="mb-0 text-secondary">Store Visitors</p>
-								<h4 class="my-1">59K</h4>
-								<p class="mb-0 font-13 text-danger"><i class='bx bxs-down-arrow align-middle'></i>$34 from last week</p>
+								<p class="mb-0 text-secondary">Total Account Types</p>
+								<h4 class="my-1"><?=number_format($total_account_typesB); ?></h4>
 							</div>
-							<div class="widgets-icons bg-light-danger text-danger ms-auto"><i class='bx bxs-binoculars'></i>
+							<div class="widgets-icons bg-light-danger text-danger ms-auto"><i class="fadeIn animated bx bx-list-check"></i>
 							</div>
 						</div>
 					</div>
@@ -69,11 +68,10 @@
 					<div class="card-body">
 						<div class="d-flex align-items-center">
 							<div>
-								<p class="mb-0 text-secondary">Bounce Rate</p>
-								<h4 class="my-1">34.46%</h4>
-								<p class="mb-0 font-13 text-danger"><i class='bx bxs-down-arrow align-middle'></i>12.2% from last week</p>
+								<p class="mb-0 text-secondary">Total Opened Accounts</p>
+								<h4 class="my-1"><?=number_format($toaccs); ?></h4>
 							</div>
-							<div class="widgets-icons bg-light-warning text-warning ms-auto"><i class='bx bx-line-chart-down'></i>
+							<div class="widgets-icons bg-light-warning text-warning ms-auto"><i class="fadeIn animated bx bx-list-check"></i>
 							</div>
 						</div>
 					</div>

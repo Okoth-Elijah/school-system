@@ -4,7 +4,7 @@ $parts = explode('/', $currentUrl);
 $uid = $parts[count($parts) - 2]; 
 $fullnameWithHyphens = $parts[count($parts) - 1];
 $fullname = str_replace('-', ' ', $fullnameWithHyphens);
-$_SESSION['udetail_userid'] = $uid;
+$_SESSION['udetail_userid'] = $userid;
 $_SESSION['udetail_fullname'] = $fullname;
 $user = dbRow("SELECT * FROM users WHERE userid = '$uid' ");
  ?>
@@ -13,7 +13,7 @@ $user = dbRow("SELECT * FROM users WHERE userid = '$uid' ");
 	<div class="page-content">
 		<!--breadcrumb-->
 		<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-			<div class="breadcrumb-title pe-3"><b class="text-muted"><?=ucwords($user->firstname); ?>'s</b> Profile</div>
+			<div class="breadcrumb-title pe-3">User Profile</div>
 			<div class="ps-3">
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb mb-0 p-0">
@@ -37,14 +37,14 @@ $user = dbRow("SELECT * FROM users WHERE userid = '$uid' ");
 							echo $_SESSION['loader'];
 							unset($_SESSION['loader']);
 						} ?>
-					<div class="col-lg-5">
+					<div class="col-lg-4">
 						<div class="card">
 							<div class="card-body">
 								<div class="d-flex flex-column align-items-center text-center">
 									<?php if(empty($user->pic)){?>
-									<img src="uploadx/man.png" alt="Admin" class="rounded-rectange p-1 bg-primary" width="110">
+									<img src="uploadx/man.png" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
 									<?php }else{ ?>
-									<img src="<?=$user->pic;?>" alt="<?=ucwords($user->firstname.' '.$user->lastname);?>" class="rounded-rectange p-1 bg-primary" width="210">
+									<img src="<?=$user->pic;?>" alt="<?=ucwords($user->firstname.' '.$user->lastname);?>" class="rounded-circle p-1 bg-primary" width="110">
 									<?php } ?>
 									<div class="mt-3">
 										<h4><?=ucwords($user->firstname.' '.$user->lastname);?></h4>
@@ -64,48 +64,8 @@ $user = dbRow("SELECT * FROM users WHERE userid = '$uid' ");
 								</div>
 							</div>
 						</div>
-						<hr>
-						<div class="card">
-							<div class="card-body">
-								<h6 class="mb-0 text-uppercase"><b class="text-muted"><?=ucwords($user->firstname); ?>'s</b> Accounts Info - <a data-bs-toggle="modal" data-bs-target="#new-account<?=$user->userid?>" style="font-size: 14px;" class="btn btn-dark">Add New Account</a></h6>
-								<hr/>
-								<div class="table-responsive">
-									<table class="table mb-0" id="example">
-										<thead class="table-light">
-											<tr>
-												<th>ACCNO#</th>
-												<th>ACC TYPE</th>
-												<th>ACC STATUS</th>
-												<th>View Details</th>
-											</tr>
-										</thead>
-										<tbody>
-										<?php $account_numbx = $dbh->query("SELECT * FROM customer_accounts WHERE userid = '".$user->userid."' ");
-										$x = 1; 
-										while($rx = $account_numbx->fetch(PDO::FETCH_OBJ)){
-											$acctype = dbRow("SELECT * FROM account_types WHERE acc_id = '".$rx->acc_id."' ");
-											?>
-											<tr>
-												<td>
-													<div class="d-flex align-items-center">
-														<div class="ms-2">
-															<h6 class="mb-0 font-14"><?=$rx->account_number; ?></h6>
-														</div>
-													</div>
-												</td>
-												<td><?=ucwords($rx->acc_type); ?></td>
-												<td><?=$rx->acc_status; ?></td>
-												<td><a href="udetails/<?=$rx->userid;?>/<?= str_replace(' ', '-', strtolower($rx->firstname . '-' . $rx->lastname)); ?>" class="btn btn-primary btn-sm radius-30 px-4">Check Account</a></td>
-											</tr>
-										<?php } ?>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-
 					</div>
-					<div class="col-lg-7">
+					<div class="col-lg-8">
 						<div class="card">
 							<div class="card-body">
 								<h6>ID Type</h6>
@@ -154,6 +114,5 @@ include 'id-front-photo.php';
 include 'id-back-photo.php';
 include 'user-profile-pic.php';
 include 'user-id-type.php';
-include 'new-account.php';
 include 'footer.php';
 ?>

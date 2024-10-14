@@ -405,30 +405,50 @@ if (isset($_POST['register_btn'])) {
     header("refresh:2; url=".$_SERVER['REQUEST_URI']);
 }elseif (isset($_POST['save_customer_btn'])) {
     trim(extract($_POST));
-     $check = $dbh->query("SELECT phone FROM users WHERE phone='$phonee' ")->fetchColumn();
+    $check = $dbh->query("SELECT phone FROM users WHERE phone='$phonee' ")->fetchColumn();
+    if(!$check){
+        $firstname = addslashes($firstname);
+        $lastname = addslashes($lastname);
+        $gender = addslashes($gender);
+        $phone = addslashes($phone);
+        $email = addslashes($email);
+        $id_type = addslashes($id_type);
+        $physical_address = addslashes($physical_address);
+        $parish = addslashes($parish);
+        $sub_county = addslashes($sub_county);
+        $district = addslashes($district);
+        $id_type = addslashes($id_type);
+        $id_number = addslashes($id_number);
+        $result = $dbh->query("INSERT INTO users VALUES(NULL,'$firstname','$lastname','$gender','$phonee','$email','','$id_type','$id_number','','','','$physical_address','$parish','$sub_county','$district','pending','customer','','$today')");
+        if($result){
+            //`userid`, `firstname`, `lastname`, `gender`, `phone`, `email`, `password`, `id_type`, `id_number`, `id_front`, `id_back`, `pic`, `physical_address`, `parish`, `sub_county`, `district`, `account_status`, `role`, `token`, `date_registered`
+            $dbh->query("INSERT INTO welfare VALUES(NULL, '$account_number', '0','$today') ");
+            $dbh->query("INSERT INTO savings VALUES(NULL, '$account_number', '0','$today') ");
+            $dbh->query("INSERT INTO membership_fee VALUES(NULL, '0', '$account_number', '$dtime','$today') ");
+            $dbh->query("INSERT INTO ceremonials VALUES(NULL, '0', '$account_number', '$dtime','$today') ");
+            $_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">Customer account created Successfully</div>';
+            $_SESSION['loader'] = '<center><div id="note1" class="spinner-border text-center text-success"></div></center>';
+            header("refresh:2; ".SITE_URL.'/all-customers');
+        }else{
+            $_SESSION['status'] = '<div id="note2" class="alert alert-danger text-center">Customer registration failed</div>';
+        }
+    }else{
+    $_SESSION['status'] = '<div id="note2" class="alert alert-warning text-center">
+        Customer with this 
+        </div>';
+    }
+}elseif (isset($_POST['save_new_account_type_btn'])) {
+    trim(extract($_POST));
+        if (count($errors) == 0) {
+        //`acc_id`, `acc_type`
+            $acc_type = addslashes($acc_type);
+        $check = $dbh->query("SELECT acc_type FROM account_types WHERE acc_type='$acc_type' ")->fetchColumn();
         if(!$check){
-            $firstname = addslashes($firstname);
-            $lastname = addslashes($lastname);
-            $gender = addslashes($gender);
-            $phone = addslashes($phone);
-            $email = addslashes($email);
-            $id_type = addslashes($id_type);
-            $physical_address = addslashes($physical_address);
-            $parish = addslashes($parish);
-            $sub_county = addslashes($sub_county);
-            $district = addslashes($district);
-            $result = $dbh->query("INSERT INTO users VALUES(NULL,'$firstname','$lastname','$gender','$phonee','$email','','$role','$pwd','$account_number','active','$today')");
+            $result = $dbh->query("INSERT INTO account_types VALUES(NULL, '$acc_type') ");
             if($result){
-                //`userid`, `firstname`, `lastname`, `gender`, `phone`, `email`, `password`, `id_type`, `id_number`, `id_front`, `id_back`, `pic`, `physical_address`, `parish`, `sub_county`, `district`, `account_status`, `role`, `token`, `date_registered`
-                $dbh->query("INSERT INTO welfare VALUES(NULL, '$account_number', '0','$today') ");
-                $dbh->query("INSERT INTO savings VALUES(NULL, '$account_number', '0','$today') ");
-                $dbh->query("INSERT INTO membership_fee VALUES(NULL, '0', '$account_number', '$dtime','$today') ");
-                $dbh->query("INSERT INTO ceremonials VALUES(NULL, '0', '$account_number', '$dtime','$today') ");
-                $message = "KITUDE SACCO. Hi ".$firstname.', your account is created successfully, Your Phone No '.$phone.' and Pass '.$password;
-                @json_decode(send_sms_yoola_api($phonee, $message), true);
-                $_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">Registration is Successful</div>';
+                $_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">New Account Type Added Successfully</div>';
                 $_SESSION['loader'] = '<center><div id="note1" class="spinner-border text-center text-success"></div></center>';
-                header("refresh:2; url=admin-members");
+                header("refresh:2; url=".SITE_URL.'/manage-accounts');
             }else{
                 $_SESSION['status'] = '<div id="note2" class="alert alert-danger text-center">Email Address registration failed</div>';
             }
@@ -437,6 +457,26 @@ if (isset($_POST['register_btn'])) {
             This Phone number already exist
             </div>';
         }
+    }
+}elseif (isset($_POST['save_new_account_btn'])) {
+    trim(extract($_POST));
+    //`account_number`, `numeric_number`, `acc_id`, `userid`, `opening_amount`, `account_balance`, `acc_status`, `acc_opening_time`, `acc_opening_date`
+    $opening_amount = str_replace(',', '', $opening_amount);
+    $accountNumber = getNextAccountNumber($dbh);
+    $accno = getNextAccountNumberWithoutUnderscore($dbh);
+
+    $result = $dbh->query("INSERT INTO customer_accounts VALUES('$accountNumber','$acc_id','$userid','$opening_amount','0','pending','$dtime','$today') ");
+     if($result){
+        $customer = dbRow("SELECT * FROM users WHERE userid = '$userid' ");
+        $acct = dbRow("SELECT * FROM account_types WHERE acc_id = '$acc_id' ");
+        $message = "KITUDE SACCO: Hi ".$customer->firstname.' '.$customer->lastname.', Your account is created successfully and Acc.No is: '.$accno.'. Thx';
+        @json_decode(send_sms_yoola_api($customer->phone, $message), true);
+        $_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">Account generated Successfully</div>';
+        $_SESSION['loader'] = '<center><div id="note1" class="spinner-border text-center text-success"></div></center>';
+        header("refresh:2; url=".$_SERVER['REQUEST_URI']);
+    }else{
+        $_SESSION['status'] = '<div id="note2" class="alert alert-danger text-center">Error occured when generating account. </div>';
+    }
 }
 
 ?>

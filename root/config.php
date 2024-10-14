@@ -106,6 +106,11 @@ function process_curl($data){
 	curl_close($curl);
 	return $response;
 }
+function getThisWeek() {
+    $startOfWeek = date('Y-m-d', strtotime('monday this week'));
+    $endOfWeek = date('Y-m-d', strtotime('sunday this week'));
+    return [$startOfWeek, $endOfWeek];
+}
 
 function getWeek(){
 	$result = date('Y-m-d',strtotime("-7 days"));
@@ -947,5 +952,24 @@ function make_loan_automatic_renewal() {
     return;
 }
 
+function getNextAccountNumber($dbh) {
+    $query = $dbh->query("SELECT MAX(CAST(SUBSTRING(account_number, 8) AS UNSIGNED)) AS max_num FROM customer_accounts WHERE account_number LIKE 'K_%'");
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+    // Get the next number, default to 1 if no accounts exist
+    $nextNumber = isset($result['max_num']) ? $result['max_num'] + 1 : 1;
+    // Format the number with leading zeros
+    return sprintf("K_%03d", $nextNumber);
+}
+
+function getNextAccountNumberWithoutUnderscore($dbh) {
+    $query = $dbh->query("SELECT MAX(CAST(SUBSTRING(account_number, 8) AS UNSIGNED)) AS max_num FROM customer_accounts WHERE account_number LIKE 'K%'");
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+    
+    // Get the next number, default to 1 if no accounts exist
+    $nextNumber = isset($result['max_num']) ? $result['max_num'] + 1 : 1;
+    
+    // Format the number with leading zeros without an underscore
+    return sprintf("K%03d", $nextNumber);
+}
 
 ?>

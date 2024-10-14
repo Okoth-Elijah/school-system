@@ -4,22 +4,23 @@
 	<div class="page-content">
 		<!--breadcrumb-->
 		<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-			<div class="breadcrumb-title pe-3">Staff Member</div>
+			<div class="breadcrumb-title pe-3">All Customers</div>
 			<div class="ps-3">
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb mb-0 p-0">
 						<li class="breadcrumb-item"><a href="<?=SITE_URL; ?>"><i class="bx bx-home-alt"></i></a>
 						</li>
-						<li class="breadcrumb-item active" aria-current="page">Administrators</li>
+						<li class="breadcrumb-item active" aria-current="page">Customers</li>
 					</ol>
 				</nav>
 			</div>
 		</div>
 		<!--end breadcrumb-->
+	  
 		<div class="card">
 			<div class="card-body">
 				<div class="d-lg-flex align-items-center mb-4 gap-3">
-				  <div class="ms-auto"><a href="add-new-admin" class="btn btn-primary radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Admin</a></div>
+				  <div class="ms-auto"><a href="new-customer" class="btn btn-primary radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Customer</a></div>
 				</div>
 				<div class="table-responsive">
 					<table class="table mb-0" id="example">
@@ -35,7 +36,7 @@
 							</tr>
 						</thead>
 						<tbody>
-						<?php $admin_user = $dbh->query("SELECT * FROM users WHERE role = 'admin' ");
+						<?php $admin_user = $dbh->query("SELECT * FROM users WHERE role = 'customer' ORDER BY userid DESC ");
 						$x = 1; 
 						while($rx = $admin_user->fetch(PDO::FETCH_OBJ)){?>
 							<tr>
