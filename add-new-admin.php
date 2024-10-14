@@ -1,133 +1,114 @@
 <?php include 'header.php'; ?>
+<!--start page wrapper -->
 <div class="page-wrapper">
-<div class="page-content">
-	<!--breadcrumb-->
-	<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-		<div class="breadcrumb-title pe-3">Administrator</div>
-		<div class="ps-3">
-			<nav aria-label="breadcrumb">
-				<ol class="breadcrumb mb-0 p-0">
-					<li class="breadcrumb-item"><a href="<?=SITE_URL; ?>"><i class="bx bx-home-alt"></i></a>
-					</li>
-					<li class="breadcrumb-item active" aria-current="page">Adding New Administrator</li>
-				</ol>
-			</nav>
+	<div class="page-content">
+		<!--breadcrumb-->
+		<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+			<div class="breadcrumb-title pe-3">Customer</div>
+			<div class="ps-3">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb mb-0 p-0">
+						<li class="breadcrumb-item"><a href="<?=SITE_URL; ?>"><i class="bx bx-home-alt"></i></a>
+						</li>
+						<li class="breadcrumb-item active" aria-current="page">New Customer Form</li>
+					</ol>
+				</nav>
+			</div>
 		</div>
-	</div>
-	<!--end breadcrumb-->
-	<div class="row">
-		<div class="col-xl-6 mx-auto">
-			<div class="card">
-				<div class="card-body p-4">
-					<h5 class="mb-4">Administrator Form</h5>
-					<form class="row g-3" method="post" action="">
-						<div class="col-md-12">
-							<label for="input25" class="form-label">First Name</label>
-							 <div class="input-group">
-								<span class="input-group-text"><i class='bx bx-user'></i></span>
-								<input type="text" name="firstname" class="form-control" id="input25" placeholder="First Name" required>
-							  </div>
-						</div>
-						<div class="col-md-12">
-							<label for="input26" class="form-label">Last Name</label>
-							<div class="input-group">
-								<span class="input-group-text"><i class='bx bx-user'></i></span>
-								<input type="text" name="lastname" class="form-control" id="input26" placeholder="Last Name" required>
-							  </div>
-						</div>
-						<div class="col-md-12">
-							<label for="input30" class="form-label">Gender</label>
-							<div class="input-group">
-								<span class="input-group-text"><i class='bx bx-flag'></i></span>
-								<select class="form-select" id="input30" name="gender" required>
-									<option value="">--select gender--</option>
+		<!--end breadcrumb-->
+		<div class="row">
+			<div class="col-xl-9 mx-auto">
+				<?php 
+					if (isset($_SESSION['status'])) {
+						echo $_SESSION['status'];
+						unset($_SESSION['status']);
+					}
+					if (isset($_SESSION['loader'])) {
+						echo $_SESSION['loader'];
+						unset($_SESSION['loader']);
+					} ?>
+				<form method="post" action="">
+					<h6 class="mb-0 text-uppercase">Personal Info</h6>
+					<hr/>
+					<div class="card">
+						<div class="card-body">
+							<div class="input-group mb-3"> <span class="input-group-text" id="basic-addon1">Firstname</span>
+								<input type="text" name="firstname" class="form-control" placeholder="Enter Firstname Here" aria-label="Firstname" value="<?=$firstname; ?>" aria-describedby="basic-addon1" required>
+							</div>
+							<div class="input-group mb-3"> <span class="input-group-text" id="basic-addon1">Lastname</span>
+								<input type="text" name="lastname" class="form-control" value="<?=$lastname; ?>" placeholder="Enter Lastname Here" aria-label="Lastname" aria-describedby="basic-addon1" required>
+							</div>
+							<div class="input-group mb-3"> <span class="input-group-text" id="basic-addon1">Gender</span>
+								<select class="form-control" name="gender" required>
+									<option value="">--choose gender--</option>
 									<option value="male">Male</option>
 									<option value="female">Female</option>
-								  </select>
-							  </div>
-						</div>
-						<div class="col-md-12">
-							<label for="input27" class="form-label">Phone Number</label>
-							<div class="input-group">
-								<span class="input-group-text"><i class='bx bx-envelope'></i></span>
-								<input type="text" class="form-control" name="phone" id="input27" maxlength="10" pattern="[0-9]*" placeholder="Eg. 07XXXXXXXX">
-							  </div>
-						</div>
-
-						<div class="col-md-12">
-							<label for="input27" class="form-label">Email Address</label>
-							<div class="input-group">
-								<span class="input-group-text"><i class='bx bx-envelope'></i></span>
-								<input type="email" class="form-control" name="email" id="input27" placeholder="Eg. example@gmail.com">
+								</select>
 							</div>
 						</div>
+					</div>
 
-						<div class="col-md-12">
-							<label for="input28" class="form-label">Password</label>
-							<div class="input-group">
-								<span class="input-group-text"><i class='bx bx-lock-alt'></i></span>
-								<input type="password" class="form-control" id="input28" placeholder="Password">
-							  </div>
-						</div>
-						<!-- `userid`, `firstname`, `lastname`, `gender`, `phone`, `email`, `password`, `id_type`, `id_number`, `id_front`, `id_back`, `pic`, `physical_address`, `parish`, `sub_county`, `district`, `account_status`, `role`, `token`, `date_registered` -->
-						<div class="col-md-12">
-							<label for="input29" class="form-label">DOB</label>
-							<div class="input-group">
-								<span class="input-group-text"><i class='bx bx-calendar'></i></span>
-								<input type="text" class="form-control" id="input29" placeholder="DOB">
-							  </div>
-						</div>
-						<div class="col-md-12">
-							<label for="input30" class="form-label">Country</label>
-							<div class="input-group">
-								<span class="input-group-text"><i class='bx bx-flag'></i></span>
-								<select class="form-select" id="input30">
-									<option selected>Open this select menu</option>
-									<option value="1">One</option>
-									<option value="2">Two</option>
-									<option value="3">Three</option>
-								  </select>
-							  </div>
-						</div>
-						<div class="col-md-12">
-							<label for="input31" class="form-label">Zip</label>
-							<div class="input-group">
-								<span class="input-group-text"><i class='bx bx-pin'></i></span>
-								<input type="text" class="form-control" id="input31" placeholder="Zip">
-							  </div>
-						</div>
-						<div class="col-md-12">
-							<label for="input32" class="form-label">City</label>
-							<div class="input-group">
-								<span class="input-group-text"><i class='bx bx-buildings'></i></span>
-								<input type="text" class="form-control" id="input32" placeholder="City">
-							  </div>
-						</div>
-						<div class="col-md-12">
-							<label for="input33" class="form-label">State</label>
-							<div class="input-group">
-								<span class="input-group-text"><i class='bx bxs-city'></i></span>
-								<select class="form-select" id="input33">
-									<option selected>Open this select menu</option>
-									<option value="1">One</option>
-									<option value="2">Two</option>
-									<option value="3">Three</option>
-								  </select>
-							  </div>
-						</div>
-						<div class="col-md-12">
-							<div class="d-md-flex d-grid align-items-center gap-3">
-								<button type="button" class="btn btn-primary px-4">Submit</button>
-								<button type="reset" class="btn btn-light px-4">Reset</button>
+					<h6 class="mb-0 text-uppercase">Address Details</h6>
+					<hr/>
+					<div class="card">
+						<div class="card-body">
+							<div class="input-group flex-nowrap"> <span class="input-group-text" id="addon-wrapping">Physical Address</span>
+								<input type="text" value="<?=$physical_address; ?>" name="physical_address" class="form-control" placeholder="Eg Kiwangala"  require aria-describedby="addon-wrapping">
+							</div>
+							<div class="input-group flex-nowrap"> <span class="input-group-text" id="addon-wrapping">Parish</span>
+								<input type="text" name="parish" value="<?=$parish; ?>" class="form-control" placeholder="Eg Kiwangala" require aria-label="parish" aria-describedby="addon-wrapping">
+							</div>
+							<div class="input-group flex-nowrap"> <span class="input-group-text" id="addon-wrapping">Sub County</span>
+								<input type="text" name="sub_county" value="<?=$sub_county; ?>" class="form-control" placeholder="Eg Kisekka" require aria-label="sub_county" aria-describedby="addon-wrapping">
+							</div>
+							<div class="input-group flex-nowrap"> <span class="input-group-text" id="addon-wrapping">District</span>
+								<input type="text" name="district" value="<?=$district; ?>" class="form-control" placeholder="Eg Lwengo" require aria-label="district" aria-describedby="addon-wrapping">
 							</div>
 						</div>
-					</form>
-				</div>
+					</div>
+
+					<h6 class="mb-0 text-uppercase">Contact Details</h6>
+					<hr/>
+					<div class="card">
+						<div class="card-body">
+							<div class="input-group flex-nowrap"> <span class="input-group-text" id="addon-wrapping">Phone Number</span>
+								<input type="text" name="phonee" value="<?=$phonee; ?>" class="form-control" placeholder="Eg 07XXXXXXXX" maxlength="10" pattern="[0-9]*" require aria-label="phone-number" aria-describedby="addon-wrapping">
+							</div>
+							<div class="input-group flex-nowrap"> <span class="input-group-text" id="addon-wrapping">Email Address(Optional)</span>
+								<input type="email" name="email" value="<?=$email; ?>" class="form-control" placeholder="Eg example@gmail.com" require aria-label="email-address" aria-describedby="addon-wrapping">
+							</div>
+						</div>
+					</div>
+
+					<h6 class="mb-0 text-uppercase">ID Details</h6>
+					<hr/>
+					<div class="card">
+						<div class="card-body">
+							<div class="mb-3">
+								<label>ID Type</label>
+								<select class="form-select form-select-sm" name="id_type" required>
+									<option value="">--select ID Type--</option>
+									<option value="National ID">National ID</option>
+									<option value="Passport">Passport</option>
+									<option value="Driving Permit">Driving Permit</option>
+									<option value="Village ID">Village ID</option>
+								</select>
+							</div>
+							<div class="mb-3">
+								<label>ID Number/NIN</label>
+								<input type="text" name="id_number"value="<?=$id_number; ?>" class="form-control" placeholder="ID Number/NIN">
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-body">
+							<button type="submit" name="save_customer_btn" class="btn btn-primary">Save Customer</button>
+						</div>
+					</div>
+				</form>
 			</div>
-
 		</div>
+		<!--end row-->
 	</div>
-	<!--end row-->
-</div>
 </div>
 <?php include 'footer.php'; ?>
