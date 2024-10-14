@@ -1,7 +1,7 @@
 <?php
 ob_start();
 session_start(); 
-error_reporting(0);
+// error_reporting(0);
 date_default_timezone_set('Africa/Kampala');
 $dtime = date("Y-m-d H:i:s A", time());
 $now = date("Y-m-d H:i:s", time());
@@ -953,23 +953,45 @@ function make_loan_automatic_renewal() {
 }
 
 function getNextAccountNumber($dbh) {
-    $query = $dbh->query("SELECT MAX(CAST(SUBSTRING(account_number, 8) AS UNSIGNED)) AS max_num FROM customer_accounts WHERE account_number LIKE 'K_%'");
-    $result = $query->fetch(PDO::FETCH_ASSOC);
-    // Get the next number, default to 1 if no accounts exist
-    $nextNumber = isset($result['max_num']) ? $result['max_num'] + 1 : 1;
-    // Format the number with leading zeros
-    return sprintf("K_%03d", $nextNumber);
+    $nextNumber = 1; // Start at 1
+    while (true) {
+        // Format the account number
+        $accountNumber = sprintf("K%03d", $nextNumber);
+        
+        // Check if the account number already exists
+        $query = $dbh->prepare("SELECT COUNT(*) FROM customer_accounts WHERE account_number = ?");
+        $query->execute([$accountNumber]);
+        $count = $query->fetchColumn();
+        
+        // If it doesn't exist, return this account number
+        if ($count == 0) {
+            return $accountNumber;
+        }
+        
+        // Increment the number for the next iteration
+        $nextNumber++;
+    }
 }
 
 function getNextAccountNumberWithoutUnderscore($dbh) {
-    $query = $dbh->query("SELECT MAX(CAST(SUBSTRING(account_number, 8) AS UNSIGNED)) AS max_num FROM customer_accounts WHERE account_number LIKE 'K%'");
-    $result = $query->fetch(PDO::FETCH_ASSOC);
-    
-    // Get the next number, default to 1 if no accounts exist
-    $nextNumber = isset($result['max_num']) ? $result['max_num'] + 1 : 1;
-    
-    // Format the number with leading zeros without an underscore
-    return sprintf("K%03d", $nextNumber);
+    $nextNumber = 1; // Start at 1
+    while (true) {
+        // Format the account number without underscore
+        $accountNumber = sprintf("K%03d", $nextNumber);
+        
+        // Check if the account number already exists
+        $query = $dbh->prepare("SELECT COUNT(*) FROM customer_accounts WHERE account_number = ?");
+        $query->execute([$accountNumber]);
+        $count = $query->fetchColumn();
+        
+        // If it doesn't exist, return this account number
+        if ($count == 0) {
+            return $accountNumber;
+        }
+        
+        // Increment the number for the next iteration
+        $nextNumber++;
+    }
 }
 
 ?>
