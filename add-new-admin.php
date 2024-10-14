@@ -4,13 +4,13 @@
 	<div class="page-content">
 		<!--breadcrumb-->
 		<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-			<div class="breadcrumb-title pe-3">Customer</div>
+			<div class="breadcrumb-title pe-3">Administrator</div>
 			<div class="ps-3">
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb mb-0 p-0">
 						<li class="breadcrumb-item"><a href="<?=SITE_URL; ?>"><i class="bx bx-home-alt"></i></a>
 						</li>
-						<li class="breadcrumb-item active" aria-current="page">New Customer Form</li>
+						<li class="breadcrumb-item active" aria-current="page">New Administrator Form</li>
 					</ol>
 				</nav>
 			</div>
@@ -100,9 +100,21 @@
 							</div>
 						</div>
 					</div>
+
+					<h6 class="mb-0 text-uppercase">User Login Credential</h6>
+					<hr/>
 					<div class="card">
 						<div class="card-body">
-							<button type="submit" name="save_customer_btn" class="btn btn-primary">Save Customer</button>
+							<div class="mb-3">
+								<label>Password</label>
+								<input type="password" name="password" class="form-control" placeholder="Enter Passport" required>
+							</div>
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="card-body">
+							<button type="submit" name="save_new_system_admin_btn" class="btn btn-primary">Save Admin</button>
 						</div>
 					</div>
 				</form>
