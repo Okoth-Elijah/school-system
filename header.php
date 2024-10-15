@@ -60,6 +60,16 @@ if (empty($_SESSION['userid'])) {
 	<link rel="stylesheet" href="assets/sass/semi-dark.css">
 	<link rel="stylesheet" href="assets/sass/bordered-theme.css">
 	<title>Kitude sacco</title>
+	<script type="text/javascript">
+	   // JavaScript function for printing using div element
+	    function PrintContent(el){
+	        var restorepage = document.body.innerHTML;
+	        var printcontent = document.getElementById(el).innerHTML;
+	        document.body.innerHTML = printcontent;
+	        window.print();
+	        document.body.innerHTML = restorepage;
+	    }
+	</script>
 </head>
 
 <body>
@@ -117,11 +127,49 @@ if (empty($_SESSION['userid'])) {
 				</li>
 
 				<li>
-					<a href="manage-accounts">
-						<div class="parent-icon"><i class='bx bx-cookie'></i>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
 						</div>
 						<div class="menu-title">Manage Accounts</div>
 					</a>
+					<ul>
+						<li> <a href="manage-accounts"><i class='bx bx-radio-circle'></i>Account Types</a>
+						<li> <a href="pending-acounts"><i class='bx bx-radio-circle'></i>Pending Accounts</a>
+						<li> <a href="active-accounts"><i class='bx bx-radio-circle'></i>Active Accounts</a>
+						<li> <a href="dormant-accounts"><i class='bx bx-radio-circle'></i>Dormant Accounts</a>
+						</li>
+					</ul>
+				</li>
+
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
+						</div>
+						<div class="menu-title">Manage Loans</div>
+					</a>
+					<ul>
+						<li> <a href="loan-applications"><i class='bx bx-radio-circle'></i>Loan Application Form</a>
+						<li> <a href="pending-loans"><i class='bx bx-radio-circle'></i>Pending Loans</a>
+						<li> <a href="approved-loans"><i class='bx bx-radio-circle'></i>Approved Loans</a>
+						<li> <a href="ongoing-loans"><i class='bx bx-radio-circle'></i>Ongoing Loans</a>
+						<li> <a href="completed-loans"><i class='bx bx-radio-circle'></i>Completed Loans</a>
+						</li>
+					</ul>
+				</li>
+
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="bx bx-group"></i>
+						</div>
+						<div class="menu-title">Manage User Reports</div>
+					</a>
+					<ul>
+						<li> <a href="admin-report"><i class='bx bx-radio-circle'></i>Admins Report</a>
+						<li> <a href="manager-report"><i class='bx bx-radio-circle'></i>Manager Report</a>
+						<li> <a href="cashier-report"><i class='bx bx-radio-circle'></i>Cashier Report</a>
+						<li> <a href="loan-officer-report"><i class='bx bx-radio-circle'></i>Loan Officer Report</a>
+						</li>
+					</ul>
 				</li>
 
 				<li>
@@ -131,6 +179,7 @@ if (empty($_SESSION['userid'])) {
 						<div class="menu-title">Settings</div>
 					</a>
 					<ul>
+						<li> <a href="user-profile"><i class='bx bx-radio-circle'></i>User Profile</a>
 						<li> <a href="themes"><i class='bx bx-radio-circle'></i>Select Theme</a>
 						</li>
 						<li> <a href="change-password"><i class='bx bx-radio-circle'></i>Change Password</a>

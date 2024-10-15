@@ -26,10 +26,10 @@
             // Redirect the user back to the candidate details page
             header("Location: ".SITE_URL."/udetails/$udetailsUserid/" . str_replace(' ', '-', strtolower($udetailsFullname)));
             exit;
-        }elseif (isset($_SESSION['wslug'])) {
-            $wslug = $_SESSION['wslug'];
-            // Redirect the user back to the talents details page
-            header("Location: talent/$wslug");
+        }elseif (isset($_SESSION['up_userid']) && isset($_SESSION['up_fullname'])) {
+            $upUserid = $_SESSION['up_userid'];
+            $upFullname = $_SESSION['up_fullname'];
+            header("Location: ".SITE_URL."/user-profile");
             exit;
         }else {
             // Redirect the user to the homepage or dashboard
@@ -60,6 +60,10 @@
         $udetailsUserid = $_SESSION['udetail_userid'];
         $udetailsFullname = $_SESSION['udetail_fullname']; ?>
         <a href="udetails/<?=$udetailsUserid.'/'. str_replace(' ', '-', strtolower($udetailsFullname))?>" class="btn btn-info"><<- Back</a> Capture <?=ucfirst($user->firstname);?>'s Photo
+    <?php }elseif (isset($_SESSION['up_userid']) && isset($_SESSION['up_fullname'])) {
+        $udetailsUserid = $_SESSION['udetail_userid'];
+        $udetailsFullname = $_SESSION['udetail_fullname']; ?>
+        <a href="<?=SITE_URL;?>/user-profile" class="btn btn-info"><<- Back</a> Capture <?=ucfirst($user->firstname);?>'s Photo
     <?php } ?>
     </h1>
     <form method="POST" action="">

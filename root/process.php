@@ -114,7 +114,6 @@ if (isset($_POST['register_btn'])) {
         $_SESSION['phone'] = $row->phone;
         $_SESSION['gender'] = $row->gender;
         $_SESSION['role'] = $row->role;
-        $_SESSION['account_number'] = $row->account_number;
         $_SESSION['account_status'] = $row->account_status;
         $_SESSION['date_registered'] = $row->date_registered;  
         if ($result->rowCount() > 0) {
