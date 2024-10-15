@@ -143,7 +143,8 @@ $_SESSION['accdetail_fullname'] = $fullnamed;
 									<div class="card-body">
 										<div class="card">
 											<div class="card-body">
-												<h6 class="mb-0 text-uppercase"><b class="text-muted"><?=ucwords($user->firstname); ?>'s</b> Accounts No - <b class="text-primary"><?=$acct->account_number; ?></b> <a href="<?=$_SERVER['REQUEST_URI'];?>" class="btn btn-primary btn-sm" onclick="PrintContent('report')" > <i class="fa fa-print fa-fw"> </i>&nbsp;Print </a>, <a href="print-account-opening" class="btn btn-success btn-sm"> <i class="fa fa-print fa-fw"> </i>&nbsp;Print on XP Printer </a> </h6>
+
+												<h6 class="mb-0 text-uppercase"><b class="text-muted"><?=ucwords($user->firstname); ?>'s</b> Accounts No - <b class="text-primary"><?=$acct->account_number; ?></b> <a href="<?=$_SERVER['REQUEST_URI'];?>" class="btn btn-primary btn-sm" onclick="PrintContent('report')" > <i class="fa fa-print fa-fw"> </i>&nbsp;Print </a>, <a href="print-account-opening/<?=$acct->account_number.'/'.str_replace(' ', '-', strtolower($udetailsFullname));?>" class="btn btn-success btn-sm"> <i class="fa fa-print fa-fw"> </i>&nbsp;Print on XP Printer </a> </h6>
 												<hr/>
 												<div class="table-responsive" id="report">
 												<img src="uploadx/headed-paper-transparent.png" style="width: 100%; " />
