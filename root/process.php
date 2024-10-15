@@ -582,11 +582,11 @@ if (isset($_POST['register_btn'])) {
     }
 }elseif (isset($_POST['save_new_account_btn'])) {
     trim(extract($_POST));
-    //`account_number`, `numeric_number`, `acc_id`, `userid`, `opening_amount`, `account_balance`, `acc_status`, `acc_opening_time`, `acc_opening_date`
+    //`account_number`, `acc_id`, `userid`, `opening_amount`, `opening_amount_paid`, `account_balance`, `acc_status`, `acc_opening_time`, `acc_opening_date`
     $opening_amount = str_replace(',', '', $opening_amount);
     $accountNumber = getNextAccountNumber($dbh);
     $accno = getNextAccountNumberWithoutUnderscore($dbh);
-    $result = $dbh->query("INSERT INTO customer_accounts VALUES('$accountNumber','$acc_id','$userid','$opening_amount','0','pending','$dtime','$today') ");
+    $result = $dbh->query("INSERT INTO customer_accounts VALUES('$accountNumber','$acc_id','$userid','$opening_amount','0','0','pending','$dtime','$today') ");
      if($result){
         $customer = dbRow("SELECT * FROM users WHERE userid = '$userid' ");
         $acct = dbRow("SELECT * FROM account_types WHERE acc_id = '$acc_id' ");
@@ -598,6 +598,31 @@ if (isset($_POST['register_btn'])) {
     }else{
         $_SESSION['status'] = '<div id="note2" class="alert alert-danger text-center">Error occured when generating account. </div>';
     }
+}elseif (isset($_POST['account_number_activation_payments_btn'])) {
+    trim(extract($_POST));
+    //`account_number`, `acc_id`, `userid`, `opening_amount`, `opening_amount_paid`, `account_balance`, `acc_status`, `acc_opening_time`, `acc_opening_date`
+
+    //`accph_id`, `account_number`, `accph_amount`, `accph_time`, `accph_date`, `recieved_by`
+    $accph_amount = str_replace(',', '', $accph_amount);
+    $acc_status = addslashes($acc_status);
+    $result = $dbh->query("INSERT INTO account_payment_history VALUES(NULL,'$account_number','$accph_amount', '$dtime','$today','$userid') ");
+    if ($result) {
+        $res = $dbh->query("UPDATE customer_accounts SET opening_amount_paid = opening_amount_paid + '$accph_amount', acc_status = '$acc_status' WHERE account_number = '$account_number' ");
+        if ($res) {
+            //`userid`, `firstname`, `lastname`, `gender`, `phone`, `email`, `password`, `id_type`, `id_number`, `id_front`, `id_back`, `pic`, `physical_address`, `parish`, `sub_county`, `district`, `account_status`, `role`, `token`, `date_registered`accph_amount
+            $cx = dbRow("SELECT * FROM customer_accounts WHERE account_number = '$account_number' ");
+            $ux = dbRow("SELECT * FROM users WHERE userid = '".$cx->userid."' ");
+            //sending message to the customer about amount paid now...
+            $acb = $cx->opening_amount - $cx->opening_amount_paid;
+            $message = "KITUDE SACCO. Hello ".$firstname.', You just paid USh: '.$accph_amount.' and activation fee balz: '.$acb;
+            @json_decode(send_sms_yoola_api($ux->phone, $message), true);  
+
+            $_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">Activation account payments received Successfully</div>';
+            $_SESSION['loader'] = '<center><div id="note1" class="spinner-border text-center text-success"></div></center>';
+            header("refresh:2; url=".$_SERVER['REQUEST_URI']);
+        }
+    }
+
 }
 
 ?>

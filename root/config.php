@@ -1,7 +1,7 @@
 <?php
 ob_start();
 session_start(); 
-error_reporting(0);
+// error_reporting(0);
 date_default_timezone_set('Africa/Kampala');
 $dtime = date("Y-m-d H:i:s A", time());
 $now = date("Y-m-d H:i:s", time());

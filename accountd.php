@@ -40,6 +40,15 @@ $_SESSION['accdetail_fullname'] = $fullnamed;
 		<div class="container">
 			<div class="main-body">
 				<div class="row">
+					<?php 
+					if (isset($_SESSION['status'])) {
+						echo $_SESSION['status'];
+						unset($_SESSION['status']);
+					}
+					if (isset($_SESSION['loader'])) {
+						echo $_SESSION['loader'];
+						unset($_SESSION['loader']);
+					} ?>
 					<div class="col-lg-4">
 						<div class="card">
 							<div class="card-body">
@@ -54,20 +63,22 @@ $_SESSION['accdetail_fullname'] = $fullnamed;
 										<h4><?=ucwords($user->firstname.' '.$user->lastname); ?></h4>
 										<p class="text-secondary mb-1"><?=ucwords($user->role); ?></p>
 										<h6>Account No: <b class="text-primary"><?=$acct->account_number; ?></b></h6>
+										<h6>Amount Paid: <b class="text-primary">USh <?=number_format($acct->opening_amount_paid); ?></b></h6>
+										<h6>Balance: <b class="text-primary">USh <?=number_format($acct->opening_amount-$acct->opening_amount_paid); ?></b></h6>
 									</div>
 								</div>
 								<hr class="my-4" />
 								<ul class="list-group list-group-flush">
 									<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-										<h6 class="mb-0"><i class="fadeIn animated bx bx-list-check"></i>Account Type: </h6>
+										<h6 class="mb-0"><i class="fadeIn animated bx bx-credit-card-front"></i> Account Type: </h6>
 										<span class="text-secondary"><b><?=ucwords($accty->acc_type); ?></b></span>
 									</li>
 									<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-										<h6 class="mb-0">Opening Amount</h6>
+										<h6 class="mb-0"><i class="fadeIn animated bx bx-credit-card-front"></i> Opening Amount</h6>
 										<span class="text-secondary">USh <?=number_format($acct->opening_amount);?></span>
 									</li>
 									<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-										<h6 class="mb-0">Account Status</h6>
+										<h6 class="mb-0"><i class="fadeIn animated bx bx-credit-card-front"></i> Account Status</h6>
 										<?php if ($acct->acc_status == 'pending') { ?>
 											<span class="text-warning">Pending</span>
 										<?php }elseif ($acct->acc_status == 'partial') { ?>
@@ -79,12 +90,12 @@ $_SESSION['accdetail_fullname'] = $fullnamed;
 										<?php } ?>
 									</li>
 									<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-										<h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram me-2 icon-inline text-danger"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>Instagram</h6>
-										<span class="text-secondary">codervent</span>
+										<h6 class="mb-0"><i class="fadeIn animated bx bx-credit-card-front"></i> Time Opened</h6>
+										<span class="text-secondary"><?=$acct->acc_opening_time; ?></span>
 									</li>
 									<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-										<h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook me-2 icon-inline text-primary"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>Facebook</h6>
-										<span class="text-secondary">codervent</span>
+										<h6 class="mb-0"><i class="fadeIn animated bx bx-credit-card-front"></i> Date Opened</h6>
+										<span class="text-secondary"><?=$acct->acc_opening_date; ?></span>
 									</li>
 								</ul>
 							</div>
@@ -93,79 +104,93 @@ $_SESSION['accdetail_fullname'] = $fullnamed;
 					<div class="col-lg-8">
 						<div class="card">
 							<div class="card-body">
-								<div class="row mb-3">
-									<div class="col-sm-3">
-										<h6 class="mb-0">Full Name</h6>
+								<form class="" method="post" action="">
+									<input type="hidden" value="<?=$acct->account_number; ?>" name="account_number">
+									<input type="hidden" value="<?=$_SESSION['userid']; ?>" name="userid">
+									<div class="row mb-3">
+										<div class="col-sm-3">
+											<h6 class="mb-0">Activation Balance</h6>
+										</div>
+										<div class="col-sm-9 text-secondary">
+											<input type="text" name="accph_amount" class="form-control" placeholder="Eg, 5,000" oninput="addCommas(this)" required />
+										</div>
 									</div>
-									<div class="col-sm-9 text-secondary">
-										<input type="text" class="form-control" value="John Doe" />
+									<div class="row mb-3">
+										<div class="col-sm-3">
+											<h6 class="mb-0">Payment Status</h6>
+										</div>
+										<div class="col-sm-9 text-secondary">
+											<select class="form-control" name="acc_status" required>
+												<option value="">--select payment status--</option>
+												<option value="pending">Pending</option>
+												<option value="partial">Partial Payment</option>
+												<option value="paid">Paid Full Amount</option>
+											</select>
+										</div>
 									</div>
-								</div>
-								<div class="row mb-3">
-									<div class="col-sm-3">
-										<h6 class="mb-0">Email</h6>
+									<div class="row">
+										<div class="col-sm-3"></div>
+										<div class="col-sm-9 text-secondary">
+											<input type="submit" name="account_number_activation_payments_btn" class="btn btn-primary px-4" value="Save Payments" />
+										</div>
 									</div>
-									<div class="col-sm-9 text-secondary">
-										<input type="text" class="form-control" value="john@example.com" />
-									</div>
-								</div>
-								<div class="row mb-3">
-									<div class="col-sm-3">
-										<h6 class="mb-0">Phone</h6>
-									</div>
-									<div class="col-sm-9 text-secondary">
-										<input type="text" class="form-control" value="(239) 816-9029" />
-									</div>
-								</div>
-								<div class="row mb-3">
-									<div class="col-sm-3">
-										<h6 class="mb-0">Mobile</h6>
-									</div>
-									<div class="col-sm-9 text-secondary">
-										<input type="text" class="form-control" value="(320) 380-4539" />
-									</div>
-								</div>
-								<div class="row mb-3">
-									<div class="col-sm-3">
-										<h6 class="mb-0">Address</h6>
-									</div>
-									<div class="col-sm-9 text-secondary">
-										<input type="text" class="form-control" value="Bay Area, San Francisco, CA" />
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-3"></div>
-									<div class="col-sm-9 text-secondary">
-										<input type="button" class="btn btn-primary px-4" value="Save Changes" />
-									</div>
-								</div>
+								</form>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-12">
 								<div class="card">
 									<div class="card-body">
-										<h5 class="d-flex align-items-center mb-3">Project Status</h5>
-										<p>Web Design</p>
-										<div class="progress mb-3" style="height: 5px">
-											<div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+										<div class="card">
+											<div class="card-body">
+												<h6 class="mb-0 text-uppercase"><b class="text-muted"><?=ucwords($user->firstname); ?>'s</b> Accounts No - <b class="text-primary"><?=$acct->account_number; ?></b> <a href="<?=$_SERVER['REQUEST_URI'];?>#" class="btn btn-primary btn-sm" onclick="PrintContent('report')" > <i class="fa fa-print fa-fw"> </i>&nbsp;Print </a> </h6>
+												<hr/>
+												<div class="table-responsive" id="report">
+												<img src="uploadx/headed-paper-transparent.png" style="width: 100%; " />
+												<hr/>
+												<h5>
+													Account Opening Payment History <br>
+													Customer: <?=ucwords($user->firstname.' '.$user->lastname); ?><br>
+													Account No: <b class="text-primary"><?=$acct->account_number; ?></b><br>
+												</h5>
+													<table class="table mb-0">
+														<thead class="table-light">
+															<tr>
+																<th>NO#</th>
+																<th>AMOUNT PAID</th>
+																<th>DATE PAID</th>
+																<th>TIME PAID</th>
+															</tr>
+														</thead>
+														<tbody>
+														<!-- `accph_id`, `account_number`, `accph_amount`, `accph_time`, `accph_date`, `recieved_by` -->
+														<?php $account_nubz = $dbh->query("SELECT * FROM account_payment_history WHERE account_number = '".$acct->account_number."' ");
+														$x = 1; 
+														while($rx = $account_nubz->fetch(PDO::FETCH_OBJ)){?>
+															<tr>
+																<td>
+																	<div class="d-flex align-items-center">
+																		<div class="ms-2">
+																			<h6 class="mb-0 font-14"><?=$x++; ?></h6>
+																		</div>
+																	</div>
+																</td>
+																<td>USh <b><?=number_format($rx->accph_amount); ?></b></td>
+																<td><?=date('jS F, Y',strtotime($rx->accph_date)); ?></td>
+																<td><?=$rx->accph_time; ?></td>
+															</tr>
+														<?php } ?>
+														</tbody>
+													</table>
+													<h4>Total Paid : USh <?=number_format($acct->opening_amount_paid); ?></h4>
+													<h6>Balance: <b class="text-primary">USh <?=number_format($acct->opening_amount-$acct->opening_amount_paid); ?></b></h6>
+													<p> <i> Payment Report Generated at <b style="color:red"><?=$dtime?> </i> </b> </p>
+												</div>
+											</div>
 										</div>
-										<p>Website Markup</p>
-										<div class="progress mb-3" style="height: 5px">
-											<div class="progress-bar bg-danger" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-										<p>One Page</p>
-										<div class="progress mb-3" style="height: 5px">
-											<div class="progress-bar bg-success" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-										<p>Mobile Template</p>
-										<div class="progress mb-3" style="height: 5px">
-											<div class="progress-bar bg-warning" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-										<p>Backend API</p>
-										<div class="progress" style="height: 5px">
-											<div class="progress-bar bg-info" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
+
+
+
 									</div>
 								</div>
 							</div>

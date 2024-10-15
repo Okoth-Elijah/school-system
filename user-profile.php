@@ -24,6 +24,15 @@ $_SESSION['up_fullname'] = $fullname;
 		<div class="container">
 			<div class="main-body">
 				<div class="row">
+					<?php 
+					if (isset($_SESSION['status'])) {
+						echo $_SESSION['status'];
+						unset($_SESSION['status']);
+					}
+					if (isset($_SESSION['loader'])) {
+						echo $_SESSION['loader'];
+						unset($_SESSION['loader']);
+					} ?>
 					<div class="col-lg-4">
 						<div class="card">
 							<div class="card-body">
@@ -126,4 +135,7 @@ $_SESSION['up_fullname'] = $fullname;
 		</div>
 	</div>
 </div>
-<?php include 'footer.php'; ?>
+<?php
+include 'uprofile.php';
+include 'footer.php'; 
+?>
