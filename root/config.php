@@ -106,6 +106,7 @@ function process_curl($data){
 	curl_close($curl);
 	return $response;
 }
+
 function getThisWeek() {
     $startOfWeek = date('Y-m-d', strtotime('monday this week'));
     $endOfWeek = date('Y-m-d', strtotime('sunday this week'));
