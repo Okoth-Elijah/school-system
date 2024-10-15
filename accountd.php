@@ -105,38 +105,7 @@ $_SESSION['accdetail_fullname'] = $fullnamed;
 							<div class="card-body">
 								<h5 class="mb-0 text-uppercase">Customer Deposits - <a data-bs-toggle="modal" data-bs-target="#new-account<?=$user->userid?>" style="font-size: 14px;" class="btn btn-sm btn-primary">Deposit Now</a></h5>
 								<hr/>
-								<div class="table-responsive">
-									<table class="table mb-0">
-										<thead class="table-light">
-											<tr>
-												<th>ACCNO#</th>
-												<th>ACC TYPE</th>
-												<th>ACC STATUS</th>
-												<th>View Details</th>
-											</tr>
-										</thead>
-										<tbody>
-										<?php $account_numbx = $dbh->query("SELECT * FROM customer_accounts WHERE userid = '".$user->userid."' ");
-										$x = 1; 
-										while($rx = $account_numbx->fetch(PDO::FETCH_OBJ)){
-											$acctype = dbRow("SELECT * FROM account_types WHERE acc_id = '".$rx->acc_id."' ");
-											?>
-											<tr>
-												<td>
-													<div class="d-flex align-items-center">
-														<div class="ms-2">
-															<h6 class="mb-0 font-14"><?=$rx->account_number; ?></h6>
-														</div>
-													</div>
-												</td>
-												<td><?=ucwords($acctype->acc_type); ?></td>
-												<td><?=$rx->acc_status; ?></td>
-												<td><a href="accountd/<?=$rx->account_number;?>/<?= str_replace(' ', '-', strtolower($user->firstname . '-' . $user->lastname)); ?>" class="btn btn-primary btn-sm radius-30 px-4">Check Account</a></td>
-											</tr>
-										<?php } ?>
-										</tbody>
-									</table>
-								</div>
+								<h5>Acc Balance: <b class="text-primary">USh 0.00</b></h5>
 							</div>
 						</div>
 					</div>
