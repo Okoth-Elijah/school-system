@@ -159,6 +159,32 @@ if (empty($_SESSION['userid'])) {
 
 				<li>
 					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
+						</div>
+						<div class="menu-title">Manage Savings</div>
+					</a>
+					<ul>
+						<li> <a href="all-savings"><i class='bx bx-radio-circle'></i>All Savings</a>
+						</li>
+					</ul>
+				</li>
+
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
+						</div>
+						<div class="menu-title">Manage Withdraws</div>
+					</a>
+					<ul>
+						<li> <a href="pending-loans"><i class='bx bx-radio-circle'></i>Pending Withdraws</a>
+						<li> <a href="approved-loans"><i class='bx bx-radio-circle'></i>Approved Withdraws</a>
+						<li> <a href="ongoing-loans"><i class='bx bx-radio-circle'></i>Rejected Withdraws</a>
+						</li>
+					</ul>
+				</li>
+
+				<li>
+					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class="fadeIn animated bx bx-bookmark-minus"></i>
 						</div>
 						<div class="menu-title">Manage User Reports</div>
@@ -189,15 +215,29 @@ if (empty($_SESSION['userid'])) {
 
 				<li>
 					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
+						<div class="parent-icon"><i class="fadeIn animated bx bx-bookmark-minus"></i>
 						</div>
 						<div class="menu-title">Loan Reports</div>
 					</a>
 					<ul>
-						<li> <a href="pending-loans-report"><i class='bx bx-radio-circle'></i>Pending Report</a>
-						<li> <a href="approved-loans-report"><i class='bx bx-radio-circle'></i>Approved Report</a>
-						<li> <a href="ongoing-loans-report"><i class='bx bx-radio-circle'></i>Ongoing Report</a>
-						<li> <a href="completed-loans-report"><i class='bx bx-radio-circle'></i>Completed Report</a>
+						<li> <a href="pending-loans-report"><i class='bx bx-radio-circle'></i>Pending L.Report</a>
+						<li> <a href="approved-loans-report"><i class='bx bx-radio-circle'></i>Approved L.Report</a>
+						<li> <a href="ongoing-loans-report"><i class='bx bx-radio-circle'></i>Ongoing L.Report</a>
+						<li> <a href="completed-loans-report"><i class='bx bx-radio-circle'></i>Completed L.Report</a>
+						</li>
+					</ul>
+				</li>
+
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
+						</div>
+						<div class="menu-title">Withdraw Reports</div>
+					</a>
+					<ul>
+						<li> <a href="pending-loans"><i class='bx bx-radio-circle'></i>Pending W.Report</a>
+						<li> <a href="approved-loans"><i class='bx bx-radio-circle'></i>Approved W.Report</a>
+						<li> <a href="ongoing-loans"><i class='bx bx-radio-circle'></i>Rejected W.Report</a>
 						</li>
 					</ul>
 				</li>

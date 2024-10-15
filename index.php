@@ -10,8 +10,8 @@
 						<div class="d-flex align-items-center">
 							<div>
 								<p class="mb-0 text-secondary">Revenue Today</p>
-								<h4 class="my-1">Ugx 0.00</h4>
-								<p class="mb-0 font-13 text-success"><i class="bx bxs-up-arrow align-middle"></i>This Week Ugx 0.00 </p>
+								<h4 class="my-1">USh 0.00</h4>
+								<p class="mb-0 font-13 text-success"><i class="bx bxs-up-arrow align-middle"></i>This Week USh 0.00 </p>
 							</div>
 							<div class="widgets-icons bg-light-success text-success ms-auto"><i class="fadeIn animated bx bx-money"></i>
 							</div>
@@ -82,8 +82,8 @@
 					<div class="card-body">
 						<div class="d-flex align-items-center">
 							<div>
-								<p class="mb-0 text-secondary">Chrome Users</p>
-								<h4 class="my-1">42K</h4>
+								<p class="mb-0 text-secondary">Total Savings</p>
+								<h4 class="my-1">Ush 0.00</h4>
 							</div>
 							<div class="text-primary ms-auto font-35"><i class='bx bxl-chrome'></i>
 							</div>
