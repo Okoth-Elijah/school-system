@@ -174,6 +174,21 @@ if (empty($_SESSION['userid'])) {
 
 				<li>
 					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
+						</div>
+						<div class="menu-title">Accounts Reports</div>
+					</a>
+					<ul>
+						<li> <a href="account-type-report"><i class='bx bx-radio-circle'></i>Account Types</a>
+						<li> <a href="pending-accounts-report"><i class='bx bx-radio-circle'></i>Pending Accounts</a>
+						<li> <a href="active-accounts-report"><i class='bx bx-radio-circle'></i>Active Accounts</a>
+						<li> <a href="dormant-accounts-report"><i class='bx bx-radio-circle'></i>Dormant Accounts</a>
+						</li>
+					</ul>
+				</li>
+
+				<li>
+					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class="bx bx-cog"></i>
 						</div>
 						<div class="menu-title">Settings</div>
