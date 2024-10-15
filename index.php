@@ -211,7 +211,7 @@
 						<div class="d-flex align-items-center">
 							<div>
 								<p class="mb-0 text-secondary">Current Theme</p>
-								<h4 class="my-1">Light <a href="themes" style="font-size:14px; ">Change Theme <i class="fadeIn animated bx bx-color-fill"></i> </a></h4>
+								<h4 class="my-1"><?=ucwords($theme->theme_code); ?> <a href="themes" style="font-size:14px; ">Change Theme <i class="fadeIn animated bx bx-color-fill"></i> </a></h4>
 							</div>
 							<div class="text-success ms-auto font-35"><i class="fadeIn animated bx bx-color-fill"></i> 
 							</div>
