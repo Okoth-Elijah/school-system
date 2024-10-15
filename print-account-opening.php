@@ -74,7 +74,7 @@ $accty = dbRow("SELECT * FROM account_types WHERE acc_id  = '".$acct->acc_id."' 
 </head>
     <body>
         <div class="ticket">
-            <img src="uploads/logo2.png" alt="Logo">
+            <center><img src="uploadx/logo-transparent.png" style="width: 100px; " alt="Logo"></center>
             <p class="centered">KITUDE SACCO</p>
             <p class="centered">RECEIPT EXAMPLE
                 <br>Kiwangala Division

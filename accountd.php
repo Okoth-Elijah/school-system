@@ -99,38 +99,45 @@ $_SESSION['accdetail_fullname'] = $fullnamed;
 									</li>
 								</ul>
 							</div>
+						</div>
 
-							<div class="col-md-4" style="border:1px solid #000;background-color:#fff">
-		                        <div id="rect" style="width:302px;font-size:4px;margin:1px;font-family:'Fake Receipt', arial">
-	                                <center style="padding:1px;font-size:12px;font-family:'Fake Receipt', arial">
-                                        <br/>
-                                        <h4 style="line-height:0.5em;font-size:14px"> <b> KITUDE SACCO </b> </h4>
-                                        <center><img src="uploadx/logo-transparent.png" style="width: 100px; "></center>
-                                        <p style="line-height:0.5em"> Kireka, Kampala, Uganda</p>
-                                        <p style="line-height:0.5em">  +256-782-507-087, 070-574-5988, 075-109-1256 </p>
-	                                    </center>
-	                                    <table style="width:100%;font-size:12px;font-family:'Fake Receipt', arial">
-	                                        <tr> <td style="font-size:14px"> <b> ACCOUNT OPENING PAYM'T SUMMARY</b> </td> </tr>
-	                                        <tr> <td> <b> Account No.: <?=$acct->account_number;?> </b> </td> </tr>
-	                                        <tr> <td><?php echo $dtime;?> </td> </tr>
-	                                        <tr> <td> Customer: <strong><?=ucwords($user->firstname.'&nbsp;'.$user->lastname);?>&nbsp;</strong> </td> </tr>
-	                                    </table>
-	                                    <hr style="border:1px dashed #000;margin:2px" />
-	                                    <table style="width:100%;font-size:10px;font-family:'Fake Receipt', arial" >
-	                                        <tr>    
-	                                          <td> Amount Paid <?=$acct->opening_amount_paid; ?></td>
-	                                          <td> </td>
-	                                          <td> Balance <?=$acct->opening_amount - $acct->opening_amount_paid; ?></td>
-	                                        </tr>
-	                                    </table>
-	                                   
-	                                      <br/>
-	                                  <center style="font-size:12px;font-family:'Fake Receipt', arial"> <i> Thank you!!! </i> </center>
-		                          </div>
-		                        <a href="<?=$_SERVER['REQUEST_URI'];?>" class="btn btn-primary" onclick="PrintContent('rect')" > <i class="fa fa-print fa-fw"> </i>&nbsp;Print </a> &nbsp;
-		                        <a href="<?=SITE_URL; ?>/approved-loans" class="btn btn-danger" > <i class="fa fa-long-arrow-left fa-fw"> </i> Cancel </a> 
-		                    </div>
-
+						<div class="card">
+							<div class="card-body">
+								<h5 class="mb-0 text-uppercase">Customer Deposits - <a data-bs-toggle="modal" data-bs-target="#new-account<?=$user->userid?>" style="font-size: 14px;" class="btn btn-sm btn-primary">Deposit Now</a></h5>
+								<hr/>
+								<div class="table-responsive">
+									<table class="table mb-0">
+										<thead class="table-light">
+											<tr>
+												<th>ACCNO#</th>
+												<th>ACC TYPE</th>
+												<th>ACC STATUS</th>
+												<th>View Details</th>
+											</tr>
+										</thead>
+										<tbody>
+										<?php $account_numbx = $dbh->query("SELECT * FROM customer_accounts WHERE userid = '".$user->userid."' ");
+										$x = 1; 
+										while($rx = $account_numbx->fetch(PDO::FETCH_OBJ)){
+											$acctype = dbRow("SELECT * FROM account_types WHERE acc_id = '".$rx->acc_id."' ");
+											?>
+											<tr>
+												<td>
+													<div class="d-flex align-items-center">
+														<div class="ms-2">
+															<h6 class="mb-0 font-14"><?=$rx->account_number; ?></h6>
+														</div>
+													</div>
+												</td>
+												<td><?=ucwords($acctype->acc_type); ?></td>
+												<td><?=$rx->acc_status; ?></td>
+												<td><a href="accountd/<?=$rx->account_number;?>/<?= str_replace(' ', '-', strtolower($user->firstname . '-' . $user->lastname)); ?>" class="btn btn-primary btn-sm radius-30 px-4">Check Account</a></td>
+											</tr>
+										<?php } ?>
+										</tbody>
+									</table>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div class="col-lg-8">
