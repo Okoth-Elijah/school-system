@@ -100,6 +100,47 @@ $_SESSION['accdetail_fullname'] = $fullnamed;
 								</ul>
 							</div>
 						</div>
+
+						<div class="container-fluid">
+		                    <div class="row">
+		                        <!-- Column -->
+		                        <div class="col-md-12 col-lg-12 col-xlg-12">
+			                        <br/>
+			                        <div class="col-md-4" style="border:1px solid #000;background-color:#fff">
+				                        <div id="rect" style="width:302px;font-size:4px;margin:1px;font-family:'Fake Receipt', arial">
+				                           
+				                                    <center style="padding:1px;font-size:12px;font-family:'Fake Receipt', arial">
+				                                        <br/>
+				                                        <h4 style="line-height:0.5em;font-size:14px"> <b> KITUDE SACCO </b> </h4>
+				                                        <center><img src="uploadx/logo-transparent.png" style="width: 100px; "></center>
+				                                        <p style="line-height:0.5em"> Kireka, Kampala, Uganda</p>
+				                                        <p style="line-height:0.5em">  +256-782-507-087, 070-574-5988, 075-109-1256 </p>
+				                                    </center>
+				                                    <table style="width:100%;font-size:12px;font-family:'Fake Receipt', arial">
+				                                        <tr> <td style="font-size:14px"> <b> ACCOUNT OPENING PAYM'T SUMMARY</b> </td> </tr>
+				                                        <tr> <td> <b> Account No.: <?=$acct->account_number;?> </b> </td> </tr>
+				                                        <tr> <td><?php echo $dtime;?> </td> </tr>
+				                                         <?php $cod = dbRow("SELECT * FROM users WHERE userid = '".$user->client_id."' "); ?>
+				                                        <tr> <td> Client: <strong><?=ucwords($user->firstname.'&nbsp;'.$user->lastname);?>&nbsp;</strong> </td> </tr>
+				                                    </table>
+				                                    <hr style="border:1px dashed #000;margin:2px" />
+				                                    <table style="width:100%;font-size:10px;font-family:'Fake Receipt', arial" >
+				                                        <tr>    
+				                                          <td> Amount Paid <?=$acct->opening_amount_paid; ?></td>
+				                                          <td> </td>
+				                                          <td> Balance <?=$acct->opening_amount - $acct->opening_amount_paid; ?></td>
+				                                        </tr>
+				                                    </table>
+				                                   
+				                                      <br/>
+				                                  <center style="font-size:12px;font-family:'Fake Receipt', arial"> <i> Thank you!!! </i> </center>
+				                          </div>
+				                        <a href="?money-lending" class="btn btn-primary" onclick="PrintContent('rect')" > <i class="fa fa-print fa-fw"> </i>&nbsp;Print </a> &nbsp;
+				                        <a href="<?=SITE_URL; ?>/approved-loans" class="btn btn-danger" > <i class="fa fa-long-arrow-left fa-fw"> </i> Cancel </a> 
+				                    </div>
+			                	</div>
+			                </div>
+		                </div>
 					</div>
 					<div class="col-lg-8">
 						<div class="card">
