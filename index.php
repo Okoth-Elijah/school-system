@@ -129,7 +129,7 @@
 								<p class="mb-0 text-secondary">Pending Loans</p>
 								<h4 class="my-1">0</h4>
 							</div>
-							<div class="text-danger ms-auto font-35"><i class='bx bxl-github'></i>
+							<div class="text-danger ms-auto font-35"><i class="fadeIn animated bx bx-bookmark-minus"></i>
 							</div>
 						</div>
 					</div>
@@ -143,7 +143,7 @@
 								<p class="mb-0 text-secondary">Approved Loans</p>
 								<h4 class="my-1">0</h4>
 							</div>
-							<div class="text-warning ms-auto font-35"><i class='bx bxl-firefox'></i>
+							<div class="text-success ms-auto font-35"><i class="fadeIn animated bx bx-bookmark-minus"></i>
 							</div>
 						</div>
 					</div>
@@ -157,7 +157,7 @@
 								<p class="mb-0 text-secondary">Ongoing Loans</p>
 								<h4 class="my-1">0</h4>
 							</div>
-							<div class="text-warning ms-auto font-35"><i class='bx bxl-firefox'></i>
+							<div class="text-success ms-auto font-35"><i class="fadeIn animated bx bx-bookmark-minus"></i>
 							</div>
 						</div>
 					</div>
@@ -171,7 +171,7 @@
 								<p class="mb-0 text-secondary">Completed Loans</p>
 								<h4 class="my-1">0</h4>
 							</div>
-							<div class="text-warning ms-auto font-35"><i class='bx bxl-firefox'></i>
+							<div class="text-warning ms-auto font-35"><i class="fadeIn animated bx bx-bookmark-minus"></i>
 							</div>
 						</div>
 					</div>
@@ -185,7 +185,7 @@
 								<p class="mb-0 text-secondary">Total Loan Amounts</p>
 								<h4 class="my-1">USh 0.00</h4>
 							</div>
-							<div class="text-warning ms-auto font-35"><i class='bx bxl-firefox'></i>
+							<div class="text-success ms-auto font-35"><i class="fadeIn animated bx bx-bookmark-minus"></i>
 							</div>
 						</div>
 					</div>

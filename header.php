@@ -144,7 +144,7 @@ if (empty($_SESSION['userid'])) {
 
 				<li>
 					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
+						<div class="parent-icon"><i class="fadeIn animated bx bx-bookmark-minus"></i>
 						</div>
 						<div class="menu-title">Manage Loans</div>
 					</a>
