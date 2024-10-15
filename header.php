@@ -96,6 +96,7 @@ if (empty($_SESSION['userid'])) {
 						<div class="menu-title">Dashboard</div>
 					</a>
 				</li>
+				<hr>
 				<li>
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class="bx bx-group"></i>
@@ -128,7 +129,7 @@ if (empty($_SESSION['userid'])) {
 
 				<li>
 					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
+						<div class="parent-icon"><i class="fadeIn animated bx bx-credit-card-front"></i>
 						</div>
 						<div class="menu-title">Manage Accounts</div>
 					</a>
@@ -159,7 +160,7 @@ if (empty($_SESSION['userid'])) {
 
 				<li>
 					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
+						<div class="parent-icon"><i class="fadeIn animated bx bx-money"></i>
 						</div>
 						<div class="menu-title">Manage Savings</div>
 					</a>
@@ -171,7 +172,7 @@ if (empty($_SESSION['userid'])) {
 
 				<li>
 					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
+						<div class="parent-icon"><i class="fadeIn animated bx bx-list-ol"></i>
 						</div>
 						<div class="menu-title">Manage Withdraws</div>
 					</a>
@@ -179,6 +180,18 @@ if (empty($_SESSION['userid'])) {
 						<li> <a href="pending-loans"><i class='bx bx-radio-circle'></i>Pending Withdraws</a>
 						<li> <a href="approved-loans"><i class='bx bx-radio-circle'></i>Approved Withdraws</a>
 						<li> <a href="ongoing-loans"><i class='bx bx-radio-circle'></i>Rejected Withdraws</a>
+						</li>
+					</ul>
+				</li>
+
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
+						</div>
+						<div class="menu-title">Manage Expenses</div>
+					</a>
+					<ul>
+						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Expenses</a>
 						</li>
 					</ul>
 				</li>
@@ -200,7 +213,7 @@ if (empty($_SESSION['userid'])) {
 
 				<li>
 					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-bookmark-minus"></i>
+						<div class="parent-icon"><i class="fadeIn animated bx bx-credit-card-front"></i>
 						</div>
 						<div class="menu-title">Accounts Reports</div>
 					</a>
@@ -227,10 +240,21 @@ if (empty($_SESSION['userid'])) {
 						</li>
 					</ul>
 				</li>
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="fadeIn animated bx bx-money"></i>
+						</div>
+						<div class="menu-title">Savings Report</div>
+					</a>
+					<ul>
+						<li> <a href="savings-report"><i class='bx bx-radio-circle'></i>Savings Report</a>
+						</li>
+					</ul>
+				</li>
 
 				<li>
 					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
+						<div class="parent-icon"><i class="fadeIn animated bx bx-list-ol"></i>
 						</div>
 						<div class="menu-title">Withdraw Reports</div>
 					</a>
@@ -238,6 +262,18 @@ if (empty($_SESSION['userid'])) {
 						<li> <a href="pending-loans"><i class='bx bx-radio-circle'></i>Pending W.Report</a>
 						<li> <a href="approved-loans"><i class='bx bx-radio-circle'></i>Approved W.Report</a>
 						<li> <a href="ongoing-loans"><i class='bx bx-radio-circle'></i>Rejected W.Report</a>
+						</li>
+					</ul>
+				</li>
+
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
+						</div>
+						<div class="menu-title">Expense Report</div>
+					</a>
+					<ul>
+						<li> <a href="expense-report"><i class='bx bx-radio-circle'></i>Expenses</a>
 						</li>
 					</ul>
 				</li>

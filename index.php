@@ -71,7 +71,37 @@
 								<p class="mb-0 text-secondary">Total Opened Accounts</p>
 								<h4 class="my-1"><?=number_format($toaccs); ?></h4>
 							</div>
-							<div class="widgets-icons bg-light-warning text-warning ms-auto"><i class="fadeIn animated bx bx-list-check"></i>
+							<div class="widgets-icons bg-light-warning text-warning ms-auto"><i class="fadeIn animated bx bx-credit-card-front"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col">
+				<div class="card radius-10">
+					<div class="card-body">
+						<div class="d-flex align-items-center">
+							<div>
+								<p class="mb-0 text-secondary">Total Pending Accounts</p>
+								<h4 class="my-1"><?=number_format($toaccs); ?></h4>
+							</div>
+							<div class="widgets-icons bg-light-warning text-warning ms-auto"><i class="fadeIn animated bx bx-credit-card-front"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col">
+				<div class="card radius-10">
+					<div class="card-body">
+						<div class="d-flex align-items-center">
+							<div>
+								<p class="mb-0 text-secondary">Total Active Accounts</p>
+								<h4 class="my-1"><?=number_format($toaccs); ?></h4>
+							</div>
+							<div class="widgets-icons bg-light-warning text-warning ms-auto"><i class="fadeIn animated bx bx-credit-card-front"></i>
 							</div>
 						</div>
 					</div>
@@ -85,7 +115,7 @@
 								<p class="mb-0 text-secondary">Total Savings</p>
 								<h4 class="my-1">Ush 0.00</h4>
 							</div>
-							<div class="text-primary ms-auto font-35"><i class='bx bxl-chrome'></i>
+							<div class="text-primary ms-auto font-35"><i class="fadeIn animated bx bx-money"></i>
 							</div>
 						</div>
 					</div>
@@ -96,8 +126,8 @@
 					<div class="card-body">
 						<div class="d-flex align-items-center">
 							<div>
-								<p class="mb-0 text-secondary">Github Users</p>
-								<h4 class="my-1">56M</h4>
+								<p class="mb-0 text-secondary">Pending Loans</p>
+								<h4 class="my-1">0</h4>
 							</div>
 							<div class="text-danger ms-auto font-35"><i class='bx bxl-github'></i>
 							</div>
@@ -110,10 +140,66 @@
 					<div class="card-body">
 						<div class="d-flex align-items-center">
 							<div>
-								<p class="mb-0 text-secondary">Firefox Users</p>
-								<h4 class="my-1">42M</h4>
+								<p class="mb-0 text-secondary">Approved Loans</p>
+								<h4 class="my-1">0</h4>
 							</div>
 							<div class="text-warning ms-auto font-35"><i class='bx bxl-firefox'></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card radius-10">
+					<div class="card-body">
+						<div class="d-flex align-items-center">
+							<div>
+								<p class="mb-0 text-secondary">Ongoing Loans</p>
+								<h4 class="my-1">0</h4>
+							</div>
+							<div class="text-warning ms-auto font-35"><i class='bx bxl-firefox'></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card radius-10">
+					<div class="card-body">
+						<div class="d-flex align-items-center">
+							<div>
+								<p class="mb-0 text-secondary">Completed Loans</p>
+								<h4 class="my-1">0</h4>
+							</div>
+							<div class="text-warning ms-auto font-35"><i class='bx bxl-firefox'></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card radius-10">
+					<div class="card-body">
+						<div class="d-flex align-items-center">
+							<div>
+								<p class="mb-0 text-secondary">Total Loan Amounts</p>
+								<h4 class="my-1">USh 0.00</h4>
+							</div>
+							<div class="text-warning ms-auto font-35"><i class='bx bxl-firefox'></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card radius-10">
+					<div class="card-body">
+						<div class="d-flex align-items-center">
+							<div>
+								<p class="mb-0 text-secondary">Expenses</p>
+								<h4 class="my-1">USh 0.00</h4>
+							</div>
+							<div class="text-success ms-auto font-35"><i class="fadeIn animated bx bx-money"></i>
 							</div>
 						</div>
 					</div>
