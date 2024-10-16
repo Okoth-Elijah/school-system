@@ -105,7 +105,7 @@ $_SESSION['accdetail_fullname'] = $fullnamed;
 							<div class="card-body">
 								<h5 class="mb-0 text-uppercase">Customer Deposits - <a data-bs-toggle="modal" data-bs-target="#new-account<?=$user->userid?>" style="font-size: 14px;" class="btn btn-sm btn-primary">Deposit Now</a></h5>
 								<hr/>
-								<h5>Acc Balance: <b class="text-primary">USh 0.00</b></h5>
+								<h5>Current Acc Balc: <b class="text-primary">USh <?=$acct->account_balance; ?></b></h5>
 							</div>
 						</div>
 					</div>

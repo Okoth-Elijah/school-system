@@ -196,6 +196,31 @@ if (empty($_SESSION['userid'])) {
 					</ul>
 				</li>
 
+
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
+						</div>
+						<div class="menu-title">Manage PayRolls</div>
+					</a>
+					<ul>
+						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Expenses</a>
+						</li>
+					</ul>
+				</li>
+
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
+						</div>
+						<div class="menu-title">Manage Leaves</div>
+					</a>
+					<ul>
+						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Expenses</a>
+						</li>
+					</ul>
+				</li>
+
 				<li>
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class="fadeIn animated bx bx-bookmark-minus"></i>

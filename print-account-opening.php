@@ -16,7 +16,7 @@ $accty = dbRow("SELECT * FROM account_types WHERE acc_id  = '".$acct->acc_id."' 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <base href="https://kitudesacco.com/">
+    <base href="http://localhost/kitudesacco/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -76,9 +76,8 @@ $accty = dbRow("SELECT * FROM account_types WHERE acc_id  = '".$acct->acc_id."' 
         <div class="ticket">
             <center><img src="uploadx/logo-transparent.png" style="width: 100px; " alt="Logo"></center>
             <p class="centered">KITUDE SACCO</p>
-            <p class="centered">RECEIPT EXAMPLE
-                <br>Kiwangala Division
-                <br>+256-782-507-087, 070-574-5988, 075-109-1256</p>
+            <p class="centered">
+                <br>Tel: 0703551093,0772521668</p>
                     <table style="width:100%;font-size:12px;font-family:'Fake Receipt', arial">
                         <tr> <td style="font-size:14px"> <b> RECEIPT HISTORY</b> </td> </tr>
                         <tr> <td> <b> Receipt No.: <?=$rx->barcode;?> </b> </td> </tr>

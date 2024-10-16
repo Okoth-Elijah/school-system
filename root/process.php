@@ -588,6 +588,9 @@ if (isset($_POST['register_btn'])) {
     $accno = getNextAccountNumberWithoutUnderscore($dbh);
     $result = $dbh->query("INSERT INTO customer_accounts VALUES('$accountNumber','$acc_id','$userid','$opening_amount','0','0','pending','$dtime','$today') ");
      if($result){
+        //customer withdraw collections.. 
+        // `cw_id`, `account_number`, `cw_amount`, `cw_time`, `cw_date`
+        $dbh->query("INSERT INTO customer_withdraws VALUES(NULL, '$accountNumber', '0','$dtime', '$today') ");
         $customer = dbRow("SELECT * FROM users WHERE userid = '$userid' ");
         $acct = dbRow("SELECT * FROM account_types WHERE acc_id = '$acc_id' ");
         $message = "KITUDE SACCO: Hi ".$customer->firstname.' '.$customer->lastname.', Your '.$acct->acc_type.' is created successfully and Acc.No is: '.$accno.'. Thx';
