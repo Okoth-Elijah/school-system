@@ -1,8 +1,4 @@
 <?php 
-// include 'root/config.php';
-// $clientt = base64_decode($_GET['history-receipt-small-printer']); 
-// $loann = base64_decode($_GET['loan']);
-// $recordd = $dbh->query("SELECT * FROM loans l, clients c WHERE l.loan_id = '$loann' AND c.cid = '$clientt' "); $rx = $recordd->fetch(PDO::FETCH_OBJ);
 include 'root/process.php';
 $currentUrl = $_SERVER['REQUEST_URI'];
 $parts = explode('/', $currentUrl);
@@ -79,7 +75,7 @@ $accty = dbRow("SELECT * FROM account_types WHERE acc_id  = '".$acct->acc_id."' 
             <p class="centered">
                 <br>Tel: 0703551093,0772521668</p>
                     <table style="width:100%;font-size:12px;font-family:'Fake Receipt', arial">
-                        <tr> <td style="font-size:14px"> <b> RECEIPT HISTORY</b> </td> </tr>
+                        <tr> <td style="font-size:14px"> <b> ACC OPENING RECEIPT HISTORY</b> </td> </tr>
                         <tr> <td> <b> Receipt No.: <?=$rx->barcode;?> </b> </td> </tr>
                         <tr> <td><?php echo $dtime;?> </td> </tr>
                         <?php $cod = dbRow("SELECT * FROM clients WHERE cid = '".$rx->cid."' "); ?>

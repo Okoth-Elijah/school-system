@@ -1,5 +1,6 @@
 <?php 
 include('config.php');
+include('phpqrcode/qrlib.php');
 $errors = array();
 foreach ($errors as $error) {
     echo $errors;
