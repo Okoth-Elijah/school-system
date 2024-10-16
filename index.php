@@ -219,6 +219,20 @@
 					</div>
 				</div>
 			</div>
+			<div class="col">
+				<div class="card radius-10">
+					<div class="card-body">
+						<div class="d-flex align-items-center">
+							<div>
+								<p class="mb-0 text-secondary">Total Acc Opening Revenue</p>
+								<h4 class="my-1">Ush <?=number_format($taor->totalacc_open_revenue); ?></h4>
+							</div>
+							<div class="text-primary ms-auto font-35"><i class="fadeIn animated bx bx-money"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

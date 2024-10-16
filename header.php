@@ -26,6 +26,10 @@ if (empty($_SESSION['userid'])) {
 	//total opened accounts 
 	$toaccs =  $dbh->query("SELECT * FROM customer_accounts ")->rowCount();
 
+	//account opening revenue...
+	$acc_opening_revenue = $dbh->query("SELECT SUM(opening_amount_paid) AS totalacc_open_revenue FROM customer_accounts ");
+	$taor = $acc_opening_revenue->fetch(PDO::FETCH_OBJ);	
+
 }
 
 ?>
