@@ -197,9 +197,7 @@ $_SESSION['accdetail_fullname'] = $fullnamed;
 												</div>
 											</div>
 										</div>
-
-
-
+										
 									</div>
 								</div>
 							</div>

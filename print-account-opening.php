@@ -74,100 +74,46 @@ $accty = dbRow("SELECT * FROM account_types WHERE acc_id  = '".$acct->acc_id."' 
             <p class="centered">KITUDE SACCO</p>
             <p class="centered">
                 <br>Tel: 0703551093,0772521668</p>
-                    <table style="width:100%;font-size:12px;font-family:'Fake Receipt', arial">
-                        <tr> <td style="font-size:14px"> <b> ACC OPENING RECEIPT HISTORY</b> </td> </tr>
-                        <tr> <td> <b> Receipt No.: <?=$rx->barcode;?> </b> </td> </tr>
-                        <tr> <td><?php echo $dtime;?> </td> </tr>
-                        <?php $cod = dbRow("SELECT * FROM clients WHERE cid = '".$rx->cid."' "); ?>
-                        <tr> <td> Client: <strong><?=ucwords($cod->fname.'&nbsp;'.$cod->lname);?>&nbsp;</strong> </td> </tr>
-                    </table>
-                    <hr style="border:1px dashed #000;margin:2px" />
-                    <table style="width:100%;font-size:10px;font-family:'Fake Receipt', arial" >
-                        <tr>    
-                            <td > Loan Installment <?=$rx->loan_installments; ?> Time(s)</td>
-                            <td> </td>
-                            <!-- <td> Interest Rate <?=$rx->interest_rate; ?> %</td> -->
-                        </tr>
-                    </table>
-                    <hr style="border:1px dashed #000;margin:2px" />
-                    <table style="width:100%;font-size:12px;font-family:'Fake Receipt', arial" >
-                        <tr>    
-                            <td> Subtotal Recieved: </td>
-                            <td> </td>
-                            <td style="float:right;margin-right:20px"> UGX <?=number_format($rx->loan_amount);?> </td>
-                        </tr>
-                        <tr>    
-                            <td> <b> TOTAL RECIEVED:  </b></td>
-                            <td> </td>
-                            <td style="float:right;margin-right:20px">  <b> UGX <?=number_format($rx->loan_amount);?> </b></td>
-                        </tr>
-                    </table>
-                    <hr style="border:1px dashed #000;margin:2px" />
-                    <table style="width:100%;font-size:12px;font-family:'Fake Receipt', arial" >
-                        <tr>
-                            <td><b>TOTAL TO BE PAYMENT: </b></td>
-                            <td></td>
-                            <td>
-                                <?php 
-                                $pi = ($rx->loan_amount * $rx->interest_rate)/100;
-                                echo '<b> UGX. '.(number_format($pi + $rx->loan_amount)).'</b>';  ?>
-                            </td>
-                        </tr>
-                    </table>
-                    <hr style="border:1px dashed #000;margin:2px" />
-                    <table style="width:100%;font-size:12px;font-family:'Fake Receipt', arial" >
-                        <tr>
-                            <td><b>DAILY PAYMENT: </b></td>
-                            <td></td>
-                            <td>
-                                <?php 
-                                $pi = ($rx->loan_amount * $rx->interest_rate)/100;
-                                $daily_payment = ($pi + $rx->loan_amount)/ $rx->loan_installments;
-                                echo '<b> UGX. '.number_format($daily_payment).'</b>';  ?>
-                            </td>
-                        </tr>
-                    </table>
-                    <hr>
-                    <?php $hissx = $dbh->query("SELECT SUM(deposit) AS 'Deposit', phid, loan_id, cid FROM payment_history WHERE cid = '".$rx->cid."'  ");
-                        $rro = $hissx->fetch(PDO::FETCH_OBJ); ?>
-                <hr style="border:1px dashed #000;margin:2px" />
-                <table style="width:100%;font-size:12px;font-family:'Fake Receipt', arial" >
-                    <tr>
-                        <td><b>AMOUNT PAID: </b></td>
-                        <td></td>
-                        <td><b>UGX.<?=number_format($rro->Deposit); ?></b></td>
-                    </tr>
+                <table style="width:100%;font-size:12px;font-family:'Fake Receipt', arial">
+                    <tr> <td style="font-size:14px"> <b> ACC OPENING RECEIPT HISTORY</b> </td> </tr>
+                    <tr> <td> <b> Customer.: <?=ucwords($user->firstname.' '.$user->lastname);?> </b> </td> </tr>
+                    <tr> <td> <b> Account No.: <?=$acct->account_number;?> </b> </td> </tr>
+                    <tr> <td><?php echo $dtime;?> </td> </tr>
                 </table>
                 <hr style="border:1px dashed #000;margin:2px" />
                 <table style="width:100%;font-size:12px;font-family:'Fake Receipt', arial" >
-                    <tr>
-                        <td><b>TOTAL BALANCE: </b></td>
-                        <td></td>
-                        <?php $pi = (($rx->loan_amount * $rx->interest_rate)/100 + $rx->loan_amount); ?>
-                        <td><b>UGX. <?=number_format($pi - $rro->Deposit); ?></b></td>
-                    </tr>
+                    <p><b>PAYMENT HISTORY: </b></p>
+                <?php $account_nubz = $dbh->query("SELECT * FROM account_payment_history WHERE account_number = '".$acct->account_number."' ");
+                    $x = 1; 
+                    while($rx = $account_nubz->fetch(PDO::FETCH_OBJ)){?>
+                        <tr>
+                            <td>
+                                <b>Ugx. <?=number_format($rx->accph_amount); ?></b> - <?=$rx->accph_time; ?>
+                            </td>
+                        </tr>
+                <?php } ?>
                 </table>
-                <hr style="border:1px dashed #000;margin:2px" />
-                <hr style="border:1px dashed #000;margin:2px" />
-                 <table style="width:100%;font-size:12px;font-family:'Fake Receipt', arial" border="1" >
-                    <?php 
-                    $payhistory = $dbh->query("SELECT * FROM payment_history WHERE loan_id = '".$rx->loan_id."' AND cid = '".$rx->cid."' ");
-                    while($rr = $payhistory->fetch(PDO::FETCH_OBJ)){ ?>
-                    <tr>
-                        <td><b> Amount</b></td>
-                        <td><b>UGX. <?=number_format($rr->deposit); ?></b><br></td>
-                        <td><?=$rr->date_paid; ?><br></td>
-                    </tr>
-                    <?php } ?>
-                </table>
-                <br/>
-                 <center>
-                    <?php $pcci = dbRow("SELECT * FROM client_photos WHERE cid = '".$rx->cid."' "); ?>
-                    <img style="width: 100px; " src="<?=$pcci->client_photo; ?>">
-                    </center>
-                <center style="font-size:12px;font-family:'Fake Receipt', arial"> <i> Thank you!!! </i> </center>
-            <p class="centered">Thanks for your !
-                <br>parzibyte.me/blog</p>
+
+            <hr style="border:1px dashed #000;margin:2px" />
+            <table style="width:100%;font-size:12px;font-family:'Fake Receipt', arial" >
+                <tr>
+                    <td><b>AMOUNT PAID: </b></td>
+                    <td></td>
+                    <td><b>USh <?=number_format($acct->opening_amount_paid); ?></b></td>
+                </tr>
+            </table>
+            <hr style="border:1px dashed #000;margin:2px" />
+            <table style="width:100%;font-size:12px;font-family:'Fake Receipt', arial" >
+                <tr>
+                    <td><b>TOTAL BALANCE: </b></td>
+                    <td></td>
+                    <td><b>USh <?=number_format($acct->opening_amount-$acct->opening_amount_paid); ?></b></td>
+                </tr>
+            </table>
+            <hr style="border:1px dashed #000;margin:2px" />
+            <center style="font-size:12px;font-family:'Fake Receipt', arial"> 
+                <i> Thank you!!!
+            </center>
         </div>
         <button id="btnPrint" class="hidden-print">Print</button>
         <script>
