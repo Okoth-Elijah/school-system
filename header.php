@@ -140,6 +140,7 @@ if (empty($_SESSION['userid'])) {
 					<ul>
 						<li> <a href="manage-accounts"><i class='bx bx-radio-circle'></i>Account Types</a>
 						<li> <a href="pending-acounts"><i class='bx bx-radio-circle'></i>Pending Accounts</a>
+						<li> <a href="parital-acounts"><i class='bx bx-radio-circle'></i>Paritial Accounts</a>
 						<li> <a href="active-accounts"><i class='bx bx-radio-circle'></i>Active Accounts</a>
 						<li> <a href="dormant-accounts"><i class='bx bx-radio-circle'></i>Dormant Accounts</a>
 						</li>
@@ -221,6 +222,19 @@ if (empty($_SESSION['userid'])) {
 					</a>
 					<ul>
 						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Expenses</a>
+						</li>
+					</ul>
+				</li>
+
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
+						</div>
+						<div class="menu-title">Manage Assets</div>
+					</a>
+					<ul>
+						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Asset Types</a>
+						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Add Asset</a>
 						</li>
 					</ul>
 				</li>

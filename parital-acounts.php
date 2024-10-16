@@ -10,7 +10,7 @@
 					<ol class="breadcrumb mb-0 p-0">
 						<li class="breadcrumb-item"><a href="<?=SITE_URL; ?>"><i class="bx bx-home-alt"></i></a>
 						</li>
-						<li class="breadcrumb-item active" aria-current="page">Active Accounts</li>
+						<li class="breadcrumb-item active" aria-current="page">Partial Accounts</li>
 					</ol>
 				</nav>
 			</div>
@@ -18,7 +18,7 @@
 		<!--end breadcrumb-->
 		<div class="card">
 			<div class="card-body">
-				<h4>Customer Active Accounts</h4>
+				<h4>Customer Partial Accounts</h4>
 				<div class="table-responsive">
 					<table class="table mb-0" id="example">
 						<thead class="table-light">
@@ -31,7 +31,7 @@
 							</tr>
 						</thead>
 						<tbody>
-						<?php $accountz = $dbh->query("SELECT * FROM customer_accounts WHERE acc_status = 'paid' ORDER BY acc_opening_date DESC ");
+						<?php $accountz = $dbh->query("SELECT * FROM customer_accounts WHERE acc_status = 'partial' ORDER BY acc_opening_date DESC ");
 						$x = 1; 
 						while($rx = $accountz->fetch(PDO::FETCH_OBJ)){
 							$accty = dbRow("SELECT * FROM account_types WHERE acc_id = '".$rx->acc_id."' ");
