@@ -196,6 +196,7 @@ if (empty($_SESSION['userid'])) {
 						<div class="menu-title">Manage Expenses</div>
 					</a>
 					<ul>
+						<li> <a href="expense-categories"><i class='bx bx-radio-circle'></i>Expense Categories</a>
 						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Expenses</a>
 						</li>
 					</ul>
@@ -413,7 +414,7 @@ if (empty($_SESSION['userid'])) {
 							<li>
 								<div class="dropdown-divider mb-0"></div>
 							</li>
-							<li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="bx bx-log-out-circle"></i><span>Logout</span></a>
+							<li><a class="dropdown-item d-flex align-items-center" href="logout" onclick="return confirm('Do you really want to Logout?. '); "><i class="bx bx-log-out-circle"></i><span>Logout</span></a>
 							</li>
 						</ul>
 					</div>

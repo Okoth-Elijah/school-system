@@ -149,54 +149,6 @@ if (isset($_POST['register_btn'])) {
         }
     }
 
-}elseif (isset($_POST['adding_new_welfare_payment_btn'])) {
-    trim(extract($_POST));
-    $welfare_amount = $_POST['welfare_amount'];
-    // Remove commas from the number
-    $welfare_amount = str_replace(',', '', $welfare_amount);
-    $account_number = addslashes($account_number);
-    $check = $dbh->query("SELECT account_number, date_paid FROM welfare_history WHERE (account_number='$account_number' AND date_paid = '$today' ) ")->fetchColumn();
-    if(!$check){
-        $result = $dbh->query("UPDATE welfare SET account_balance = account_balance + '$welfare_amount', welfare_last_paid = '$today' WHERE account_number = '$account_number' ");
-        if ($result) {
-            //update welfare payment history
-            //`wh_id`, `account_number`, `amount_paid`, `datetime_paid`, `date_paid`
-            $dbh->query("INSERT INTO welfare_history VALUES(NULL,'$account_number','$welfare_amount','$dtime','$today') ");
-            $user = dbRow("SELECT * FROM users WHERE account_number = '$account_number' ");
-            $message = "KITUDE SACCO ".$user->firstname.', Your Welfare payment of USh '.number_format($welfare_amount).' have been received.Thx';
-            @json_decode(send_sms_yoola_api($user->phone, $message), true);
-            $_SESSION['status'] = '<div class="alert alert-success alert-dismissible">'.$user->firstname.', Welfare account credited successfully.</div>';
-            $_SESSION['loader'] = '<center><div class="spinner-border text-success"></div></center>';
-            header("refresh:2; url=".SITE_URL.'/welfare');
-        }else{
-            $_SESSION['status'] = '<div class="alert alert-warning alert-dismissible" id="note1">Error occured, try again later.</div>';
-        }
-    }else{
-        $_SESSION['status'] = '<div class="alert alert-warning alert-dismissible text-center" id="note1">You have already paid welfare today, but you can pay again tomorrow.</div>';
-    }
-}elseif (isset($_POST['add_saving_details_btn'])) {
-    trim(extract($_POST));
-    $amount = $_POST['amount'];
-    $amount = str_replace(',', '', $amount);
-    $account_number = addslashes($account_number);
-    $check = $dbh->query("SELECT account_number, saving_last_date FROM saving_history WHERE (account_number='$account_number' AND saving_last_date = '$today' ) ")->fetchColumn();
-    if(!$check){
-        $result = $dbh->query("UPDATE savings SET amount  = amount  + '$amount', saving_last_date = '$today' WHERE account_number = '$account_number' ");
-        if ($result) {
-            //`saving_id`, `account_number`, `saving_amount`, `saving_date_time`, `saving_last_date`
-            $dbh->query("INSERT INTO saving_history VALUES(NULL,'$account_number','$amount','$dtime','$today') ");
-            $user = dbRow("SELECT * FROM users WHERE account_number = '$account_number' ");
-            $message = "KITUDE SACCO ".$user->firstname.', Your savings payment of USh '.number_format($amount).' have been received.Thx';
-            @json_decode(send_sms_yoola_api($user->phone, $message), true);
-            $_SESSION['status'] = '<div class="alert alert-success alert-dismissible">'.$user->firstname.', Savings credited successfully.</div>';
-            $_SESSION['loader'] = '<center><div class="spinner-border text-success"></div></center>';
-            header("refresh:2; url=".SITE_URL.'/savings');
-        }else{
-            $_SESSION['status'] = '<div class="alert alert-warning alert-dismissible" id="note1">Error occured, try again later.</div>';
-        }
-    }else{
-        $_SESSION['status'] = '<div class="alert alert-warning alert-dismissible text-center" id="note1">You have already paid Savings today, but you can pay again tomorrow.</div>';
-    }
 }elseif (isset($_POST['update_user_btn'])) {
     trim(extract($_POST));
     //`userid`, `firstname`, `lastname`, `gender`, `phone`, `business_location`, `role`, `password`, `account_number`, `account_status`, `date_registered`
@@ -619,13 +571,44 @@ if (isset($_POST['register_btn'])) {
             $acb = $cx->opening_amount - $cx->opening_amount_paid;
             $message = "KITUDE SACCO. Hello ".$firstname.', You just paid USh: '.$accph_amount.' and activation fee balz: '.$acb;
             @json_decode(send_sms_yoola_api($ux->phone, $message), true);  
-
             $_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">Activation account payments received Successfully</div>';
             $_SESSION['loader'] = '<center><div id="note1" class="spinner-border text-center text-success"></div></center>';
             header("refresh:2; url=".$_SERVER['REQUEST_URI']);
         }
     }
+}elseif (isset($_POST['save_new_expense_category_btn'])) {
+    trim(extract($_POST));
+    // `expc_id`, `expc_name`, `expc_slug`
+    $slug = preg_replace("/[^a-z0-9- ]/", "", strtolower($expc_name));
+    $slug = preg_replace("/[^a-z0-9-]/", "-" , $slug); 
+    $expc_name = addslashes($expc_name);
+    $check = $dbh->query("SELECT expc_slug FROM expense_category WHERE (expc_slug='$slug' ) ")->fetchColumn();
+     if ($check) {
+        $new_slug = rand(11111,55555).'.'.$slug;
+        $result = $dbh->query("INSERT INTO expense_category VALUES(NULL,'$expc_name','$new_slug') ");
+        if ($result) {
+            $_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">Expense Category added Successfully</div>';
+            $_SESSION['loader'] = '<center><div id="note1" class="spinner-border text-center text-success"></div></center>';
+            header("refresh:2; url=".$_SERVER['REQUEST_URI']);
+        }else{
+            $_SESSION['status'] = '<div id="note2" class="alert alert-warning text-center">Expense creation Failed. </div>';
+        }
+    }else{
+        $result = $dbh->query("INSERT INTO expense_category VALUES(NULL,'$expc_name','$slug') ");
+        if ($result) {
+           $_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">Expense Category added Successfully</div>';
+            $_SESSION['loader'] = '<center><div id="note1" class="spinner-border text-center text-success"></div></center>';
+            header("refresh:2; url=".$_SERVER['REQUEST_URI']);
+        }else{
+            $_SESSION['status'] = '<div id="note2" class="alert alert-warning text-center">Expense creation Failed. </div>';
+        }
+    } 
 
+    if (move_uploaded_file($_FILES['stp_photo']['tmp_name'], $target_file)) {
+        $msg = "File uploaded Successfully";
+    } else {
+        $msg = "There was a problem uploading image";
+    }
 }
 
 ?>
