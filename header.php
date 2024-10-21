@@ -30,6 +30,19 @@ if (empty($_SESSION['userid'])) {
 	$acc_opening_revenue = $dbh->query("SELECT SUM(opening_amount_paid) AS totalacc_open_revenue FROM customer_accounts ");
 	$taor = $acc_opening_revenue->fetch(PDO::FETCH_OBJ);	
 
+	//deleting expenses.. 
+	if (isset($_REQUEST['del-exp'])) {
+		$id = base64_decode($_GET['del-exp']);
+		$res = $dbh->query("DELETE FROM expenses WHERE expense_id = '$id' ");
+		if ($res) {
+			$_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">Expense added Successfully</div>';
+	        $_SESSION['loader'] = '<center><div id="note1" class="spinner-border text-center text-success"></div></center>';
+	        header("Location: expenses");
+	    }else{
+
+		}
+	}
+
 }
 
 ?>

@@ -609,6 +609,19 @@ if (isset($_POST['register_btn'])) {
     } else {
         $msg = "There was a problem uploading image";
     }
+}elseif (isset($_POST['save_new_expense_btn'])) {
+     trim(extract($_POST));
+    // `expense_id`, `expc_id`, `expense_title`, `expense_amount`, `expense_date`, `added_by`
+     $expense_amount = str_replace(',', '', $expense_amount);
+     $expense_title = addslashes($expense_title);
+    $result = $dbh->query("INSERT INTO expenses VALUES(NULL,'$expc_id','$expense_title', '$expense_amount', '$today', '$userid') ");
+    if ($result) {
+        $_SESSION['status'] = '<div id="note2" class="alert alert-success text-center">Expense added Successfully</div>';
+        $_SESSION['loader'] = '<center><div id="note1" class="spinner-border text-center text-success"></div></center>';
+        header("refresh:2; url=".$_SERVER['REQUEST_URI']);
+    }else{
+        $_SESSION['status'] = '<div id="note2" class="alert alert-warning text-center">Expense creation Failed. </div>';
+    }
 }
 
 ?>
