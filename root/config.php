@@ -19,27 +19,27 @@ switch(DB_URL){
 		defined ("DB_SERVER") or define("DB_SERVER", 'localhost');
 		defined ("DB_USER") or define("DB_USER", "root");
 		defined ("DB_PASS") or define("DB_PASS", "");
-		defined ("DB_NAME") or define("DB_NAME", "kitudesacco");
-		defined ("SITE_URL") or define("SITE_URL", 'http://localhost/kitudesacco');
-		defined ("HOME_URL") or define("HOME_URL", 'http://localhost/kitudesacco/users');
+		defined ("DB_NAME") or define("DB_NAME", "schoolsystem");
+		defined ("SITE_URL") or define("SITE_URL", 'http://localhost/schoolsystem');
+		defined ("HOME_URL") or define("HOME_URL", 'http://localhost/schoolsystem/users');
 	break;
 
-	case 'https://www.kitudesacco.com': 
+	case 'https://www.schoolsystem.com': 
 		defined ("DB_SERVER") or define("DB_SERVER", "localhost");
 		defined ("DB_USER") or define("DB_USER", "");
 		defined ("DB_PASS") or define("DB_PASS", "");
 		defined ("DB_NAME") or define("DB_NAME", "");
-		defined ("SITE_URL") or define("SITE_URL", "https://kitudesacco.com");
-		defined ("HOME_URL") or define("HOME_URL", "https://kitudesacco.com/users");
+		defined ("SITE_URL") or define("SITE_URL", "https://schoolsystem.com");
+		defined ("HOME_URL") or define("HOME_URL", "https://schoolsystem.com/users");
 	break;
 
 	default: 
 		defined ("DB_SERVER") or define("DB_SERVER", 'localhost');
 		defined ("DB_USER") or define("DB_USER", "root");
 		defined ("DB_PASS") or define("DB_PASS", "");
-		defined ("DB_NAME") or define("DB_NAME", "kitudesacco");
-		defined ("SITE_URL") or define("SITE_URL", 'http://localhost/kitudesacco');
-		defined ("HOME_URL") or define("HOME_URL", 'http://localhost/kitudesacco/users');
+		defined ("DB_NAME") or define("DB_NAME", "schoolsystem");
+		defined ("SITE_URL") or define("SITE_URL", 'http://localhost/schoolsystem');
+		defined ("HOME_URL") or define("HOME_URL", 'http://localhost/schoolsystem/users');
 	}
  try{
 	$dbh = new PDO("mysql:host=".DB_SERVER.";dbname=".DB_NAME, DB_USER, DB_PASS, array(PDO::ATTR_PERSISTENT => true)); 

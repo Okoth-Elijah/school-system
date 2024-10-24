@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
-	<link rel="icon" href="uploadx/logo-bg.png" type="image/png">
+	<link rel="icon" href="assets/images/schll-favicon.png" type="image/png">
 	<!--plugins-->
 	<link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet">
 	<link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
@@ -20,11 +20,12 @@
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet">
 	<link href="assets/sass/app.css" rel="stylesheet">
 	<link rel="stylesheet" href="assets/sass/dark-theme.css">
+	<link rel="stylesheet" href="assets/css/styles.css">
 	<link href="assets/css/icons.css" rel="stylesheet">
-	<title>Kitude Sacco - Auth Login</title>
+	<title>schoolsystem</title>
 </head>
 
-<body class="" style="background-image: url('uploadx/kitude-bg.png'); background-size: cover; background-repeat: no-repeat;">
+<body class="login-background-img" style="background-image: url('assets/images/schll-bg.png'); background-size: cover; background-repeat: no-repeat;">
 	<!--wrapper-->
 	<div class="wrapper">
 		<div class="section-authentication-signin d-flex align-items-center justify-content-center my-5 my-lg-0">
@@ -35,12 +36,8 @@
 							<div class="card-body">
 								<div class="p-4">
 									<div class="mb-3 text-center">
-										<img src="uploadx/logo-transparent.png" width="120" alt="" />
+										<img class="img-fluid" style="width:10em; height:10em;"  src="assets/images/schll-logo.png" width="120" alt="" />
 									</div>
-									<!-- <div class="text-center mb-4">
-										<h5 class="">Kitude Sacco</h5>
-										<p class="mb-0">Please log in to your account</p>
-									</div> -->
 									<div class="form-body">
 										<?php
 					                        if (isset($_SESSION['status'])): ?>

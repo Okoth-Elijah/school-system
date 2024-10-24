@@ -50,11 +50,11 @@ if (empty($_SESSION['userid'])) {
 <html lang="en" data-bs-theme="<?=$theme->theme_code; ?>">
 <head>
 	<!-- Required meta tags -->
-	<base href="http://localhost/kitudesacco/">
+	<base href="http://localhost/schoolsystem/">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
-	<link rel="icon" href="uploadx/logo-bg.png" type="image/png">
+	<link rel="icon" href="assets/images/schll-favicon.png" type="image/png">
 	<!--plugins-->
 	<link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet">
 	<link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
@@ -76,7 +76,7 @@ if (empty($_SESSION['userid'])) {
 	<link rel="stylesheet" href="assets/sass/dark-theme.css">
 	<link rel="stylesheet" href="assets/sass/semi-dark.css">
 	<link rel="stylesheet" href="assets/sass/bordered-theme.css">
-	<title>Kitude sacco</title>
+	<title>schoolsystem</title>
 	<script type="text/javascript">
 	   // JavaScript function for printing using div element
 	    function PrintContent(el){
@@ -96,10 +96,10 @@ if (empty($_SESSION['userid'])) {
 		<div class="sidebar-wrapper" data-simplebar="true">
 			<div class="sidebar-header">
 				<div>
-					<img src="uploadx/logo-transparent.png" class="logo-icon" alt="logo icon">
+					<img src="assets/images/schll-logo.png" class="logo-icon" alt="logo icon" style="width:3em; height:4.5em;" >
 				</div>
 				<div>
-					<h4 class="logo-text">KITUDE SACCO</h4>
+					<h4 class="logo-text">School System</h4>
 				</div>
 				<div class="mobile-toggle-icon ms-auto"><i class='bx bx-x'></i>
 				</div>
@@ -116,18 +116,15 @@ if (empty($_SESSION['userid'])) {
 				<hr>
 				<li>
 					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="bx bx-group"></i>
+						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
 						</div>
-						<div class="menu-title">Manage Staffs</div>
+						<div class="menu-title">Admin Dashboard</div>
 					</a>
 					<ul>
-						<li> <a href="administrators"><i class='bx bx-radio-circle'></i>Administrators</a>
-						</li>
-						<li> <a href="managers"><i class='bx bx-radio-circle'></i>Managers</a>
-						</li>
-						<li> <a href="cashiers"><i class='bx bx-radio-circle'></i>Cashiers</a>
-						<li> <a href="loan-officer"><i class='bx bx-radio-circle'></i>Loan Officers</a>
-						</li>
+						<li> <a href="expense-categories"><i class='bx bx-radio-circle'></i>Manage Users  </a></li>
+						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Property Manage  </a></li>
+						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Booking Overview  </a></li>
+						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Financial Overview  </a></li>
 					</ul>
 				</li>
 
@@ -135,12 +132,29 @@ if (empty($_SESSION['userid'])) {
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class="bx bx-group"></i>
 						</div>
-						<div class="menu-title">Manage Customers</div>
+						<div class="menu-title"> Manage Users</div>
 					</a>
 					<ul>
-						<li> <a href="new-customer"><i class='bx bx-radio-circle'></i>Add New Customer</a>
-						<li> <a href="all-customers"><i class='bx bx-radio-circle'></i>All Customers</a>
+						<li> <a href="administrators"><i class='bx bx-radio-circle'></i>Administrators</a></li>
 						</li>
+						<li> <a href="managers"><i class='bx bx-radio-circle'></i>Teachers</a></li>
+						</li>
+						<li> <a href="cashiers"><i class='bx bx-radio-circle'></i>Parents</a></li>
+						<li> <a href="loan-officer"><i class='bx bx-radio-circle'></i>Students</a></li>
+					</ul>
+				</li>
+
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="bx bx-group"></i>
+						</div>
+						<div class="menu-title">Manage Property </div>
+					</a>
+					<ul>
+						<li> <a href="new-customer"><i class='bx bx-radio-circle'></i>Property Listing </a></li>
+						<li> <a href="all-customers"><i class='bx bx-radio-circle'></i>Property Details </a></li>	
+						<li> <a href="all-customers"><i class='bx bx-radio-circle'></i>Availability Calendar </a></li>	
+						<li> <a href="all-customers"><i class='bx bx-radio-circle'></i>Property Maintenance Requests  </a></li>	
 					</ul>
 				</li>
 
@@ -148,15 +162,13 @@ if (empty($_SESSION['userid'])) {
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class="fadeIn animated bx bx-credit-card-front"></i>
 						</div>
-						<div class="menu-title">Manage Accounts</div>
+						<div class="menu-title">Manage Booking </div>
 					</a>
 					<ul>
-						<li> <a href="manage-accounts"><i class='bx bx-radio-circle'></i>Account Types</a>
-						<li> <a href="pending-acounts"><i class='bx bx-radio-circle'></i>Pending Accounts</a>
-						<li> <a href="parital-acounts"><i class='bx bx-radio-circle'></i>Paritial Accounts</a>
-						<li> <a href="active-accounts"><i class='bx bx-radio-circle'></i>Active Accounts</a>
-						<li> <a href="dormant-accounts"><i class='bx bx-radio-circle'></i>Dormant Accounts</a>
-						</li>
+						<li> <a href="manage-accounts"><i class='bx bx-radio-circle'></i>Search and Filter Properties </a></li>
+						<li> <a href="pending-acounts"><i class='bx bx-radio-circle'></i>Booking Creation</a></li>
+						<li> <a href="parital-acounts"><i class='bx bx-radio-circle'></i>Booking History</a></li>
+						<li> <a href="active-accounts"><i class='bx bx-radio-circle'></i>Rescheduling Options </a></li>
 					</ul>
 				</li>
 
@@ -164,15 +176,13 @@ if (empty($_SESSION['userid'])) {
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class="fadeIn animated bx bx-bookmark-minus"></i>
 						</div>
-						<div class="menu-title">Manage Loans</div>
+						<div class="menu-title">Payment Processing </div>
 					</a>
 					<ul>
-						<li> <a href="loan-applications"><i class='bx bx-radio-circle'></i>Loan Application Form</a>
-						<li> <a href="pending-loans"><i class='bx bx-radio-circle'></i>Pending Loans</a>
-						<li> <a href="approved-loans"><i class='bx bx-radio-circle'></i>Approved Loans</a>
-						<li> <a href="ongoing-loans"><i class='bx bx-radio-circle'></i>Ongoing Loans</a>
-						<li> <a href="completed-loans"><i class='bx bx-radio-circle'></i>Completed Loans</a>
-						</li>
+						<li> <a href="loan-applications"><i class='bx bx-radio-circle'></i>Payment Gateway Integration </a></li>
+						<li> <a href="pending-loans"><i class='bx bx-radio-circle'></i>Invoice Generation</a></li>
+						<li> <a href="approved-loans"><i class='bx bx-radio-circle'></i>Payment History Tracking </a></li>
+						<li> <a href="ongoing-loans"><i class='bx bx-radio-circle'></i>Refund Processing </a></li>
 					</ul>
 				</li>
 
@@ -180,11 +190,12 @@ if (empty($_SESSION['userid'])) {
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class="fadeIn animated bx bx-money"></i>
 						</div>
-						<div class="menu-title">Manage Savings</div>
+						<div class="menu-title">Communication </div>
 					</a>
 					<ul>
-						<li> <a href="all-savings"><i class='bx bx-radio-circle'></i>All Savings</a>
-						</li>
+						<li> <a href="all-savings"><i class='bx bx-radio-circle'></i>In-app Messaging </a>
+						<li> <a href="all-savings"><i class='bx bx-radio-circle'></i>Email Notifications  </a>
+						<li> <a href="all-savings"><i class='bx bx-radio-circle'></i>SMS Alerts for Important Updates  </a>
 					</ul>
 				</li>
 
@@ -192,78 +203,40 @@ if (empty($_SESSION['userid'])) {
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class="fadeIn animated bx bx-list-ol"></i>
 						</div>
-						<div class="menu-title">Manage Withdraws</div>
+						<div class="menu-title">Analytics</div>
 					</a>
 					<ul>
-						<li> <a href="pending-loans"><i class='bx bx-radio-circle'></i>Pending Withdraws</a>
-						<li> <a href="approved-loans"><i class='bx bx-radio-circle'></i>Approved Withdraws</a>
-						<li> <a href="ongoing-loans"><i class='bx bx-radio-circle'></i>Rejected Withdraws</a>
-						</li>
+						<li> <a href="pending-loans"><i class='bx bx-radio-circle'></i>Rental Income Reports </a></li>
+						<li> <a href="approved-loans"><i class='bx bx-radio-circle'></i>Occupancy Rates </a></li>
+						<li> <a href="ongoing-loans"><i class='bx bx-radio-circle'></i>Customer Feedback and Ratings</a></li>
+						<li> <a href="ongoing-loans"><i class='bx bx-radio-circle'></i>Maintenance and Repair Reports</a></li>
 					</ul>
 				</li>
 
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
-						</div>
-						<div class="menu-title">Manage Expenses</div>
-					</a>
-					<ul>
-						<li> <a href="expense-categories"><i class='bx bx-radio-circle'></i>Expense Categories</a>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Expenses</a>
-						</li>
-					</ul>
-				</li>
+				
 
 
 				<li>
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
 						</div>
-						<div class="menu-title">Manage PayRolls</div>
+						<div class="menu-title">Help Center</div>
 					</a>
 					<ul>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Expenses</a>
-						</li>
+						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>FAQs </a>
+						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Live Chat Support </a>
+						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Ticketing System </a>
 					</ul>
 				</li>
 
 				<li>
 					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
-						</div>
-						<div class="menu-title">Manage Leaves</div>
-					</a>
-					<ul>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Expenses</a>
-						</li>
-					</ul>
-				</li>
-
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
-						</div>
+						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i></div>
 						<div class="menu-title">Manage Assets</div>
 					</a>
 					<ul>
 						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Asset Types</a>
 						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Add Asset</a>
-						</li>
-					</ul>
-				</li>
-
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-bookmark-minus"></i>
-						</div>
-						<div class="menu-title">Manage User Reports</div>
-					</a>
-					<ul>
-						<li> <a href="admin-report"><i class='bx bx-radio-circle'></i>Admins Report</a>
-						<li> <a href="manager-report"><i class='bx bx-radio-circle'></i>Manager Report</a>
-						<li> <a href="cashier-report"><i class='bx bx-radio-circle'></i>Cashier Report</a>
-						<li> <a href="loan-officer-report"><i class='bx bx-radio-circle'></i>Loan Officer Report</a>
 						</li>
 					</ul>
 				</li>
@@ -279,58 +252,6 @@ if (empty($_SESSION['userid'])) {
 						<li> <a href="pending-accounts-report"><i class='bx bx-radio-circle'></i>Pending Accounts</a>
 						<li> <a href="active-accounts-report"><i class='bx bx-radio-circle'></i>Active Accounts</a>
 						<li> <a href="dormant-accounts-report"><i class='bx bx-radio-circle'></i>Dormant Accounts</a>
-						</li>
-					</ul>
-				</li>
-
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-bookmark-minus"></i>
-						</div>
-						<div class="menu-title">Loan Reports</div>
-					</a>
-					<ul>
-						<li> <a href="pending-loans-report"><i class='bx bx-radio-circle'></i>Pending L.Report</a>
-						<li> <a href="approved-loans-report"><i class='bx bx-radio-circle'></i>Approved L.Report</a>
-						<li> <a href="ongoing-loans-report"><i class='bx bx-radio-circle'></i>Ongoing L.Report</a>
-						<li> <a href="completed-loans-report"><i class='bx bx-radio-circle'></i>Completed L.Report</a>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-money"></i>
-						</div>
-						<div class="menu-title">Savings Report</div>
-					</a>
-					<ul>
-						<li> <a href="savings-report"><i class='bx bx-radio-circle'></i>Savings Report</a>
-						</li>
-					</ul>
-				</li>
-
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-list-ol"></i>
-						</div>
-						<div class="menu-title">Withdraw Reports</div>
-					</a>
-					<ul>
-						<li> <a href="pending-loans"><i class='bx bx-radio-circle'></i>Pending W.Report</a>
-						<li> <a href="approved-loans"><i class='bx bx-radio-circle'></i>Approved W.Report</a>
-						<li> <a href="ongoing-loans"><i class='bx bx-radio-circle'></i>Rejected W.Report</a>
-						</li>
-					</ul>
-				</li>
-
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
-						</div>
-						<div class="menu-title">Expense Report</div>
-					</a>
-					<ul>
-						<li> <a href="expense-report"><i class='bx bx-radio-circle'></i>Expenses</a>
 						</li>
 					</ul>
 				</li>
