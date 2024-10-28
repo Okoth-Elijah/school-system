@@ -123,11 +123,49 @@ if (empty($_SESSION['userid'])) {
 					</a>
 					<ul>
 						<li> <a href="administrators"><i class='bx bx-radio-circle'></i>Administrators</a></li>
-						<li> <a href="managers"><i class='bx bx-radio-circle'></i>Teachers</a></li>
+						<li> <a href="teachers"><i class='bx bx-radio-circle'></i>Teachers</a></li>
 						<li> <a href="cashiers"><i class='bx bx-radio-circle'></i>Parents</a></li>
 						<li> <a href="loan-officer"><i class='bx bx-radio-circle'></i>Students</a></li>
-						<li> <a href="loan-officer"><i class='bx bx-radio-circle'></i>Staff</a></li>
 					</ul>
+				</li>
+
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="bx bx-group"></i>
+						</div>
+						<div class="menu-title"> Manage Staffs</div>
+					</a>
+					<ul>
+						<li> <a href="administrators"><i class='bx bx-radio-circle'></i>Teaching Staff</a></li>
+						<li> <a href="managers"><i class='bx bx-radio-circle'></i>None Teaching Staff</a></li>
+					</ul>
+				</li>
+				
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="fadeIn animated bx bx-money"></i>
+						</div>
+						<div class="menu-title">Admissions </div>
+					</a>
+					<ul>
+						<li> <a href="all-savings"><i class='bx bx-radio-circle'></i>Application forms </a>
+						<li> <a href="all-savings"><i class='bx bx-radio-circle'></i>Enrollment status  </a>
+						<li> <a href="all-savings"><i class='bx bx-radio-circle'></i>Document Verification  </a>
+						<li> <a href="all-savings"><i class='bx bx-radio-circle'></i>Admission Reports  </a>
+					</ul>
+				</li>
+
+				<li>
+					<a href="loan-officer">
+						<div class="parent-icon"><i class="bx bx-group"></i></div>
+						<div class="menu-title"> Manage Classes</div>
+					</a>
+				</li>
+				<li>
+					<a href="managers">
+						<div class="parent-icon"><i class="bx bx-group"></i></div>
+						<div class="menu-title"> Manage subjects</div>
+					</a>
 				</li>
 
 				<li>
@@ -170,19 +208,6 @@ if (empty($_SESSION['userid'])) {
 					</ul>
 				</li>
 
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-money"></i>
-						</div>
-						<div class="menu-title">Admissions </div>
-					</a>
-					<ul>
-						<li> <a href="all-savings"><i class='bx bx-radio-circle'></i>Application forms </a>
-						<li> <a href="all-savings"><i class='bx bx-radio-circle'></i>Enrollment status  </a>
-						<li> <a href="all-savings"><i class='bx bx-radio-circle'></i>Document Verification  </a>
-						<li> <a href="all-savings"><i class='bx bx-radio-circle'></i>Admission Reports  </a>
-					</ul>
-				</li>
 
 				<li>
 					<a href="javascript:;" class="has-arrow">
