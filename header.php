@@ -124,8 +124,8 @@ if (empty($_SESSION['userid'])) {
 					<ul>
 						<li> <a href="administrators"><i class='bx bx-radio-circle'></i>Administrators</a></li>
 						<li> <a href="teachers"><i class='bx bx-radio-circle'></i>Teachers</a></li>
-						<li> <a href="cashiers"><i class='bx bx-radio-circle'></i>Parents</a></li>
-						<li> <a href="loan-officer"><i class='bx bx-radio-circle'></i>Students</a></li>
+						<li> <a href="parents"><i class='bx bx-radio-circle'></i>Parents</a></li>
+						<li> <a href="students"><i class='bx bx-radio-circle'></i>Students</a></li>
 					</ul>
 				</li>
 
@@ -136,8 +136,8 @@ if (empty($_SESSION['userid'])) {
 						<div class="menu-title"> Manage Staffs</div>
 					</a>
 					<ul>
-						<li> <a href="administrators"><i class='bx bx-radio-circle'></i>Teaching Staff</a></li>
-						<li> <a href="managers"><i class='bx bx-radio-circle'></i>None Teaching Staff</a></li>
+						<li> <a href="teaching-staff"><i class='bx bx-radio-circle'></i>Teaching Staff</a></li>
+						<li> <a href="none-teaching-staff"><i class='bx bx-radio-circle'></i>None Teaching Staff</a></li>
 					</ul>
 				</li>
 				
@@ -156,13 +156,13 @@ if (empty($_SESSION['userid'])) {
 				</li>
 
 				<li>
-					<a href="loan-officer">
+					<a href="classes">
 						<div class="parent-icon"><i class="bx bx-group"></i></div>
 						<div class="menu-title"> Manage Classes</div>
 					</a>
 				</li>
 				<li>
-					<a href="managers">
+					<a href="subject">
 						<div class="parent-icon"><i class="bx bx-group"></i></div>
 						<div class="menu-title"> Manage subjects</div>
 					</a>

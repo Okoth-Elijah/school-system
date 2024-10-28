@@ -114,7 +114,7 @@
 
 					<div class="card">
 						<div class="card-body">
-							<button type="submit" name="save_new_manager_btn" class="btn btn-primary">Save Manager</button>
+							<button type="submit" name="save_new_manager_btn" class="btn btn-primary">Save Teacher</button>
 						</div>
 					</div>
 				</form>
