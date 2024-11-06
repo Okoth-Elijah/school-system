@@ -4,13 +4,13 @@
 	<div class="page-content">
 		<!--breadcrumb-->
 		<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-			<div class="breadcrumb-title pe-3">Teacher</div>
+			<div class="breadcrumb-title pe-3">Staffs</div>
 			<div class="ps-3">
 		 		<nav aria-label="breadcrumb">
 					<ol class="breadcrumb mb-0 p-0">
 						<li class="breadcrumb-item"><a href="<?=SITE_URL; ?>"><i class="bx bx-home-alt"></i></a>
 						</li>
-						<li class="breadcrumb-item active" aria-current="page">New Teacher Form</li>
+						<li class="breadcrumb-item active" aria-current="page">New Staff Member</li>
 					</ol>
 				</nav>
 			</div>
@@ -114,7 +114,7 @@
 
 					<div class="card">
 						<div class="card-body">
-							<button type="submit" name="save_new_manager_btn" class="btn btn-primary">Save Teacher</button>
+							<button type="submit" name="save_new_manager_btn" class="btn btn-lg w-50 fs-4 btn-primary">Save</button>
 						</div>
 					</div>
 				</form>

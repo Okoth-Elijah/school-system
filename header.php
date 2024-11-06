@@ -17,7 +17,7 @@ if (empty($_SESSION['userid'])) {
     $tadmins = $dbh->query("SELECT * FROM users WHERE role = 'admin' ")->rowCount();
     $admin_this_week = $dbh->query("SELECT * FROM users WHERE role = 'admin' AND date_registered BETWEEN '$startOfWeek' AND '$endOfWeek'")->rowCount();
 
-    //total customers
+    //total customers 
     $tcustomers = $dbh->query("SELECT * FROM users WHERE role = 'customer' ")->rowCount();
     //customers this week...
 	$cus_this_week = $dbh->query("SELECT * FROM users WHERE role = 'customer' AND date_registered BETWEEN '$startOfWeek' AND '$endOfWeek'")->rowCount();
@@ -50,7 +50,7 @@ if (empty($_SESSION['userid'])) {
 <html lang="en" data-bs-theme="<?=$theme->theme_code; ?>">
 <head>
 	<!-- Required meta tags -->
-	<base href="http://localhost/schoolsystem/">
+	<base href="http://localhost/managehubpro.com/">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
@@ -72,11 +72,22 @@ if (empty($_SESSION['userid'])) {
 	
 	<link href="assets/sass/app.css" rel="stylesheet">
 	<link href="assets/css/icons.css" rel="stylesheet">
+	<!--Icons  -->
+	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-straight/css/uicons-regular-straight.css'>
+	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-thin-rounded/css/uicons-thin-rounded.css'>
+	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-thin-straight/css/uicons-thin-straight.css'>
+	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-straight/css/uicons-solid-straight.css'>
+	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+	
+
 	<!-- Theme Style CSS -->
 	<link rel="stylesheet" href="assets/sass/dark-theme.css">
 	<link rel="stylesheet" href="assets/sass/semi-dark.css">
 	<link rel="stylesheet" href="assets/sass/bordered-theme.css">
-	<title>schoolsystem</title>
+	<link rel="stylesheet" href="assets/css/styles.css">
+	
+	<title>Manage-Hub-Pro</title>
 	<script type="text/javascript">
 	   // JavaScript function for printing using div element
 	    function PrintContent(el){
@@ -99,7 +110,7 @@ if (empty($_SESSION['userid'])) {
 					<img src="assets/images/schll-logo.png" class="logo-icon" alt="logo icon" style="width:3em; height:4.5em;" >
 				</div>
 				<div>
-					<h4 class="logo-text">School System</h4>
+					<h4 class="logo-text "  style="font-size:1.4em;">Manage Hub Pro</h4>
 				</div>
 				<div class="mobile-toggle-icon ms-auto"><i class='bx bx-x'></i>
 				</div>
@@ -122,75 +133,44 @@ if (empty($_SESSION['userid'])) {
 						<div class="menu-title"> Manage Users</div>
 					</a>
 					<ul>
-						<li> <a href="administrators"><i class='bx bx-radio-circle'></i>Administrators</a></li>
-						<li> <a href="teachers"><i class='bx bx-radio-circle'></i>Teachers</a></li>
-						<li> <a href="parents"><i class='bx bx-radio-circle'></i>Parents</a></li>
-						<li> <a href="students"><i class='bx bx-radio-circle'></i>Students</a></li>
+						<li> <a href="administrators"><i class='bx bx-radio-circle'></i>administrators</a></li>
+						<li> <a href="staffs"><i class='bx bx-radio-circle'></i>Staffs</a></li>
 					</ul>
 				</li>
 
 				<li>
 					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="bx bx-group"></i>
+						<div class="parent-icon"><i class="fi fi-rr-user-headset"></i>
 						</div>
-						<div class="menu-title"> Manage Staffs</div>
+						<div class="menu-title">Manage Service </div>
 					</a>
 					<ul>
-						<li> <a href="teaching-staff"><i class='bx bx-radio-circle'></i>Teaching Staff</a></li>
-						<li> <a href="none-teaching-staff"><i class='bx bx-radio-circle'></i>None Teaching Staff</a></li>
-					</ul>
-				</li>
-				
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-money"></i>
-						</div>
-						<div class="menu-title">Admissions </div>
-					</a>
-					<ul>
-						<li> <a href="all-savings"><i class='bx bx-radio-circle'></i>Application forms </a>
-						<li> <a href="all-savings"><i class='bx bx-radio-circle'></i>Enrollment status  </a>
-						<li> <a href="all-savings"><i class='bx bx-radio-circle'></i>Document Verification  </a>
-						<li> <a href="all-savings"><i class='bx bx-radio-circle'></i>Admission Reports  </a>
-					</ul>
-				</li>
-
-				<li>
-					<a href="classes">
-						<div class="parent-icon"><i class="bx bx-group"></i></div>
-						<div class="menu-title"> Manage Classes</div>
-					</a>
-				</li>
-				<li>
-					<a href="subject">
-						<div class="parent-icon"><i class="bx bx-group"></i></div>
-						<div class="menu-title"> Manage subjects</div>
-					</a>
-				</li>
-
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="bx bx-group"></i>
-						</div>
-						<div class="menu-title">Attendence </div>
-					</a>
-					<ul>
-						<li> <a href="new-customer"><i class='bx bx-radio-circle'></i>Attendance Records </a></li>
-						<li> <a href="all-customers"><i class='bx bx-radio-circle'></i>Absence tracking </a></li>	
-						<li> <a href="all-customers"><i class='bx bx-radio-circle'></i>Attendence % </a></li>	
+						<li> <a href="all-savings"><i class='bx bx-radio-circle'></i>Services </a>
+						<li> <a href="all-savings"><i class='bx bx-radio-circle'></i>Request Tracking </a>
 					</ul>
 				</li>
 
 				<li>
 					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-credit-card-front"></i>
+						<div class="parent-icon"><i class="fi fi-rs-to-do"></i>
 						</div>
-						<div class="menu-title">Timetable </div>
+						<div class="menu-title">Manage Task </div>
 					</a>
 					<ul>
-						<li> <a href="manage-accounts"><i class='bx bx-radio-circle'></i>Class schedules </a></li>
-						<li> <a href="pending-acounts"><i class='bx bx-radio-circle'></i>Teacher assignments</a></li>
-						<li> <a href="parital-acounts"><i class='bx bx-radio-circle'></i>Room allocations</a></li>
+						<li> <a href="new-customer"><i class='bx bx-radio-circle'></i>Task Assignment </a></li>
+						<li> <a href="all-customers"><i class='bx bx-radio-circle'></i>Progress Tracking </a></li>	
+					</ul>
+				</li>
+
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="fi fi-rr-broadcast-tower"></i>
+						</div>
+						<div class="menu-title">Communication </div>
+					</a>
+					<ul>
+						<li> <a href="manage-accounts"><i class='bx bx-radio-circle'></i>Internal Messaging </a></li>
+						<li> <a href="pending-acounts"><i class='bx bx-radio-circle'></i>Notifications</a></li>
 					</ul>
 				</li>
 
@@ -198,183 +178,99 @@ if (empty($_SESSION['userid'])) {
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class="fadeIn animated bx bx-bookmark-minus"></i>
 						</div>
-						<div class="menu-title">Grades </div>
+						<div class="menu-title">Support Ticketing </div>
 					</a>
 					<ul>
-						<li> <a href="loan-applications"><i class='bx bx-radio-circle'></i>Grade entry </a></li>
-						<li> <a href="pending-loans"><i class='bx bx-radio-circle'></i>Report cards</a></li>
-						<li> <a href="approved-loans"><i class='bx bx-radio-circle'></i>Performance analytics </a></li>
-						<li> <a href="ongoing-loans"><i class='bx bx-radio-circle'></i>Subject assessments</a></li>
-					</ul>
-				</li>
-
-
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-list-ol"></i>
-						</div>
-						<div class="menu-title">Library</div>
-					</a>
-					<ul>
-						<li> <a href="pending-loans"><i class='bx bx-radio-circle'></i>Book catalog </a></li>
-						<li> <a href="approved-loans"><i class='bx bx-radio-circle'></i>check-out System </a></li>
-						<li> <a href="ongoing-loans"><i class='bx bx-radio-circle'></i>Overide notices</a></li>
-						<li> <a href="ongoing-loans"><i class='bx bx-radio-circle'></i>Inventory management</a></li>
+						<li> <a href="loan-applications"><i class='bx bx-radio-circle'></i>Ticketing Creation </a></li>
+						<li> <a href="pending-loans"><i class='bx bx-radio-circle'></i>Status Tracking</a></li>
 					</ul>
 				</li>
 
 				<li>
 					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
+						<div class="parent-icon"><i class="fi fi-rr-point-of-sale-bill"></i>
 						</div>
-						<div class="menu-title">Resourses</div>
+						<div class="menu-title">Billings</div>
 					</a>
 					<ul>
-						<li> <a href="expense-categories"><i class='bx bx-radio-circle'></i>Facilities  </a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Equipment inventory  </a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Maintenance requests </a></li>
+						<li> <a href="expense-categories"><i class='bx bx-radio-circle'></i>Invoice Generation </a></li>
+						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Payment Processing  </a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="fi fi-rs-newspaper"></i>
+						</div>
+						<div class="menu-title">Reporting</div>
+					</a>
+					<ul>
+						<li> <a href="expense-categories"><i class='bx bx-radio-circle'></i>Custom Reports </a></li>
+						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Performance Analysis  </a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="fi fi-rr-camera-cctv"></i>
+						</div>
+						<div class="menu-title">Security</div>
+					</a>
+					<ul>
+						<li> <a href="expense-categories"><i class='bx bx-radio-circle'></i>Data Protection  </a></li>
+						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>User Authentication  </a></li>
 					</ul>
 				</li>
 
 				<li>
 					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
+						<div class="parent-icon"><i class="fi fi-rr-customize"></i>
 						</div>
-						<div class="menu-title">Bookings</div>
+						<div class="menu-title">Customization</div>
 					</a>
 					<ul>
-						<li> <a href="expense-categories"><i class='bx bx-radio-circle'></i>Room reservations </a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Equipment bookings  </a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Scheduling conflicts </a></li>
-					</ul>
-				</li>
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
-						</div>
-						<div class="menu-title">Payments</div>
-					</a>
-					<ul>
-						<li> <a href="expense-categories"><i class='bx bx-radio-circle'></i>Fee structures  </a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Payment history  </a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Invoice generation </a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Payment reminders</a></li>
-					</ul>
-				</li>
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
-						</div>
-						<div class="menu-title">Transportation</div>
-					</a>
-					<ul>
-						<li> <a href="expense-categories"><i class='bx bx-radio-circle'></i>Bus routes  </a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Student assignments  </a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Real time tracking </a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Driver management </a></li>
+						<li> <a href="expense-categories"><i class='bx bx-radio-circle'></i>Custom Fields  </a></li>
+						<li> <a href="expenses"><i class='bx bx-radio-circle'></i> Workflow Setup </a></li>
 					</ul>
 				</li>
 
 				<li>
 					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
+						<div class="parent-icon"><i class="fi fi-rr-master-plan-integrate"></i>
 						</div>
-						<div class="menu-title">Home work</div>
+						<div class="menu-title">Integrations</div>
 					</a>
 					<ul>
-						<li> <a href="expense-categories"><i class='bx bx-radio-circle'></i>Assignment details  </a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Submission tracking </a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Feedback details </a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Due dates </a></li>
+						<li> <a href="expense-categories"><i class='bx bx-radio-circle'></i>API Access </a></li>
+						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Third-Party Integration </a></li>
 					</ul>
 				</li>
 
 				<li>
 					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
+						<div class="parent-icon"><i class="fi fi-rr-compliance"></i>
 						</div>
-						<div class="menu-title">Analytics</div>
+						<div class="menu-title">Compliance</div>
 					</a>
 					<ul>
-						<li> <a href="expense-categories"><i class='bx bx-radio-circle'></i>Student performance </a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Financial reports </a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Attendence trends </a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Custom reports </a></li>
+						<li> <a href="expense-categories"><i class='bx bx-radio-circle'></i>Standards Adherence </a></li>
+						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Audit Trails </a></li>
 					</ul>
 				</li>
 
 				<li>
 					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
+						<div class="parent-icon"><i class="fi fi-rr-users"></i>
 						</div>
-						<div class="menu-title">Communication</div>
+						<div class="menu-title">Multi-User Access</div>
 					</a>
 					<ul>
-						<li> <a href="expense-categories"><i class='bx bx-radio-circle'></i>Messaging system </a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Announcements </a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Notifications </a></li>
+						<li> <a href="expense-categories"><i class='bx bx-radio-circle'></i>User Collaboration</a></li>
+						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Manage Permission</a></li>
 					</ul>
 				</li>
 
 				<li>
 					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
-						</div>
-						<div class="menu-title">LMS</div>
-					</a>
-					<ul>
-						<li> <a href="expense-categories"><i class='bx bx-radio-circle'></i>Course materials </a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Online quizzes </a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Discussion forums </a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Progress tracking </a></li>
-					</ul>
-				</li>
-
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
-						</div>
-						<div class="menu-title">Inventory</div>
-					</a>
-					<ul>
-						<li> <a href="expense-categories"><i class='bx bx-radio-circle'></i>Supplies tracking</a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Re-order levels</a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Supplier management</a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Usage reports</a></li>
-					</ul>
-				</li>
-
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
-						</div>
-						<div class="menu-title">Parent portal</div>
-					</a>
-					<ul>
-						<li> <a href="expense-categories"><i class='bx bx-radio-circle'></i>Child's grades</a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Attendence records</a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Communication logs</a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Event notifications</a></li>
-					</ul>
-				</li>
-
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
-						</div>
-						<div class="menu-title">Events</div>
-					</a>
-					<ul>
-						<li> <a href="expense-categories"><i class='bx bx-radio-circle'></i>Event calendar</a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Reg management</a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Participant lists</a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Event reminders</a></li>
-					</ul>
-				</li>
-
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
+						<div class="parent-icon"><i class="fi fi-rr-interrogation"></i>
 						</div>
 						<div class="menu-title">Help Center</div>
 					</a>
@@ -382,7 +278,7 @@ if (empty($_SESSION['userid'])) {
 						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>FAQs </a></li>
 						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>support tickating </a></li>
 						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>User guides </a></li>
-						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>Contact information </a></li>
+						<li> <a href="expenses"><i class='bx bx-radio-circle'></i>ConUnemployment Ratetact information </a></li>
 					</ul>
 				</li>
 
@@ -393,9 +289,11 @@ if (empty($_SESSION['userid'])) {
 						<div class="menu-title">Settings</div>
 					</a>
 					<ul>
-						<li> <a href="user-profile"><i class='bx bx-radio-circle'></i>User Profile</a></li>
-						<li> <a href="themes"><i class='bx bx-radio-circle'></i>System preferences</a></li>
-						<li> <a href="change-password"><i class='bx bx-radio-circle'></i>Notification settings</a></li>
+						<li> <a href="themes"><i class='bx bx-radio-circle'></i>User Preferences</a></li>
+						<li> <a href="#"><i class='bx bx-radio-circle'></i>System Configuration</a></li>
+						<li> <a href="change-password"><i class='bx bx-radio-circle'></i>Access Control</a></li>
+						<li> <a href="user-profile"><i class='bx bx-radio-circle'></i>Manage Profile</a></li>
+						
 					</ul>
 				</li>
 
