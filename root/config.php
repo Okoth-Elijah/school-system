@@ -20,11 +20,11 @@ switch(DB_URL){
 		defined ("DB_USER") or define("DB_USER", "root");
 		defined ("DB_PASS") or define("DB_PASS", "");
 		defined ("DB_NAME") or define("DB_NAME", "schoolsystem");
-		defined ("SITE_URL") or define("SITE_URL", 'http://localhost/schoolsystem');
-		defined ("HOME_URL") or define("HOME_URL", 'http://localhost/schoolsystem/users');
+		defined ("SITE_URL") or define("SITE_URL", 'http://localhost/managehubpro.com');
+		defined ("HOME_URL") or define("HOME_URL", 'http://localhost/managehubpro.com/users');
 	break;
 
-	case 'https://www.schoolsystem.com': 
+	case 'https://www.managehubpro.com': 
 		defined ("DB_SERVER") or define("DB_SERVER", "localhost");
 		defined ("DB_USER") or define("DB_USER", "");
 		defined ("DB_PASS") or define("DB_PASS", "");
@@ -38,8 +38,8 @@ switch(DB_URL){
 		defined ("DB_USER") or define("DB_USER", "root");
 		defined ("DB_PASS") or define("DB_PASS", "");
 		defined ("DB_NAME") or define("DB_NAME", "schoolsystem");
-		defined ("SITE_URL") or define("SITE_URL", 'http://localhost/schoolsystem');
-		defined ("HOME_URL") or define("HOME_URL", 'http://localhost/schoolsystem/users');
+		defined ("SITE_URL") or define("SITE_URL", 'http://localhost/managehubpro.com');
+		defined ("HOME_URL") or define("HOME_URL", 'http://localhost/managehubpro.com/users');
 	}
  try{
 	$dbh = new PDO("mysql:host=".DB_SERVER.";dbname=".DB_NAME, DB_USER, DB_PASS, array(PDO::ATTR_PERSISTENT => true)); 

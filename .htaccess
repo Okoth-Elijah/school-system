@@ -1,5 +1,5 @@
 RewriteEngine On
-RewriteBase /schoolsystem/
+RewriteBase /managehubpro.com/
 
 # Exclude certain file types from rewriting
 RewriteCond %{REQUEST_URI} !\.(css|js|png|jpg|gif)$
@@ -34,5 +34,5 @@ RewriteRule ^reset-password/([^/]+)/?$ reset-password.php?i=$1 [L]
 RewriteRule ^jobs/(\d+)$ jobs?page=$1 [L]
 
 # Custom error pages
-ErrorDocument 404 /schoolsystem/error-404.php
-ErrorDocument 500 /schoolsystem/error-500.php
+ErrorDocument 404 /managehubpro.com/error-404.php
+ErrorDocument 500 /managehubpro.com/error-500.php
