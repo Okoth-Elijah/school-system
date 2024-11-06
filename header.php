@@ -145,8 +145,8 @@ if (empty($_SESSION['userid'])) {
 						<div class="menu-title">Manage Service </div>
 					</a>
 					<ul>
-						<li> <a href="all-savings"><i class='bx bx-radio-circle'></i>Services </a>
-						<li> <a href="all-savings"><i class='bx bx-radio-circle'></i>Request Tracking </a>
+						<li> <a href="#"><i class='bx bx-radio-circle'></i>Services </a>
+						<li> <a href="#"><i class='bx bx-radio-circle'></i>Request Tracking </a>
 					</ul>
 				</li>
 
@@ -157,8 +157,8 @@ if (empty($_SESSION['userid'])) {
 						<div class="menu-title">Manage Task </div>
 					</a>
 					<ul>
-						<li> <a href="new-customer"><i class='bx bx-radio-circle'></i>Task Assignment </a></li>
-						<li> <a href="all-customers"><i class='bx bx-radio-circle'></i>Progress Tracking </a></li>	
+						<li> <a href="#"><i class='bx bx-radio-circle'></i>Task Assignment </a></li>
+						<li> <a href="#"><i class='bx bx-radio-circle'></i>Progress Tracking </a></li>	
 					</ul>
 				</li>
 
